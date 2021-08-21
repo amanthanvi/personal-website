@@ -55,7 +55,7 @@ params:
 
     # profile-mode
     profileMode:
-        enabled: false # needs to be explicitly set
+        enabled: true # needs to be explicitly set
         title: ExampleSite
         subtitle: "This is subtitle"
         imageUrl: "<img location>"
