@@ -74,12 +74,10 @@ params:
         Content: Welcome to my blog
 
     socialIcons:
-        - name: twitter
-          url: "https://twitter.com/"
-        - name: stackoverflow
-          url: "https://stackoverflow.com"
+        - name: linkedin
+          url: "https://www.linkedin.com/in/amanthanvi/"
         - name: github
-          url: "https://github.com/"
+          url: "https://github.com/amanthanvi"
 
     analytics:
         google:
@@ -101,6 +99,12 @@ params:
 
     # for search
     # https://fusejs.io/api/options.html
+    outputs:
+    home:
+        - HTML
+        - RSS
+        - JSON # is necessary
+    
     fuseOpts:
         isCaseSensitive: false
         shouldSort: true
