@@ -1,6 +1,6 @@
 baseURL = "http://example.org/"
 languageCode = "en-us"
-theme = "aafu"
+theme = "PaperMod"
 
 [params]
     title = "Aman Thanvi | @amanthanvi"
