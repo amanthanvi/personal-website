@@ -8,25 +8,6 @@
       <url>https://examplesite.com/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://examplesite.com/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 24 Jul 2021 04:34:32 -0400</lastBuildDate><atom:link href="https://examplesite.com/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Second Post</title>
-      <link>https://examplesite.com/posts/second-post/</link>
-      <pubDate>Sat, 24 Jul 2021 04:34:32 -0400</pubDate>
-      
-      <guid>https://examplesite.com/posts/second-post/</guid>
-      <description>This is just a test post { &amp;#34;name&amp;#34;: &amp;#34;Aman&amp;#34; &amp;#34;location&amp;#34;: &amp;#34;united-states&amp;#34; } </description>
-    </item>
-    
-    <item>
-      <title>Hello World</title>
-      <link>https://examplesite.com/posts/hello-world/</link>
-      <pubDate>Sat, 24 Jul 2021 04:27:14 -0400</pubDate>
-      
-      <guid>https://examplesite.com/posts/hello-world/</guid>
-      <description>Hello World This is my first post on my personal website!</description>
-    </item>
-    
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://examplesite.com/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
