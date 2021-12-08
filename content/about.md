@@ -23,12 +23,12 @@ Hi there! My name is Aman Thanvi. Welcome to my personal website! I am a compute
     - Teaching the [Cybersecurity Course](https://courses.codepath.org/snippets/cybersecurity_university/syllabus) @ UMD
 
 - Cryptography Intern @ NASA 🚀 (Summer 2021)
-    - Read my [abstract]()
-    - View my [final presentation]()
+    - Read my [abstract](https://files.amanthanvi.com/ThanviAman_cFSCryptoLibAbstractFinal_Summer2021.pdf)
+    - View my [final presentation](https://files.amanthanvi.com/ThanviAman_FinalPresentation_Summer2021.pdf)
 
 - Security Intern @ NASA Center for Climate Simulation (NCCS) 🌪️ (Summer 2020)
-    - Read my [abstract]()
-    - View my [final presentation]()
+    - Read my [abstract](https://files.amanthanvi.com/ThanviAman_Abstract_FINAL.pdf)
+    - View my [final presentation](https://files.amanthanvi.com/FinalInternPresentation_FINAL.pdf)
 
 - Networking/System Administration Intern @ NASA + Embedded Flight Systems Inc. ☕ (Summer 2019)
 
