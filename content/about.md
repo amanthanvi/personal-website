@@ -12,7 +12,7 @@ Hi there! My name is Aman Thanvi. Welcome to my personal website! I am a compute
 
 - Sophomore at the [University of Maryland, College Park](https://www.umd.edu/)
 
-- Major: Computer Science, Cybersecurity specialization
+- Major: Computer Science
 
 - Minor: [Advanced Cybersecurity Experience for Students (ACES)](https://aces.umd.edu/about-aces)
 
