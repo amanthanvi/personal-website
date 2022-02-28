@@ -5,7 +5,7 @@ showToc: false
 TocOpen: false
 ---
 
-Hi there! My name is Aman Thanvi. Welcome to my personal website! I am a computer science student with a passion for cybersecurity competition and research. I especially like competing in caputure-the-flag competitions (CTFs) and exploring different areas of cybersecurity. Here is some more info about me:
+Hi there! My name is Aman Thanvi. Welcome to my personal website! I am a computer science student with a passion for cybersecurity competition and research. I especially like competing in caputure-the-flag competitions (CTFs) and exploring different areas of cybersecurity. If you want a TL;DR of below, here is my [resume (as of 2/15/2022)](https://files.amanthanvi.com/ThanviAman_Resume20220215_p.pdf). If you want to read the whole thing, here is some more info about me:
 
 
 ### Education
