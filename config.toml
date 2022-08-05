@@ -17,7 +17,7 @@ author = "Aman Thanvi"
 description = "Aman Thanvi's personal website"
 keywords = "blog,developer,personal"
 info = ["Student | Developer | Explorer"]
-avatarURL = "img/profile.jpg"
+avatarURL = "images/profile.jpg"
 #gravatar = "john.doe@example.com"
 dateFormat = "January 2, 2006"
 since = 2021
@@ -41,6 +41,12 @@ customCSS = []
 customSCSS = []
 # Custom JS
 customJS = []
+#favicon_32
+favicon_32 = "images/favicon-32x32.png"
+#favicon_16
+favicon_16 = "images/favicon-16x16.png"
+#apple-touch-icon
+touchIcon = "images/apple-touch-icon.png"
 
 # If you want to use fathom(https://usefathom.com) for analytics, add this section
 # [params.fathomAnalytics]
