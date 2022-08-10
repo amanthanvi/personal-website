@@ -16,7 +16,7 @@ author = "Aman Thanvi"
 # license = '<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>'
 description = "Aman Thanvi's personal website"
 keywords = "blog,developer,personal"
-info = ["Student | Developer | Explorer"]
+info = ["Student | Tinkerer | Explorer"]
 avatarURL = "images/profile.jpg"
 #gravatar = "john.doe@example.com"
 dateFormat = "January 2, 2006"
