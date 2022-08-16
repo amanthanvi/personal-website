@@ -4,7 +4,7 @@ draft: false
 showToc: false
 TocOpen: false
 ---
-Hi there! I am a computer science student with a passion for cybersecurity competition and research. I especially like competing in caputure-the-flag competitions (CTFs) and exploring different areas of cybersecurity. If you want to read my resume (as of 02/15/2022), you can find it [here](https://files.amanthanvi.com/ThanviAman_Resume20220215_p.pdf).
+Hi there! I am a computer science student with a passion for cybersecurity competition and research. I especially like competing in caputure-the-flag competitions (CTFs) and exploring different areas of cybersecurity. If you want to read my resume (as of 08/15/2022), you can find it [here](https://files.amanthanvi.com/ThanviAman_Resume20220816_p.pdf).
 
 ## Education 🎓
 
@@ -16,7 +16,7 @@ Hi there! I am a computer science student with a passion for cybersecurity compe
 
 ## Work Experience 🧑‍💼
 
-- Information Security Intern @ [Nasdaq](https://www.nasdaq.com/) 📈 (Summer 2022)
+- Information Security Intern @ [Nasdaq](https://www.nasdaq.com/) 📈 (Summer 2022 - Present)
 - Tech Fellow @ [CodePath](https://codepath.org/) 🧑‍🏫 (Fall 2021)
   - Taught the [Cybersecurity Course](https://courses.codepath.org/snippets/cybersecurity_university/syllabus) @ UMD
 - Cryptography Intern @ NASA 🚀 (Summer 2021)
@@ -42,7 +42,6 @@ Hi there! I am a computer science student with a passion for cybersecurity compe
 - [Certificate of Achievement with Honors - CodePath Cybersecurity Course Completion](https://drive.google.com/file/d/1Hk0WLHI04TcMUpGI2XqbBAOjQNeI6U2O/view)
 - [NAFTrack](https://www.naftrack.com/)
 - [CompTIA A+](https://www.credly.com/badges/19f98c9f-9fed-4b18-b641-2505a4dafbc5/linked_in_profile)
-
 
 ## Organizations 🤝
 
