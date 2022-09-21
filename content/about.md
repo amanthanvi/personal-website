@@ -4,7 +4,7 @@ draft: false
 showToc: false
 TocOpen: false
 ---
-Hi there! I am a computer science student with a passion for cybersecurity competition and research. I especially like competing in caputure-the-flag competitions (CTFs) and exploring different areas of cybersecurity. If you want to read my resume (as of 08/15/2022), you can find it [here](https://files.amanthanvi.com/ThanviAman_Resume20220816_p.pdf).
+Hi there! I am a computer science student with a passion for cybersecurity competition and research. I especially like competing in caputure-the-flag competitions (CTFs) and exploring different areas of cybersecurity. If you want to read my resume (as of 09/15/2022), you can find it [here](https://files.amanthanvi.com/ThanviAman_Resume20220915_p.pdf).
 
 ## Education 🎓
 
@@ -45,7 +45,7 @@ Hi there! I am a computer science student with a passion for cybersecurity compe
 
 ## Organizations 🤝
 
-- Alpha Lambda Delta (ΑΛΔ)
+- Alpha Lambda Delta (ΑΛΔ) Honor Society
 - Cybersecurity Club (CSEC) at the University of Maryland
 
 ## Hobbies 🔧
