@@ -16,6 +16,7 @@ Hi there! I am a computer science student with a passion for cybersecurity compe
 
 ## Work Experience 🧑‍💼
 
+- Senior Cloud Security Intern @ Kurtek + NASA (Spring 2023 - Present)
 - Information Security Intern @ [Nasdaq](https://www.nasdaq.com/) 📈 (Summer 2022 - Winter 2022)
 - Tech Fellow @ [CodePath](https://codepath.org/) 🧑‍🏫 (Fall 2021)
   - Taught the [Cybersecurity Course](https://courses.codepath.org/snippets/cybersecurity_university/syllabus) @ UMD
@@ -31,7 +32,7 @@ Hi there! I am a computer science student with a passion for cybersecurity compe
 
 - [Scholarship for Service](https://aces.umd.edu/sfs) Recipient
   - Awarded the the 3-Year Grad Track. This track covers junior year, senior year, and one year of an accelerated Masters program at the University of Maryland, College Park.
-- Dean’s List - Fall 2020, Spring 2021
+- Dean's List - Fall 2020, Spring 2021
 - Maryland Seal of Biliteracy - Spanish
 
 ## Certifications 📜
@@ -47,6 +48,8 @@ Hi there! I am a computer science student with a passion for cybersecurity compe
 
 - Alpha Lambda Delta (ΑΛΔ) Honor Society
 - Cybersecurity Club (CSEC) at the University of Maryland
+- Hindu Student Council
+  - Events Co-Chair (Spring 2023 - Present)
 
 ## Hobbies 🔧
 
