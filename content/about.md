@@ -4,7 +4,7 @@ draft: false
 showToc: false
 TocOpen: false
 ---
-Hi there! I am a computer science student with a passion for cybersecurity competition and research. I especially like competing in caputure-the-flag competitions (CTFs) and exploring different areas of cybersecurity. If you want to read my resume (as of 01/05/2023), you can find it [here](https://files.amanthanvi.com/ThanviAman_Resume20230105_p.pdf).
+Hi there! I am a computer science student with a passion for cybersecurity competition and research. I especially like competing in caputure-the-flag competitions (CTFs) and exploring different areas of cybersecurity. If you want to read my resume (as of 06/01/2023), you can find it [here](https://files.amanthanvi.com/ThanviAman_Resume20230601_p.pdf).
 
 ## Education 🎓
 
@@ -16,7 +16,8 @@ Hi there! I am a computer science student with a passion for cybersecurity compe
 
 ## Work Experience 🧑‍💼
 
-- Senior Cloud Security Intern @ Kurtek + NASA (Spring 2023 - Present)
+- Cybersecurity Intern @ CISA (Summer 2023 - Present)
+- Senior Cloud Security Intern @ Kurtek + NASA (Spring 2023)
 - Information Security Intern @ [Nasdaq](https://www.nasdaq.com/) 📈 (Summer 2022 - Winter 2022)
 - Tech Fellow @ [CodePath](https://codepath.org/) 🧑‍🏫 (Fall 2021)
   - Taught the [Cybersecurity Course](https://courses.codepath.org/snippets/cybersecurity_university/syllabus) @ UMD
