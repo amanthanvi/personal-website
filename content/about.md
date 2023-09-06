@@ -33,7 +33,7 @@ Hi there! I am a computer science student with a passion for cybersecurity compe
 
 - [Scholarship for Service](https://aces.umd.edu/sfs) Recipient
   - Awarded the the 3-Year Grad Track. This track covers junior year, senior year, and one year of an accelerated Masters program at the University of Maryland, College Park.
-- Dean's List - Fall 2020, Spring 2021
+- Dean's List - Fall 2020, Spring 2021, Spring 2023
 - Maryland Seal of Biliteracy - Spanish
 
 ## Organizations 🤝
