@@ -16,8 +16,9 @@ Hi there! I am a computer science student with a passion for cybersecurity compe
 
 ## Work Experience 🧑‍💼
 
+- Senior Cyber Security Intern @ Kurtek (Present)
 - Cybersecurity Intern @ CISA (Summer 2023)
-- Senior Cloud Security Intern @ Kurtek + NASA (Spring 2023)
+- Senior Cyber Security Intern @ Kurtek + NASA (Spring 2023)
 - Information Security Intern @ [Nasdaq](https://www.nasdaq.com/) 📈 (Summer 2022 - Winter 2022)
 - Tech Fellow @ [CodePath](https://codepath.org/) 🧑‍🏫 (Fall 2021)
   - Taught the [Cybersecurity Course](https://courses.codepath.org/snippets/cybersecurity_university/syllabus) @ UMD
