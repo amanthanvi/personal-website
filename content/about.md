@@ -4,7 +4,7 @@ draft: false
 showToc: false
 TocOpen: false
 ---
-Hi there! I am a computer science student with a passion for cybersecurity competition and research. I especially like competing in caputure-the-flag competitions (CTFs) and exploring different areas of cybersecurity. If you want to read my resume (as of 08/21/2023), you can find it [here](https://files.amanthanvi.com/ThanviAman_Resume20230821_p.pdf).
+Hi there! I am a computer science student with a passion for cybersecurity competition and research. I especially like competing in caputure-the-flag competitions (CTFs) and exploring different areas of cybersecurity. If you want to read my resume (as of 10/18/2023), you can find it [here](https://files.amanthanvi.com/ThanviAman_Resume20231018_complete.pdf).
 
 ## Education 🎓
 
