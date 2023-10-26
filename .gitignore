@@ -1,4 +1,4 @@
 *.lock
+.gitignore
 .DS_Store
 content/.DS_Store
-.gitignore
