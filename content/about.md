@@ -8,17 +8,17 @@ Hi there! I am a computer science student with a passion for cybersecurity compe
 
 ## Education 🎓
 
-- Senior at the [University of Maryland, College Park](https://www.umd.edu/)
-- Major: B.S. [Computer Science](https://www.cs.umd.edu/)
+- Major: Bachelor of Science in [Computer Science](https://www.cs.umd.edu/)
 - Minors:
   - [Advanced Cybersecurity Experience for Students (ACES)](https://aces.umd.edu/about-aces)
   - [Science, Technology, Ethics and Policy (STEP)](https://spp.umd.edu/your-education/undergraduate/minors/science-technology-ethics-and-policy-step-minor)
 
 ## Work Experience 🧑‍💼
 
-- Senior Cyber Security Intern @ Kurtek (Present)
+- Summer Research Program Intern @ MIT Lincoln Laboratory (Summer 2024)
+- Cybersecurity Research Intern @ Kurtek (Fall 2023)
 - Cybersecurity Intern @ CISA (Summer 2023)
-- Senior Cyber Security Intern @ Kurtek + NASA (Spring 2023)
+- Senior Cyber Security Intern @ Kurtek (contracted to NASA) (Spring 2023)
 - Information Security Intern @ [Nasdaq](https://www.nasdaq.com/) 📈 (Summer 2022 - Winter 2022)
 - Tech Fellow @ [CodePath](https://codepath.org/) 🧑‍🏫 (Fall 2021)
   - Taught the [Cybersecurity Course](https://courses.codepath.org/snippets/cybersecurity_university/syllabus) @ UMD
@@ -40,10 +40,10 @@ Hi there! I am a computer science student with a passion for cybersecurity compe
 ## Organizations 🤝
 
 - Alpha Lambda Delta (ΑΛΔ) Honor Society
-  - Member (Fall 2021 - Present)
+  - Member (Fall 2021 - Spring 2024)
 - Cybersecurity Club (CSEC) at the University of Maryland
   - Member (Fall 2020 - Spring 2023)
-  - Secretary (Summer 2023 - Present)
+  - Secretary (Summer 2023 - Spring 2024)
 - Hindu Student Council
   - Events Co-Chair (Fall 2023 - Spring 2023)
 
@@ -58,4 +58,4 @@ Hi there! I am a computer science student with a passion for cybersecurity compe
 
 ## Hobbies 🔧
 
-Outside of computer science and cybersecurity, I enjoy weightlifting, video games, and building things.
+Outside of computer science and cybersecurity, I enjoy reading, video games, and building things.
