@@ -1,19 +1,53 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Aman Thanvi</title>
-    <link>https://amanthanvi.com/posts/</link>
-    <description>Recent content in Posts on Aman Thanvi</description>
-    <generator>Hugo</generator>
+    <title>Blog on Aman Thanvi</title>
+    <link>http://localhost:1313/posts/</link>
+    <description>Recent content in Blog on Aman Thanvi</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 24 Jul 2021 04:27:14 -0400</lastBuildDate>
-    <atom:link href="https://amanthanvi.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>© 2021-2025 Aman Thanvi</copyright>
+    <lastBuildDate>Fri, 04 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    
     <item>
-      <title>Hello World!</title>
-      <link>https://amanthanvi.com/posts/helloworld/</link>
-      <pubDate>Sat, 24 Jul 2021 04:27:14 -0400</pubDate>
-      <guid>https://amanthanvi.com/posts/helloworld/</guid>
-      <description>&lt;p&gt;This is my first post on my personal website!&lt;/p&gt;</description>
+      <title>Master of Engineering in Cybersecurity - Graduation</title>
+      <link>http://localhost:1313/posts/masters-graduation-2025/</link>
+      <pubDate>Tue, 20 May 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/masters-graduation-2025/</guid>
+      <description></description>
+      
     </item>
+    
+    <item>
+      <title>Publication at IEEE CAI 2025: SocialCipher Framework</title>
+      <link>http://localhost:1313/posts/socialcipher-ieee-cai-2025/</link>
+      <pubDate>Thu, 15 May 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/socialcipher-ieee-cai-2025/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Joining the Department of Justice</title>
+      <link>http://localhost:1313/posts/joining-doj-2024/</link>
+      <pubDate>Fri, 15 Nov 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/joining-doj-2024/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Hello World! 🚀</title>
+      <link>http://localhost:1313/posts/helloworld/</link>
+      <pubDate>Sat, 24 Jul 2021 04:27:14 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/helloworld/</guid>
+      <description></description>
+      
+    </item>
+    
   </channel>
 </rss>

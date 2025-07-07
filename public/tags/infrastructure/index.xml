@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Infrastructure on Aman Thanvi</title>
+    <link>http://localhost:1313/tags/infrastructure/</link>
+    <description>Recent content in Infrastructure on Aman Thanvi</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2021-2025 Aman Thanvi</copyright>
+    <lastBuildDate>Mon, 01 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/infrastructure/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Cybersecurity Intern - CISA</title>
+      <link>http://localhost:1313/experience/cisa-infrastructure/</link>
+      <pubDate>Mon, 01 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/experience/cisa-infrastructure/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Networking/System Administration Intern - Embedded Flight Systems Inc.</title>
+      <link>http://localhost:1313/experience/nasa-efs-networking/</link>
+      <pubDate>Sat, 01 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/experience/nasa-efs-networking/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>

@@ -19,4 +19,4 @@ To-Do Dashboard is a simple, user-friendly web application for managing tasks an
 
 ## Source Code
 
-See the source code [here](https://github.com/amanthanvi/todo-ap)
+See the source code [here](https://github.com/amanthanvi/todo-app)

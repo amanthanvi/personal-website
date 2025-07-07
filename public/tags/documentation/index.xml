@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Documentation on Aman Thanvi</title>
+    <link>http://localhost:1313/tags/documentation/</link>
+    <description>Recent content in Documentation on Aman Thanvi</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2021-2025 Aman Thanvi</copyright>
+    <lastBuildDate>Wed, 01 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/documentation/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Senior Cyber Security Intern - Kurtek (contracted to NASA)</title>
+      <link>http://localhost:1313/experience/kurtek-nasa-scan/</link>
+      <pubDate>Wed, 01 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/experience/kurtek-nasa-scan/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>

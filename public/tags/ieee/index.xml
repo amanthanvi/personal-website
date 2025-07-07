@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>IEEE on Aman Thanvi</title>
+    <link>http://localhost:1313/tags/ieee/</link>
+    <description>Recent content in IEEE on Aman Thanvi</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2021-2025 Aman Thanvi</copyright>
+    <lastBuildDate>Thu, 15 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/ieee/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Publication at IEEE CAI 2025: SocialCipher Framework</title>
+      <link>http://localhost:1313/posts/socialcipher-ieee-cai-2025/</link>
+      <pubDate>Thu, 15 May 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/socialcipher-ieee-cai-2025/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>

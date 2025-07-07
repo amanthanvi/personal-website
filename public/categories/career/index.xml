@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Career on Aman Thanvi</title>
+    <link>http://localhost:1313/categories/career/</link>
+    <description>Recent content in Career on Aman Thanvi</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2021-2025 Aman Thanvi</copyright>
+    <lastBuildDate>Fri, 15 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/career/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Joining the Department of Justice</title>
+      <link>http://localhost:1313/posts/joining-doj-2024/</link>
+      <pubDate>Fri, 15 Nov 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/joining-doj-2024/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>
