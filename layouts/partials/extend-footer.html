@@ -1,0 +1,4 @@
+{{/* This partial is included at the end of the footer */}}
+
+{{ $searchFix := resources.Get "js/search-fix.js" | minify | fingerprint }}
+<script type="text/javascript" src="{{ $searchFix.RelPermalink }}" integrity="{{ $searchFix.Data.Integrity }}"></script>

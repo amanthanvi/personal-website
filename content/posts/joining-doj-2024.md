@@ -30,15 +30,14 @@ The complexity and scale of DOJ's security infrastructure exceeded my expectatio
 ### Current Responsibilities
 
 While operational details remain classified, my role encompasses:
-- Implementation of security controls for critical infrastructure
-- Deployment and management of advanced security technologies
-- Collaboration with senior cybersecurity professionals
-- Application of NIST frameworks in production environments
+
+-   Implementation of security controls for critical infrastructure
+-   Deployment and management of advanced security technologies
+-   Collaboration with senior cybersecurity professionals
+-   Application of NIST frameworks in production environments
 
 ### Looking Ahead
 
 This role is exactly where I wanted to be – applying everything I've learned to protect systems that matter. From NASA spacecraft to financial markets to now the justice system, each step has prepared me for this moment.
-
-To my fellow students and CyberCorps scholars: federal service is more than just fulfilling an obligation. It's an opportunity to work on meaningful problems with brilliant people while serving your country.
 
 This position represents an opportunity to contribute meaningfully to national security while advancing my expertise in federal cybersecurity operations.
