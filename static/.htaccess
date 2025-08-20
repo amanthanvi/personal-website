@@ -1,0 +1,15 @@
+# Security Headers for Apache/GitHub Pages (if supported)
+Header set X-Frame-Options "DENY"
+Header set X-Content-Type-Options "nosniff"
+Header set Referrer-Policy "strict-origin-when-cross-origin"
+Header set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+
+# Cache Control for static assets
+<FilesMatch "\.(ico|pdf|jpg|jpeg|png|gif|js|css|woff2?)$">
+    Header set Cache-Control "max-age=31536000, public, immutable"
+</FilesMatch>
+
+# HTML files should not be cached for too long
+<FilesMatch "\.(html)$">
+    Header set Cache-Control "max-age=3600, public, must-revalidate"
+</FilesMatch>

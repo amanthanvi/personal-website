@@ -1,0 +1,23 @@
+{{- $sameAs := slice
+    "https://www.linkedin.com/in/amanthanvi"
+    "https://github.com/amanthanvi"
+    "https://amanthanvi.com"
+-}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Aman Thanvi",
+  "jobTitle": "Information Technology Cybersecurity Specialist",
+  "worksFor": { 
+    "@type": "Organization", 
+    "name": "U.S. Department of Justice – USTP" 
+  },
+  "alumniOf": { 
+    "@type": "CollegeOrUniversity", 
+    "name": "University of Maryland, College Park" 
+  },
+  "url": "https://amanthanvi.com",
+  "sameAs": {{ $sameAs | jsonify }}
+}
+</script>
