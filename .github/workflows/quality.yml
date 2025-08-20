@@ -54,7 +54,7 @@ jobs:
             git clone https://github.com/nunocoracao/blowfish.git themes/blowfish
           fi
       - name: Setup Hugo
-        uses: actions/setup-hugo@v3
+        uses: peaceiris/actions-hugo@v3
         with:
           hugo-version: '0.148.2'
           extended: true

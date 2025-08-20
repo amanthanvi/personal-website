@@ -41,13 +41,17 @@ jobs:
         run: sudo snap install dart-sass
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Check theme
+        with:
+          lfs: false
+      - name: Ensure theme exists
         run: |
-          if [ ! -d "themes/blowfish" ]; then
-            echo "Theme not found, cloning..."
-            git clone https://github.com/nunocoracao/blowfish.git themes/blowfish
+          if [ ! -f "themes/blowfish/theme.toml" ]; then
+            echo "Theme not found or incomplete, cloning..."
+            rm -rf themes/blowfish
+            git clone --depth 1 https://github.com/nunocoracao/blowfish.git themes/blowfish
           fi
-          ls -la themes/
+          echo "Theme check complete"
+          ls -la themes/blowfish/ | head -10
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
