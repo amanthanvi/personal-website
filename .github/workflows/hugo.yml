@@ -31,7 +31,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      HUGO_VERSION: 0.128.0
+      HUGO_VERSION: 0.148.2
     steps:
       - name: Install Hugo CLI
         run: |
@@ -41,8 +41,13 @@ jobs:
         run: sudo snap install dart-sass
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          submodules: recursive
+      - name: Check theme
+        run: |
+          if [ ! -d "themes/blowfish" ]; then
+            echo "Theme not found, cloning..."
+            git clone https://github.com/nunocoracao/blowfish.git themes/blowfish
+          fi
+          ls -la themes/
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
