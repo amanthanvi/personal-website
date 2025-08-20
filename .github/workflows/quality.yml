@@ -72,7 +72,7 @@ jobs:
           fi
       - name: Lychee link check
         if: steps.check_public.outputs.exists == 'true'
-        uses: lycheeverse/lychee-action@v1
+        uses: lycheeverse/lychee-action@v2
         with:
           args: --no-progress --max-concurrency 5 --verbose './public/**/*.html'
           fail: false
