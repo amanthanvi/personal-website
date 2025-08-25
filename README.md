@@ -100,7 +100,7 @@ Similar structure in `content/projects/`
 
 ## 🚢 Deployment
 
-The site automatically deploys to GitHub Pages when changes are pushed to the `main` or `master` branch.
+The site automatically deploys to GitHub Pages when changes are pushed to the `main` branch.
 
 ### Manual Deployment
 
