@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found — Aman Thanvi</title>
+<link rel="canonical" href="https://amanthanvi.com/404.html">
+<meta name="robots" content="noindex">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#3A86FF">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#3A86FF">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --accent:hsl(217 100% 61%);
+  --bg:hsl(0 0% 100%);
+  --text:hsl(240 6% 6%);
+  --muted:hsl(220 8% 40%);
+  --border:hsl(220 15% 90%);
+  --radius-1:12px;
+  --space-2:1rem;
+  --space-4:2rem;
+  --content-max:72ch
+}
+@media (prefers-color-scheme: dark){
+  :root{--bg:hsl(240 6% 5%);--text:hsl(0 0% 92%);--muted:hsl(220 6% 70%);--border:hsl(220 7% 20%)}
+}
+:root[data-theme="light"]{--bg:hsl(0 0% 100%);--text:hsl(240 6% 6%);--muted:hsl(220 8% 40%);--border:hsl(220 15% 90%)}
+:root[data-theme="dark"]{--bg:hsl(240 6% 5%);--text:hsl(0 0% 92%);--muted:hsl(220 6% 70%);--border:hsl(220 7% 20%)}
+@media (prefers-color-scheme: dark){
+  :root[data-theme="auto"]{--bg:hsl(240 6% 5%);--text:hsl(0 0% 92%);--muted:hsl(220 6% 70%);--border:hsl(220 7% 20%)}
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Space Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono","Courier New",monospace;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:inherit;text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:.2em}
+a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.container{width:min(100% - 2rem,var(--content-max));margin-inline:auto}
+header{padding-block:var(--space-2);border-bottom:1px solid var(--border)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:var(--space-2)}
+.brand h1{margin:0;font-size:clamp(1.25rem,1.5vw + .75rem,1.75rem)}
+.brand p{margin:0;color:var(--muted)}
+#theme-toggle{appearance:none;font:inherit;border:1px solid var(--border);background:transparent;color:var(--text);padding:.4rem .6rem;border-radius:var(--radius-1);cursor:pointer;min-height:40px;min-width:44px}
+main{padding-block:var(--space-4)}
+.center{display:grid;place-items:center;text-align:center;min-height:60vh;gap:1rem}
+h2{margin:.5rem 0 0 0;font-size:clamp(1.25rem,1vw + 1rem,1.5rem);color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.6rem .85rem;border-radius:var(--radius-1);border:1px solid var(--accent);text-decoration:none;color:var(--text)}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none !important;transition:none !important;scroll-behavior:auto !important}}
+</style>
+</head>
+<body>
+<header role="banner">
+  <div class="container header-inner">
+    <div class="brand">
+      <h1>Aman Thanvi</h1>
+      <p>Cybersecurity Specialist</p>
+    </div>
+    <button id="theme-toggle" type="button" aria-label="Toggle color theme" aria-pressed="false">Auto</button>
+  </div>
+</header>
+<main role="main">
+  <div class="container center">
+    <div>
+      <div aria-hidden="true" style="font-size:clamp(2rem,8vw,5rem);font-weight:700">404</div>
+      <h2>Page not found</h2>
+      <p>The page you’re looking for doesn’t exist.</p>
+      <p>
+        <a class="btn" href="/">Go home</a>
+        <a class="btn" href="mailto:contact@amanthanvi.com?subject=Hello%20from%20amanthanvi.com&body=Hi%20Aman%2C%0A%0A" aria-label="Email me" title="Email me">Email me</a>
+      </p>
+    </div>
+  </div>
+</main>
+<script>
+(function(){
+  "use strict";
+  var d=document.documentElement,btn=document.getElementById("theme-toggle"),key="theme",states=["auto","dark","light"];
+  function setTheme(v){d.setAttribute("data-theme",v);try{localStorage.setItem(key,v);}catch(e){};btn.textContent=v.charAt(0).toUpperCase()+v.slice(1);btn.setAttribute("aria-pressed",v==="auto"?"false":"true");}
+  var saved=null;try{saved=localStorage.getItem(key);}catch(e){}
+  if(saved&&["auto","light","dark"].includes(saved)){setTheme(saved);}else{d.setAttribute("data-theme","auto");btn.textContent="Auto";btn.setAttribute("aria-pressed","false");}
+  btn.addEventListener("click",function(){var current=d.getAttribute("data-theme")||"auto";var next=states[(states.indexOf(current)+1)%states.length];setTheme(next);});
+  var mql=window.matchMedia("(prefers-color-scheme: dark)");
+  function syncAuto(){var cur=null;try{cur=localStorage.getItem(key);}catch(e){};if((cur||"auto")==="auto"){d.setAttribute("data-theme","auto");btn.textContent="Auto";btn.setAttribute("aria-pressed","false");}}
+  if(mql.addEventListener){mql.addEventListener("change",syncAuto);} else if(mql.addListener){mql.addListener(syncAuto);}
+})();
+</script>
+</body>
+</html>
