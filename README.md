@@ -1,139 +1,42 @@
-# Aman Thanvi - Personal Website
+# Aman Thanvi — Static Site
 
-[![Build & Deploy](https://github.com/amanthanvi/personal-website-1/actions/workflows/site.yml/badge.svg)](https://github.com/amanthanvi/personal-website-1/actions/workflows/site.yml)
-[![Content Quality](https://github.com/amanthanvi/personal-website-1/actions/workflows/quality.yml/badge.svg)](https://github.com/amanthanvi/personal-website-1/actions/workflows/quality.yml)
+A minimalist, single-file static website with inline critical CSS and tiny JS. No frameworks, no bundlers, no analytics. Deployed via GitHub Pages.
 
-Personal portfolio website showcasing cybersecurity expertise, federal experience, and research publications.
+## Structure
 
-## 🚀 Quick Start
+- [index.html](index.html) — production page with semantic landmarks, Space Mono via Google Fonts, accessible theme toggle, SEO/OG/JSON-LD.
+- [404.html](404.html) — minimal not-found page sharing base styles and theme toggle.
+- [robots.txt](robots.txt), [sitemap.xml](sitemap.xml) — search engine hints.
+- [site.webmanifest](site.webmanifest) — PWA metadata with existing icons.
+- static/images/ — assets; canonical headshot at [static/images/profile.jpg](static/images/profile.jpg).
 
-### Prerequisites
+## Local preview
 
-- Hugo Extended v0.148.2+ 
-- Git
+Option A: open [index.html](index.html) directly in a browser.
+Option B: simple server for correct MIME types:
+- Python: `python3 -m http.server 8080`
+- Node (optional): `npx serve .` (no dependency required for deployment)
 
-### Local Development
+## Accessibility and performance
 
-```bash
-# Clone the repository
-git clone https://github.com/amanthanvi/personal-website-1.git
-cd personal-website-1
+- WCAG 2.2 AA: skip link, focus-visible outlines, logical headings, ARIA button for theme toggle, prefers-reduced-motion.
+- Budgets: total page < 200 KB, CSS < 10 KB, JS < 2 KB. Fonts load with `display=swap`.
+- LCP target < 1.8 s (slow 4G). Headshot sized with width/height to avoid CLS.
 
-# Start the Hugo development server
-hugo server -D
+## Deployment (GitHub Pages via Actions)
 
-# Build for production
-hugo --minify
-```
+- Workflow: [.github/workflows/pages.yml](.github/workflows/pages.yml) uploads the repo root as the Pages artifact and deploys.
+- Trigger: pushes to `main` or manual `workflow_dispatch`.
+- No build step required.
 
-The site will be available at `http://localhost:1313/`
+## Updating content
 
-## 📁 Project Structure
+- Edit [index.html](index.html) text in the hero/about.
+- Replace the headshot at [static/images/profile.jpg](static/images/profile.jpg) (keep similar dimensions). For lossless optimization:
+  - macOS: `sips -s format jpeg -s formatOptions best static/images/profile.jpg --out static/images/profile.jpg`
+  - Or use ImageOptim/oxipng/mozjpeg.
 
-```
-personal-website-1/
-├── content/          # Markdown content files
-│   ├── experience/   # Work experience (page bundles)
-│   ├── projects/     # Project showcases
-│   └── posts/        # Blog posts
-├── static/           # Static assets
-│   ├── files/        # Downloadable files (resume.pdf)
-│   └── images/       # Site images
-├── layouts/          # Custom Hugo layouts
-├── config/           # Hugo configuration
-│   └── _default/     
-│       ├── hugo.toml
-│       ├── params.toml
-│       └── module.toml
-└── themes/blowfish/  # Blowfish theme
-```
+## Privacy
 
-## 🎨 Theme
+No trackers or cookies. External requests are limited to Google Fonts (Space Mono) with system-mono fallback.
 
-This site uses the [Blowfish](https://blowfish.page) theme for Hugo. The theme is included locally for stability.
-
-### Key Features
-
-- Dark/Light mode with automatic switching
-- Built-in search functionality
-- SEO optimized with structured data
-- Responsive design
-- Social media integration
-
-## 🔧 Configuration
-
-Main configuration files are located in `config/_default/`:
-
-- `hugo.toml` - Core Hugo settings
-- `params.toml` - Theme parameters and customization
-- `module.toml` - Hugo module configuration
-- `menus.en.toml` - Navigation menu structure
-
-## 📝 Content Management
-
-### Adding Experience
-
-Create a new page bundle in `content/experience/`:
-
-```bash
-mkdir content/experience/new-role
-```
-
-Create `index.md` with front matter:
-
-```yaml
----
-title: "Job Title - Company"
-date: 2024-01-01
-draft: false
-tags: ["tag1", "tag2"]
-categories: ["Experience"]
-description: "Brief description"
----
-
-Content here...
-```
-
-### Adding Projects
-
-Similar structure in `content/projects/`
-
-## 🚢 Deployment
-
-The site automatically deploys to GitHub Pages when changes are pushed to the `main` branch.
-
-### Manual Deployment
-
-1. Build the site: `hugo --minify`
-2. Contents will be in `public/` directory
-3. Deploy to any static hosting service
-
-### Security Headers
-
-Security headers are configured in:
-- `static/_headers` - For Cloudflare Pages
-- `static/.htaccess` - For Apache-based hosts
-
-When using GitHub Pages, consider using Cloudflare for additional security headers.
-
-## 🔒 Security
-
-- Content Security Policy configured (Report-Only mode initially)
-- X-Frame-Options: DENY
-- X-Content-Type-Options: nosniff
-- Strict referrer policy
-- Permissions policy restricting camera/microphone/geolocation
-
-## 🤝 Contributing
-
-This is a personal website, but suggestions and bug reports are welcome via GitHub issues.
-
-## 📄 License
-
-Content is © Aman Thanvi. Code structure and configurations are available for reference.
-
-## 🔗 Links
-
-- [Live Site](https://amanthanvi.com)
-- [LinkedIn](https://www.linkedin.com/in/amanthanvi)
-- [GitHub](https://github.com/amanthanvi)

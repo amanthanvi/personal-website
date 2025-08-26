@@ -1,9 +1,14 @@
-*.lock
-.gitignore
-*/.DS_Store
 .DS_Store
+Thumbs.db
+# Editors
+.vscode/
+.idea/
+# Caches and logs
+*.log
+.cache/
+# Build outputs (not used but kept generic)
+dist/
+build/
+# Legacy Hugo outputs
 public/
-resources/_gen/
-.hugo_build.lock
-node_modules/
-.kilocode
+resources/
