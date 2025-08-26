@@ -12,3 +12,4 @@ build/
 # Legacy Hugo outputs
 public/
 resources/
+.kilocode/
