@@ -1,0 +1,87 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  canonicalURL?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  image = '/images/og-default.png',
+  canonicalURL = Astro.url.href,
+  noindex = false,
+} = Astro.props;
+
+const siteURL = 'https://amanthanvi.com';
+const fullImageURL = image.startsWith('http') ? image : `${siteURL}${image}`;
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+<link rel="canonical" href={canonicalURL} />
+{noindex && <meta name="robots" content="noindex" />}
+<meta name="description" content={description} />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:image" content={fullImageURL} />
+<meta property="og:image:alt" content="Aman Thanvi — Cybersecurity Specialist" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={fullImageURL} />
+<meta name="twitter:image:alt" content="Aman Thanvi — Cybersecurity Specialist" />
+
+<!-- Theme Color -->
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#00d4ff" />
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#00d4ff" />
+
+<!-- Favicons -->
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+
+<!-- Fonts: JetBrains Mono Variable -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+  rel="stylesheet"
+/>
+
+<!-- Preload profile image -->
+<link rel="preload" as="image" href="/images/profile.jpg" />
+
+<!-- JSON-LD Structured Data -->
+<script is:inline type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Aman Thanvi",
+  "jobTitle": "Cybersecurity Specialist",
+  "url": "https://amanthanvi.com",
+  "email": "mailto:contact@amanthanvi.com",
+  "image": `${siteURL}/images/profile.jpg`,
+  "sameAs": [
+    "https://linkedin.com/in/amanthanvi",
+    "https://github.com/amanthanvi"
+  ]
+})} />
+
+<!-- FOUC prevention: set data-theme before paint -->
+<script is:inline>
+(function(){
+  var d=document.documentElement,k='theme',s;
+  try{s=localStorage.getItem(k)}catch(e){}
+  d.setAttribute('data-theme',s&&['auto','dark','light'].includes(s)?s:'auto');
+})();
+</script>

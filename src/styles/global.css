@@ -1,0 +1,133 @@
+@import "tailwindcss";
+@import "./animations.css";
+@import "./hud.css";
+
+/* --- Tailwind v4 Theme Tokens --- */
+@theme {
+  --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo,
+    Consolas, monospace;
+
+  /* Section accents (oklch wide gamut) */
+  --color-accent-hero: oklch(0.78 0.15 194);
+  --color-accent-projects: oklch(0.72 0.19 142);
+  --color-accent-experience: oklch(0.75 0.15 75);
+  --color-accent-skills: oklch(0.7 0.2 330);
+  --color-accent-blog: oklch(0.65 0.18 255);
+
+  /* Glow variants for box-shadows */
+  --color-glow-hero: oklch(0.6 0.2 194 / 0.3);
+  --color-glow-projects: oklch(0.55 0.22 142 / 0.3);
+  --color-glow-experience: oklch(0.58 0.18 75 / 0.3);
+  --color-glow-skills: oklch(0.55 0.25 330 / 0.3);
+  --color-glow-blog: oklch(0.5 0.22 255 / 0.3);
+
+  /* Base palette (dark-first) */
+  --color-bg: oklch(0.13 0.01 265);
+  --color-surface: oklch(0.16 0.012 265);
+  --color-text: oklch(0.92 0.01 265);
+  --color-muted: oklch(0.65 0.02 265);
+  --color-border: oklch(0.25 0.015 265);
+
+  /* Animation tokens */
+  --animate-fade-in-up: fade-in-up 0.6s ease-out both;
+  --animate-glitch: glitch 0.4s ease-in-out;
+  --animate-pulse-glow: pulse-glow 2s ease-in-out infinite;
+  --animate-circuit-draw: circuit-draw 1s ease-out both;
+  --animate-typing: typing 0.8s steps(20) both;
+  --animate-scan-line: scan-line 3s linear infinite;
+}
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* --- Auto-theme (system preference) --- */
+@media (prefers-color-scheme: dark) {
+  :root:where([data-theme="auto"]) {
+    --color-bg: oklch(0.13 0.01 265);
+    --color-surface: oklch(0.16 0.012 265);
+    --color-text: oklch(0.92 0.01 265);
+    --color-muted: oklch(0.65 0.02 265);
+    --color-border: oklch(0.25 0.015 265);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root:where([data-theme="auto"]) {
+    --color-bg: oklch(0.97 0.003 265);
+    --color-surface: oklch(0.99 0.001 265);
+    --color-text: oklch(0.13 0.015 265);
+    --color-muted: oklch(0.40 0.02 265);
+    --color-border: oklch(0.82 0.01 265);
+  }
+}
+
+/* --- Explicit theme overrides --- */
+:root:where([data-theme="dark"]) {
+  --color-bg: oklch(0.13 0.01 265);
+  --color-surface: oklch(0.16 0.012 265);
+  --color-text: oklch(0.92 0.01 265);
+  --color-muted: oklch(0.65 0.02 265);
+  --color-border: oklch(0.25 0.015 265);
+}
+
+:root:where([data-theme="light"]) {
+  --color-bg: oklch(0.97 0.003 265);
+  --color-surface: oklch(0.99 0.001 265);
+  --color-text: oklch(0.13 0.015 265);
+  --color-muted: oklch(0.40 0.02 265);
+  --color-border: oklch(0.82 0.01 265);
+}
+
+/* --- Base Styles --- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark light;
+  }
+
+  body {
+    font-family: var(--font-mono);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: oklch(0.78 0.15 194 / 0.3);
+    color: var(--color-text);
+  }
+
+  a {
+    color: inherit;
+    text-decoration-color: var(--section-accent, var(--color-accent-hero));
+    text-underline-offset: 0.2em;
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--section-accent, var(--color-accent-hero));
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Reduced motion: disable ALL animations */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* --- Section accent variable (set per-section, consumed by children) --- */
+.section-hero { --section-accent: var(--color-accent-hero); --section-glow: var(--color-glow-hero); }
+.section-projects { --section-accent: var(--color-accent-projects); --section-glow: var(--color-glow-projects); }
+.section-experience { --section-accent: var(--color-accent-experience); --section-glow: var(--color-glow-experience); }
+.section-skills { --section-accent: var(--color-accent-skills); --section-glow: var(--color-glow-skills); }
+.section-blog { --section-accent: var(--color-accent-blog); --section-glow: var(--color-glow-blog); }

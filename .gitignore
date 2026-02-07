@@ -6,10 +6,12 @@ Thumbs.db
 # Caches and logs
 *.log
 .cache/
-# Build outputs (not used but kept generic)
+# Build outputs
 dist/
 build/
-# Legacy Hugo outputs
-public/
-resources/
+# Dependencies
+node_modules/
+# Astro type cache
+.astro/
+# Legacy
 .kilocode/

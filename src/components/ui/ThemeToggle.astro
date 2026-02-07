@@ -1,0 +1,60 @@
+---
+// 3-way toggle: auto → dark → light — icons switch via script
+---
+
+<button
+  id="theme-toggle"
+  type="button"
+  aria-label="Theme: Auto. Click to change."
+  class="group relative flex items-center gap-2 rounded border border-border bg-surface/50 px-3 py-2 text-xs uppercase tracking-widest text-muted transition-all hover:border-[var(--section-accent,var(--color-accent-hero))] hover:text-text"
+>
+  <!-- Auto icon (half circle) -->
+  <svg data-theme-icon="auto" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <circle cx="12" cy="12" r="10" />
+    <path d="M12 2a10 10 0 000 20V2z" fill="currentColor" />
+  </svg>
+  <!-- Moon icon -->
+  <svg data-theme-icon="dark" class="hidden h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+  </svg>
+  <!-- Sun icon -->
+  <svg data-theme-icon="light" class="hidden h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <circle cx="12" cy="12" r="5" />
+    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+  </svg>
+  <span id="theme-label">Auto</span>
+</button>
+
+<script>
+  import { initThemeToggle } from '../../scripts/theme';
+
+  function syncIcons() {
+    const theme = document.documentElement.getAttribute('data-theme') || 'auto';
+    const icons = document.querySelectorAll<SVGElement>('[data-theme-icon]');
+    const label = document.getElementById('theme-label');
+
+    icons.forEach((icon) => {
+      const isActive = icon.dataset.themeIcon === theme;
+      icon.classList.toggle('hidden', !isActive);
+    });
+
+    if (label) {
+      label.textContent = theme.charAt(0).toUpperCase() + theme.slice(1);
+    }
+  }
+
+  // Watch for data-theme changes
+  const observer = new MutationObserver(syncIcons);
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme'],
+  });
+
+  document.addEventListener('astro:page-load', () => {
+    initThemeToggle();
+    syncIcons();
+  });
+
+  initThemeToggle();
+  syncIcons();
+</script>

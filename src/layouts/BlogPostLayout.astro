@@ -1,0 +1,189 @@
+---
+import BaseHead from '../components/layout/BaseHead.astro';
+import SkipLink from '../components/layout/SkipLink.astro';
+import ScrollProgress from '../components/ui/ScrollProgress.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  tags?: string[];
+}
+
+const { title, description, pubDate, updatedDate, tags = [] } = Astro.props;
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+
+// Rough reading time based on word count
+const rawContent = await Astro.slots.render('default');
+const wordCount = rawContent.replace(/<[^>]*>/g, '').split(/\s+/).length;
+const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+---
+
+<!doctype html>
+<html lang="en" data-theme="auto">
+  <head>
+    <BaseHead title={`${title} — Aman Thanvi`} description={description} />
+  </head>
+  <body class="min-h-screen bg-bg text-text">
+    <SkipLink />
+    <ScrollProgress />
+
+    <article id="content" class="section-blog mx-auto max-w-3xl px-6 py-16">
+      <!-- Back nav -->
+      <a
+        href="/#blog"
+        class="mb-8 inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-accent-blog"
+      >
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M12 19l-7-7 7-7" />
+        </svg>
+        Back to home
+      </a>
+
+      <!-- Header -->
+      <header class="mb-12 border-b border-border/40 pb-8">
+        <div class="flex flex-wrap items-center gap-3 text-xs text-muted">
+          <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
+          {updatedDate && (
+            <>
+              <span aria-hidden="true">·</span>
+              <span>Updated {formatDate(updatedDate)}</span>
+            </>
+          )}
+          <span aria-hidden="true">·</span>
+          <span>{readingTime} min read</span>
+        </div>
+
+        <h1 class="mt-4 text-3xl font-bold leading-tight md:text-4xl">{title}</h1>
+
+        {tags.length > 0 && (
+          <div class="mt-4 flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <span class="rounded bg-accent-blog/10 px-2 py-0.5 text-xs text-accent-blog">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+      </header>
+
+      <!-- Content -->
+      <div class="blog-prose max-w-none">
+        <slot />
+      </div>
+
+      <!-- Footer -->
+      <footer class="mt-16 border-t border-border/40 pt-8">
+        <a
+          href="/#blog"
+          class="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-accent-blog"
+        >
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
+          Back to all posts
+        </a>
+      </footer>
+    </article>
+  </body>
+</html>
+
+<style is:global>
+  .blog-prose h2 {
+    margin-top: 3rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  .blog-prose h3 {
+    margin-top: 2rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .blog-prose p {
+    margin-top: 1.25rem;
+    line-height: 1.75;
+    color: var(--color-muted);
+  }
+
+  .blog-prose a {
+    color: var(--color-accent-blog);
+    text-decoration-line: underline;
+    text-underline-offset: 0.2em;
+    text-decoration-color: var(--color-accent-blog);
+  }
+
+  .blog-prose a:hover {
+    text-decoration-thickness: 2px;
+  }
+
+  .blog-prose ul,
+  .blog-prose ol {
+    margin-top: 1.25rem;
+    padding-left: 1.5rem;
+    color: var(--color-muted);
+  }
+
+  .blog-prose li {
+    margin-top: 0.5rem;
+    line-height: 1.75;
+  }
+
+  .blog-prose code {
+    border-radius: 0.25rem;
+    background: var(--color-surface);
+    padding: 0.125rem 0.375rem;
+    font-size: 0.875em;
+    color: var(--color-accent-hero);
+  }
+
+  .blog-prose pre {
+    margin-top: 1.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    padding: 1rem 1.25rem;
+    overflow-x: auto;
+  }
+
+  .blog-prose pre code {
+    background: transparent;
+    padding: 0;
+    color: var(--color-text);
+  }
+
+  .blog-prose blockquote {
+    margin-top: 1.5rem;
+    border-left: 2px solid var(--color-accent-blog);
+    padding-left: 1rem;
+    font-style: italic;
+    color: var(--color-muted);
+  }
+
+  .blog-prose hr {
+    margin: 2.5rem 0;
+    border-color: var(--color-border);
+  }
+
+  .blog-prose img {
+    margin-top: 1.5rem;
+    border-radius: 0.5rem;
+  }
+
+  .blog-prose strong {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+</style>

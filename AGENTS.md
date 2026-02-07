@@ -1,34 +1,50 @@
 # Repository Guidelines
 
 ## Project Structure & Module Organization
-- Root `index.html` contains all markup, critical CSS, and the theme toggle; edit here for copy or design tweaks.
-- `404.html`, `robots.txt`, `sitemap.xml`, `site.webmanifest`, and `CNAME` support GitHub Pages routing—keep canonical URLs aligned.
-- Assets live in `static/images/`; compress profile imagery (<200 KB) and retain width/height attributes in HTML.
-- GitHub Actions reside in `.github/workflows/`: `pages.yml` deploys, while `quality.yml` runs lint, spellcheck, and link audits.
+
+- **Framework**: Astro v5 + Tailwind CSS v4 + Three.js — static site builder with content collections.
+- **Entrypoint**: `src/pages/index.astro` composes all sections into a single-page scrolling portfolio.
+- **Layouts**: `src/layouts/BaseLayout.astro` (main shell), `src/layouts/BlogPostLayout.astro` (article pages).
+- **Components**: `src/components/` — organized into `layout/`, `ui/`, `sections/`, `three/`, `boot/`.
+- **Styles**: `src/styles/global.css` (Tailwind v4 @theme tokens), `animations.css`, `hud.css`.
+- **Content**: `src/content/` — Astro content collections for `projects/` (Markdown), `blog/` (MDX), plus `experience.json` and `skills.json`.
+- **Scripts**: `src/scripts/` — TypeScript modules for theme toggle, boot sequence, particle network, HUD nav, scroll reveal.
+- **Static assets**: `public/` — images, CNAME, robots.txt, site.webmanifest. Deployed as-is to `dist/`.
+- **CI/CD**: `.github/workflows/pages.yml` builds + deploys; `quality.yml` runs lint, spellcheck, typecheck.
 
 ## Build, Test, and Development Commands
-- `python3 -m http.server 8080` — local preview with correct MIME types.
-- `npx serve .` — optional alternative when Node is available.
-- `codespell --ignore-words-list adn,aman,thanvi,doj,ustp,cisa,nasa,umd,sdls,cfs,nos3,ccds,ngn,scan,ltsc,eoust,govt,config` — mirrors CI spellcheck; run before content-heavy commits.
-- `npx lychee --no-progress './*.html'` — quick link validation consistent with automation.
+
+- `npm run dev` — local Astro dev server with HMR.
+- `npm run build` — production build to `dist/`.
+- `npm run preview` — preview built site locally.
+- `npm run check` — Astro type checking.
+- `codespell --ignore-words-list adn,aman,thanvi,doj,ustp,cisa,nasa,umd,sdls,cfs,nos3,ccds,ngn,scan,ltsc,eoust,govt,config,astro,oklch --skip .git,node_modules,dist,.astro` — spellcheck.
 
 ## Coding Style & Naming Conventions
-- Use two-space indentation; follow existing attribute ordering (`lang`, `data-theme`, meta, link, script).
-- Keep inline CSS grouped by purpose inside the single `<style>` block; limit new utility classes.
-- Favor semantic HTML (`header`, `main`, `section`) and descriptive `aria-*` labels; match the existing tone.
-- Keep file names lowercase with hyphens; add new assets only under `static/images/`.
+
+- Two-space indentation; Astro component naming in PascalCase.
+- Tailwind utility classes preferred; custom CSS in `src/styles/` for animations/HUD effects.
+- Section-based accent color system via `--section-accent` CSS custom property.
+- Semantic HTML (`section`, `main`, `nav`) with descriptive `aria-*` labels.
+- File names lowercase with hyphens; components in PascalCase.
 
 ## Testing Guidelines
-- No unit tests ship; rely on the quality workflow and manual checks in light/dark themes and responsive widths.
-- Confirm Lighthouse budgets (page <200 KB, CSS <10 KB, JS <2 KB) after visual changes; document exceptions in PRs.
-- Run spellcheck and link validation locally whenever introducing new copy or outbound links.
+
+- Run `npm run build` + `npm run check` before committing.
+- Manual checks: light/dark/auto themes, responsive widths, `prefers-reduced-motion`.
+- Performance budget: <500KB total, <3s LCP, Three.js gzipped ~117KB.
+- Accessibility: skip links, focus outlines, keyboard nav, ARIA labels.
 
 ## Commit & Pull Request Guidelines
-- Follow Conventional Commit prefixes seen in history (`feat`, `fix`, `refactor`, optional scope like `fix(hero)`); keep summaries concise.
-- Provide body context for intent, link issues with `Closes #N`, and note any follow-up work.
-- Pull requests should describe user-facing impact, link previews when relevant, and include before/after screenshots for visual updates.
-- Wait for GitHub Actions to finish; call out expected warnings from non-blocking checks.
 
-## Accessibility & Performance Targets
-- Preserve skip links, focus outlines, and the theme toggle keyboard path; test with `Tab`, `Shift+Tab`, and `prefers-reduced-motion`.
-- Re-optimize new images with `sips` or ImageOptim before committing so the main page weight stays within budget.
+- Conventional Commits: `feat|fix|refactor|docs|chore|style|perf|test` with optional scope.
+- PRs: describe user-facing impact, include before/after screenshots for visual changes.
+- Wait for GitHub Actions green before merge.
+
+## Key Architecture Decisions
+
+- **Tailwind v4**: CSS-first config via `@theme` blocks in `global.css`. No `tailwind.config.js`.
+- **Section accents**: Each section sets `--section-accent` / `--section-glow` CSS vars; child components reference them generically.
+- **Three.js**: Dynamic-imported after DOMContentLoaded, gated on `!prefers-reduced-motion`. Particle colors interpolate based on scroll position.
+- **Boot sequence**: Plays once per session (sessionStorage gate), respects reduced-motion.
+- **Theme**: 3-way toggle (auto/dark/light) via `data-theme` on `<html>`. FOUC prevention inline script in `<head>`.

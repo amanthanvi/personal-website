@@ -1,0 +1,48 @@
+{
+  "certifications": [
+    { "name": "Google Cybersecurity Professional", "issuer": "Google", "icon": "🔐" },
+    { "name": "Microsoft Azure Fundamentals", "issuer": "Microsoft", "icon": "☁️" },
+    { "name": "Microsoft Security, Compliance & Identity", "issuer": "Microsoft", "icon": "🛡" },
+    { "name": "CompTIA A+", "issuer": "CompTIA", "icon": "🔧" },
+    { "name": "CodePath Cybersecurity with Honors", "issuer": "CodePath", "icon": "🏅" }
+  ],
+  "honors": [
+    { "name": "CyberCorps Scholarship for Service (SFS)", "org": "University of Maryland" },
+    { "name": "Phi Kappa Phi Honor Society", "org": "University of Maryland" },
+    { "name": "Alpha Lambda Delta Honor Society", "org": "University of Maryland" },
+    { "name": "Dean's List", "org": "University of Maryland" },
+    { "name": "Maryland Seal of Biliteracy (Spanish)", "org": "State of Maryland" },
+    { "name": "AP Scholar", "org": "College Board" }
+  ],
+  "categories": [
+    {
+      "name": "Cybersecurity",
+      "skills": ["Red & Blue Team", "Vulnerability Assessment", "Penetration Testing", "Threat Intelligence", "Network Security", "MITRE ATT&CK", "DFIR", "SDLC Security", "Cryptography", "Reverse Engineering", "Binary Analysis"]
+    },
+    {
+      "name": "Cloud & DevOps",
+      "skills": ["AWS", "Azure", "GCP", "Docker", "GitHub Actions", "Terraform", "CI/CD", "Zscaler", "Teleport"]
+    },
+    {
+      "name": "Application Security",
+      "skills": ["SAST", "DAST", "Burp Suite", "OWASP ZAP", "Checkmarx", "Acunetix", "Secure Code Review", "Snyk", "SonarQube"]
+    },
+    {
+      "name": "Programming & Tools",
+      "skills": ["Python", "C/C++", "Bash", "Java", "TypeScript", "Rust", "Go", "Wireshark", "Ghidra", "Binary Ninja", "GDB"]
+    },
+    {
+      "name": "Networking & Systems",
+      "skills": ["TCP/IP", "Firewalls", "Linux", "Unix", "pfSense", "Shell Scripting", "Splunk", "OSINT"]
+    },
+    {
+      "name": "Data & AI/ML",
+      "skills": ["TensorFlow", "Pandas", "scikit-learn", "Elasticsearch", "MongoDB", "ML Evasion Research"]
+    }
+  ],
+  "languages": [
+    { "name": "English", "level": "Native" },
+    { "name": "Spanish", "level": "Fluent" },
+    { "name": "Hindi", "level": "Beginner" }
+  ]
+}

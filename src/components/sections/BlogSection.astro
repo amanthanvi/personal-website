@@ -1,0 +1,66 @@
+---
+import { getCollection } from 'astro:content';
+import SectionHeading from '../ui/SectionHeading.astro';
+
+const posts = (await getCollection('blog'))
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 4);
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
+}
+---
+
+<section
+  id="blog"
+  class="section-blog py-24"
+  aria-labelledby="blog-heading"
+>
+  <div class="mx-auto max-w-5xl px-6">
+    <SectionHeading id="blog-heading" label="Blog" tag="SEC.05" />
+
+    {posts.length > 0 ? (
+      <div class="grid gap-4 sm:grid-cols-2">
+        {posts.map((post, i) => (
+          <a
+            href={`/blog/${post.id.replace(/\.(mdx?|md)$/, '')}/`}
+            class="group reveal rounded-lg border border-border/60 bg-surface/20 p-6 transition-all hover:border-accent-blog/60 hover:bg-surface/40 hover:shadow-[0_0_24px_var(--color-glow-blog)]"
+            style={`animation-delay: ${i * 100}ms`}
+          >
+            <time class="text-[0.65rem] uppercase tracking-wider text-muted/60" datetime={post.data.pubDate.toISOString()}>
+              {formatDate(post.data.pubDate)}
+            </time>
+            <h3 class="mt-2 text-lg font-semibold text-text transition-colors group-hover:text-accent-blog">
+              {post.data.title}
+            </h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted line-clamp-2">
+              {post.data.description}
+            </p>
+            <div class="mt-4 flex flex-wrap gap-1.5">
+              {post.data.tags.map((tag: string) => (
+                <span class="rounded bg-accent-blog/10 px-2 py-0.5 text-[0.65rem] text-accent-blog">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <span class="mt-4 inline-flex items-center gap-1 text-xs text-muted transition-colors group-hover:text-accent-blog">
+              Read more
+              <svg class="h-3 w-3 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    ) : (
+      <div class="reveal rounded-lg border border-border/40 bg-surface/10 p-12 text-center">
+        <p class="text-muted">No posts yet. Check back soon.</p>
+      </div>
+    )}
+  </div>
+</section>

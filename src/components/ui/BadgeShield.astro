@@ -1,0 +1,26 @@
+---
+interface Props {
+  name: string;
+  issuer?: string;
+  icon?: string;
+  href?: string;
+}
+
+const { name, issuer, icon, href } = Astro.props;
+const Tag = href ? 'a' : 'div';
+---
+
+<Tag
+  class="group flex items-center gap-3 rounded-lg border border-border/60 bg-surface/20 px-4 py-3 transition-all hover:border-[var(--section-accent)]/60 hover:bg-surface/40 hover:shadow-[0_0_20px_var(--section-glow)]"
+  {...href ? { href, target: '_blank', rel: 'noopener noreferrer' } : {}}
+>
+  {icon && (
+    <span class="flex h-8 w-8 items-center justify-center rounded-md border border-[var(--section-accent)]/20 bg-[var(--section-accent)]/10 text-[var(--section-accent)] text-lg transition-colors group-hover:border-[var(--section-accent)]/40">
+      {icon}
+    </span>
+  )}
+  <div class="min-w-0">
+    <div class="truncate text-sm font-semibold text-text">{name}</div>
+    {issuer && <div class="truncate text-xs text-muted">{issuer}</div>}
+  </div>
+</Tag>
