@@ -35,14 +35,14 @@ const { text, tag: Tag = 'span', class: className = '' } = Astro.props;
   .glitch-text:hover::before {
     animation: glitch-top 0.4s ease-in-out;
     opacity: 0.8;
-    color: oklch(0.78 0.15 194);
+    color: var(--glitch-color-a, oklch(0.78 0.15 194));
     clip-path: inset(0 0 50% 0);
   }
 
   .glitch-text:hover::after {
     animation: glitch-bottom 0.4s ease-in-out;
     opacity: 0.8;
-    color: oklch(0.7 0.2 330);
+    color: var(--glitch-color-b, oklch(0.7 0.2 330));
     clip-path: inset(50% 0 0 0);
   }
 

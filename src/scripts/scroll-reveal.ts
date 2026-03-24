@@ -21,6 +21,13 @@ export function initScrollReveal(): void {
   );
 
   document.querySelectorAll('.reveal').forEach((el) => {
-    observer.observe(el);
+    // If browser restored scroll position, elements above viewport
+    // will never intersect. Reveal them immediately.
+    const rect = el.getBoundingClientRect();
+    if (rect.bottom < 0) {
+      el.classList.add('revealed');
+    } else {
+      observer.observe(el);
+    }
   });
 }

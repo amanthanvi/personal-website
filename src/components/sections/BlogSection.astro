@@ -30,7 +30,7 @@ function formatDate(date: Date): string {
           <a
             href={`/blog/${post.id.replace(/\.(mdx?|md)$/, '')}/`}
             class="group reveal rounded-lg border border-border/60 bg-surface/20 p-6 transition-all hover:border-accent-blog/60 hover:bg-surface/40 hover:shadow-[0_0_24px_var(--color-glow-blog)]"
-            style={`animation-delay: ${i * 100}ms`}
+            style={`transition-delay: ${i * 100}ms`}
           >
             <time class="text-[0.65rem] uppercase tracking-wider text-muted/60" datetime={post.data.pubDate.toISOString()}>
               {formatDate(post.data.pubDate)}
@@ -50,7 +50,7 @@ function formatDate(date: Date): string {
             </div>
             <span class="mt-4 inline-flex items-center gap-1 text-xs text-muted transition-colors group-hover:text-accent-blog">
               Read more
-              <svg class="h-3 w-3 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg class="h-3 w-3 animate-[nudge-right_2s_ease-in-out_infinite] group-hover:[animation-play-state:paused] group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </span>

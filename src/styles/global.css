@@ -28,11 +28,14 @@
   --color-muted: oklch(0.65 0.02 265);
   --color-border: oklch(0.25 0.015 265);
 
+  /* Shared entrance easing */
+  --ease-reveal: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
   /* Animation tokens */
-  --animate-fade-in-up: fade-in-up 0.6s ease-out both;
+  --animate-fade-in-up: fade-in-up 0.6s var(--ease-reveal) both;
   --animate-glitch: glitch 0.4s ease-in-out;
   --animate-pulse-glow: pulse-glow 2s ease-in-out infinite;
-  --animate-circuit-draw: circuit-draw 1s ease-out both;
+  --animate-circuit-draw: circuit-draw 1s var(--ease-reveal) both;
   --animate-typing: typing 0.8s steps(20) both;
   --animate-scan-line: scan-line 3s linear infinite;
 }
@@ -57,6 +60,17 @@
     --color-text: oklch(0.13 0.015 265);
     --color-muted: oklch(0.40 0.02 265);
     --color-border: oklch(0.82 0.01 265);
+
+    --color-accent-hero: oklch(0.55 0.18 194);
+    --color-accent-projects: oklch(0.50 0.22 142);
+    --color-accent-experience: oklch(0.55 0.18 75);
+    --color-accent-skills: oklch(0.50 0.22 330);
+    --color-accent-blog: oklch(0.45 0.20 255);
+    --color-glow-hero: oklch(0.45 0.18 194 / 0.2);
+    --color-glow-projects: oklch(0.40 0.20 142 / 0.2);
+    --color-glow-experience: oklch(0.45 0.16 75 / 0.2);
+    --color-glow-skills: oklch(0.40 0.22 330 / 0.2);
+    --color-glow-blog: oklch(0.35 0.20 255 / 0.2);
   }
 }
 
@@ -75,6 +89,17 @@
   --color-text: oklch(0.13 0.015 265);
   --color-muted: oklch(0.40 0.02 265);
   --color-border: oklch(0.82 0.01 265);
+
+  --color-accent-hero: oklch(0.55 0.18 194);
+  --color-accent-projects: oklch(0.50 0.22 142);
+  --color-accent-experience: oklch(0.55 0.18 75);
+  --color-accent-skills: oklch(0.50 0.22 330);
+  --color-accent-blog: oklch(0.45 0.20 255);
+  --color-glow-hero: oklch(0.45 0.18 194 / 0.2);
+  --color-glow-projects: oklch(0.40 0.20 142 / 0.2);
+  --color-glow-experience: oklch(0.45 0.16 75 / 0.2);
+  --color-glow-skills: oklch(0.40 0.22 330 / 0.2);
+  --color-glow-blog: oklch(0.35 0.20 255 / 0.2);
 }
 
 /* --- Base Styles --- */
@@ -82,10 +107,15 @@
   html {
     scroll-behavior: smooth;
     color-scheme: dark light;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading, var(--font-mono));
   }
 
   body {
-    font-family: var(--font-mono);
+    font-family: var(--font-body, var(--font-mono));
     background-color: var(--color-bg);
     color: var(--color-text);
     line-height: 1.6;
@@ -95,7 +125,7 @@
   }
 
   ::selection {
-    background: oklch(0.78 0.15 194 / 0.3);
+    background: var(--color-glow-hero);
     color: var(--color-text);
   }
 

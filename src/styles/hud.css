@@ -1,6 +1,6 @@
 /* --- HUD Overlays, Scanlines, Decorative Effects --- */
 
-/* Scanline overlay — very subtle */
+/* Scanline overlay — intensity controlled by --scanline-opacity (themes override) */
 .hud-scanlines::after {
   content: "";
   position: fixed;
@@ -9,8 +9,8 @@
     0deg,
     transparent,
     transparent 2px,
-    oklch(0.78 0.15 194 / 0.012) 2px,
-    oklch(0.78 0.15 194 / 0.012) 4px
+    oklch(0.78 0.15 194 / var(--scanline-opacity, 0.012)) 2px,
+    oklch(0.78 0.15 194 / var(--scanline-opacity, 0.012)) 4px
   );
   pointer-events: none;
   z-index: 50;
@@ -144,11 +144,87 @@
 .reveal {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: opacity 0.5s var(--ease-reveal),
+              transform 0.5s var(--ease-reveal);
 }
 
 .reveal.revealed {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Circuit path draw on scroll reveal */
+.circuit-trace.revealed .circuit-path {
+  animation: circuit-draw 1.2s var(--ease-reveal) both;
+}
+
+.circuit-trace.revealed .circuit-branch {
+  animation: circuit-draw 0.4s var(--ease-reveal) 0.8s both;
+}
+
+.circuit-trace.revealed .circuit-dot {
+  transition: opacity 0.3s var(--ease-reveal) 1.2s;
+  opacity: 0.6;
+}
+
+/* Section heading divider line draw */
+.divider-line {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.8s var(--ease-reveal) 0.2s;
+}
+
+.reveal.revealed .divider-line {
+  transform: scaleX(1);
+}
+
+/* Terminal command typing effect */
+.terminal-type {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+}
+
+.reveal.revealed .terminal-type {
+  animation: typing 0.8s steps(20) both 0.3s;
+}
+
+/* Avatar scan/materialize entrance */
+.avatar-scan {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 1s var(--ease-reveal);
+}
+
+.reveal.revealed .avatar-scan {
+  clip-path: inset(0 0 0 0);
+}
+
+.avatar-scan::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-accent-hero);
+  box-shadow: 0 0 12px var(--color-glow-hero);
+  top: 0;
+  transition: top 1s var(--ease-reveal), opacity 0.2s ease 1s;
+  pointer-events: none;
+}
+
+.reveal.revealed .avatar-scan::after {
+  top: 100%;
+  opacity: 0;
+}
+
+/* Timeline vertical draw */
+.timeline-draw {
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 1.5s var(--ease-reveal);
+}
+
+.timeline-draw.revealed {
+  transform: scaleY(1);
 }

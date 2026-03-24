@@ -17,7 +17,7 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
     <TerminalWindow title="~/projects" class="reveal">
       <div class="space-y-1">
         <div class="text-muted mb-3">
-          <span class="text-accent-projects">$</span> ls -la ./projects/
+          <span class="text-accent-projects">$</span> <span class="terminal-type">ls -la ./projects/</span>
         </div>
 
         {projects.map((project) => (

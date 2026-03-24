@@ -1,4 +1,9 @@
-const BOOT_LINES = [
+interface BootLine {
+  text: string;
+  delay: number;
+}
+
+const BOOT_LINES: BootLine[] = [
   { text: '[INIT] Loading kernel modules...', delay: 0 },
   { text: '[OK]   Network interface configured', delay: 150 },
   { text: '[OK]   Encryption protocols active', delay: 300 },
@@ -7,7 +12,20 @@ const BOOT_LINES = [
   { text: '[READY] Welcome, operator.', delay: 900 },
 ];
 
-const LAST_LINE_DELAY = BOOT_LINES[BOOT_LINES.length - 1].delay;
+function getLineColor(text: string): string | null {
+  // Use CSS custom properties so colors follow the active theme
+  const style = getComputedStyle(document.documentElement);
+  const accentProjects = style.getPropertyValue('--color-accent-projects').trim();
+  const accentExperience = style.getPropertyValue('--color-accent-experience').trim();
+  const accentHero = style.getPropertyValue('--color-accent-hero').trim();
+
+  if (text.includes('] ') && text.endsWith('OK')) return accentProjects || 'oklch(0.72 0.19 142)';
+  if (text.includes('SCAN')) return accentExperience || 'oklch(0.75 0.15 75)';
+  if (text.includes('READY')) {
+    return accentHero || 'oklch(0.78 0.15 194)';
+  }
+  return null;
+}
 
 function shouldSkipBoot(): boolean {
   try {
@@ -37,41 +55,35 @@ export function initBootSequence(): void {
   // Show overlay
   overlay.style.display = 'flex';
 
+  const bootLines = BOOT_LINES;
+  const lastLineDelay = bootLines[bootLines.length - 1].delay;
+
   // Phase 1: Type out terminal lines
-  BOOT_LINES.forEach(({ text, delay }) => {
+  bootLines.forEach(({ text, delay }) => {
     setTimeout(() => {
       const line = document.createElement('div');
       line.className = 'boot-line';
       line.textContent = text;
 
-      if (text.startsWith('[OK]')) {
-        line.style.color = 'oklch(0.72 0.19 142)';
-      } else if (text.startsWith('[SCAN]')) {
-        line.style.color = 'oklch(0.75 0.15 75)';
-      } else if (text.startsWith('[READY]')) {
-        line.style.color = 'oklch(0.78 0.15 194)';
-      }
+      const color = getLineColor(text);
+      if (color) line.style.color = color;
 
       terminal.appendChild(line);
     }, delay);
   });
 
-  // Phase 2: Boot-in transition — content scales up slightly and fades,
-  // overlay slides up to reveal the page underneath
-  const transitionStart = LAST_LINE_DELAY + 600;
+  // Phase 2: Boot-in transition
+  const transitionStart = lastLineDelay + 600;
 
   setTimeout(() => {
-    // Hide cursor
     if (cursor) cursor.style.opacity = '0';
 
-    // Scale up + fade the terminal content
-    terminal.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+    terminal.style.transition = 'opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
     terminal.style.opacity = '0';
     terminal.style.transform = 'scale(1.02)';
 
-    // Slide overlay up after a brief beat
     setTimeout(() => {
-      overlay.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease-out';
+      overlay.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
       overlay.style.transform = 'translateY(-100%)';
       overlay.style.opacity = '0';
 

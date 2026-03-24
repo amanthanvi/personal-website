@@ -11,18 +11,24 @@ import {
   Color,
 } from 'three';
 
-// Section accent colors (matching CSS oklch → hex approximations for Three.js)
-const SECTION_COLORS = [
+// Color palette — section accents mapped to scroll position
+type ColorStop = { offset: number; color: Color };
+
+const COLOR_PALETTE: ColorStop[] = [
   { offset: 0, color: new Color('#00d4ff') },     // hero: cyan
   { offset: 0.2, color: new Color('#22c55e') },   // projects: green
   { offset: 0.4, color: new Color('#f59e0b') },   // experience: amber
   { offset: 0.6, color: new Color('#d946ef') },   // skills: magenta
   { offset: 0.8, color: new Color('#3b82f6') },   // blog: blue
-  { offset: 1.0, color: new Color('#3b82f6') },   // end
+  { offset: 1.0, color: new Color('#3b82f6') },
 ];
 
+const PARTICLE_SIZE = 0.04;
+const CONNECTION_DIST = 2.5;
+const POINT_OPACITY = 0.7;
+const LINE_OPACITY = 0.15;
+
 const PARTICLE_COUNT = 90;
-const CONNECTION_DISTANCE = 2.5;
 const MOUSE_INFLUENCE = 0.3;
 
 interface ParticleData {
@@ -35,15 +41,15 @@ function getScrollProgress(): number {
 }
 
 function getColorForScroll(progress: number): Color {
-  for (let i = 0; i < SECTION_COLORS.length - 1; i++) {
-    const curr = SECTION_COLORS[i];
-    const next = SECTION_COLORS[i + 1];
+  for (let i = 0; i < COLOR_PALETTE.length - 1; i++) {
+    const curr = COLOR_PALETTE[i];
+    const next = COLOR_PALETTE[i + 1];
     if (progress >= curr.offset && progress <= next.offset) {
       const t = (progress - curr.offset) / (next.offset - curr.offset);
       return curr.color.clone().lerp(next.color, t);
     }
   }
-  return SECTION_COLORS[0].color.clone();
+  return COLOR_PALETTE[0].color.clone();
 }
 
 export function initParticleNetwork(canvas: HTMLCanvasElement): (() => void) | null {
@@ -78,10 +84,10 @@ export function initParticleNetwork(canvas: HTMLCanvasElement): (() => void) | n
   pointGeo.setAttribute('position', new Float32BufferAttribute(positions, 3));
 
   const pointMat = new PointsMaterial({
-    size: 0.04,
-    color: SECTION_COLORS[0].color,
+    size: PARTICLE_SIZE,
+    color: COLOR_PALETTE[0].color,
     transparent: true,
-    opacity: 0.7,
+    opacity: POINT_OPACITY,
   });
 
   const points = new Points(pointGeo, pointMat);
@@ -90,9 +96,9 @@ export function initParticleNetwork(canvas: HTMLCanvasElement): (() => void) | n
   // Lines
   const lineGeo = new BufferGeometry();
   const lineMat = new LineBasicMaterial({
-    color: SECTION_COLORS[0].color,
+    color: COLOR_PALETTE[0].color,
     transparent: true,
-    opacity: 0.15,
+    opacity: LINE_OPACITY,
   });
   const lines = new LineSegments(lineGeo, lineMat);
   scene.add(lines);
@@ -148,7 +154,6 @@ export function initParticleNetwork(canvas: HTMLCanvasElement): (() => void) | n
 
     posAttr.needsUpdate = true;
 
-    // Update connections
     const linePositions: number[] = [];
     for (let i = 0; i < PARTICLE_COUNT; i++) {
       for (let j = i + 1; j < PARTICLE_COUNT; j++) {
@@ -157,7 +162,7 @@ export function initParticleNetwork(canvas: HTMLCanvasElement): (() => void) | n
         const dz = posArray[i * 3 + 2] - posArray[j * 3 + 2];
         const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
 
-        if (dist < CONNECTION_DISTANCE) {
+        if (dist < CONNECTION_DIST) {
           linePositions.push(
             posArray[i * 3], posArray[i * 3 + 1], posArray[i * 3 + 2],
             posArray[j * 3], posArray[j * 3 + 1], posArray[j * 3 + 2],

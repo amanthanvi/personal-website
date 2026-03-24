@@ -56,7 +56,10 @@ const sections = [
 </nav>
 
 <style>
-  /* Active nav dot styling */
+  .nav-dot {
+    transition: all 0.3s var(--ease-reveal);
+  }
+
   [aria-current="true"] .nav-dot {
     border-color: var(--dot-color);
     background-color: var(--dot-color);
