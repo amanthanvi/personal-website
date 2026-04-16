@@ -1,5 +1,5 @@
 ---
-// Theme popover — direct selection from 3 themes
+// Theme popover — direct selection from themes
 ---
 
 <div class="relative" id="theme-wrapper">
@@ -24,6 +24,18 @@
     <svg data-theme-icon="light" class="hidden h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <circle cx="12" cy="12" r="5" />
       <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+    </svg>
+    <!-- Dunes icon -->
+    <svg data-theme-icon="dune" class="hidden h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round">
+      <path d="M2 16c3-6 7-9 10-9s6 4 10 9" />
+      <path d="M6 18c2.5-4 5.5-6 8-6s5.5 3 8 6" opacity="0.65" />
+    </svg>
+    <!-- Arcade: simple gamepad -->
+    <svg data-theme-icon="arcade" class="hidden h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="7" width="18" height="12" rx="3" />
+      <path d="M8 13v4M6 15h4" />
+      <circle cx="16" cy="14" r="1.25" fill="currentColor" stroke="none" />
+      <circle cx="18.5" cy="16.5" r="1.25" fill="currentColor" stroke="none" />
     </svg>
     <span id="theme-label">Auto</span>
     <svg class="h-3 w-3 opacity-50 transition-transform" id="theme-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2">
@@ -59,6 +71,24 @@
         <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
       </svg>
       Light
+    </button>
+    <button role="menuitemradio" data-theme-option="dune" aria-checked="false"
+      class="theme-option flex items-center gap-2.5 px-3 py-2 text-left text-xs uppercase tracking-widest text-muted transition-colors hover:bg-border/30 hover:text-text">
+      <svg class="h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round">
+        <path d="M2 16c3-6 7-9 10-9s6 4 10 9" />
+        <path d="M6 18c2.5-4 5.5-6 8-6s5.5 3 8 6" opacity="0.65" />
+      </svg>
+      Dune
+    </button>
+    <button role="menuitemradio" data-theme-option="arcade" aria-checked="false"
+      class="theme-option flex items-center gap-2.5 px-3 py-2 text-left text-xs uppercase tracking-widest text-muted transition-colors hover:bg-border/30 hover:text-text">
+      <svg class="h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="7" width="18" height="12" rx="3" />
+        <path d="M8 13v4M6 15h4" />
+        <circle cx="16" cy="14" r="1.25" fill="currentColor" stroke="none" />
+        <circle cx="18.5" cy="16.5" r="1.25" fill="currentColor" stroke="none" />
+      </svg>
+      Arcade
     </button>
   </div>
 </div>
@@ -152,7 +182,12 @@
         icon.classList.toggle('hidden', icon.dataset.themeIcon !== theme);
       });
 
-      $label.textContent = theme.charAt(0).toUpperCase() + theme.slice(1);
+      const labels: Record<string, string> = {
+        dune: 'Dune',
+        arcade: 'Arcade',
+      };
+      $label.textContent =
+        labels[theme] ?? theme.charAt(0).toUpperCase() + theme.slice(1);
 
       $popover.querySelectorAll<HTMLElement>('[data-theme-option]').forEach((opt) => {
         opt.setAttribute('aria-checked', String(opt.dataset.themeOption === theme));

@@ -9,18 +9,75 @@ import {
   LineSegments,
   LineBasicMaterial,
   Color,
-} from 'three';
+} from "three";
 
 // Color palette — section accents mapped to scroll position
 type ColorStop = { offset: number; color: Color };
 
-const COLOR_PALETTE: ColorStop[] = [
-  { offset: 0, color: new Color('#00d4ff') },     // hero: cyan
-  { offset: 0.2, color: new Color('#22c55e') },   // projects: green
-  { offset: 0.4, color: new Color('#f59e0b') },   // experience: amber
-  { offset: 0.6, color: new Color('#d946ef') },   // skills: magenta
-  { offset: 0.8, color: new Color('#3b82f6') },   // blog: blue
-  { offset: 1.0, color: new Color('#3b82f6') },
+/** Reads author/computed CSS color (incl. oklch) into Three via canvas normalization */
+function cssColorToThree(css: string): Color {
+  const t = css.trim();
+  if (!t) return new Color(0x888888);
+  const ctx = document.createElement("canvas").getContext("2d");
+  if (!ctx) return new Color(0x888888);
+  ctx.fillStyle = "#888888";
+  ctx.fillStyle = t;
+  const normalized = ctx.fillStyle as string;
+  try {
+    return new Color(normalized);
+  } catch {
+    return new Color(0x888888);
+  }
+}
+
+const ACCENT_CSS_VARS = [
+  "--color-accent-hero",
+  "--color-accent-projects",
+  "--color-accent-experience",
+  "--color-accent-skills",
+  "--color-accent-blog",
+] as const;
+
+let defaultPaletteCache: ColorStop[] = [];
+
+function buildDefaultPaletteFromCss(): ColorStop[] {
+  const style = getComputedStyle(document.documentElement);
+  const colors = ACCENT_CSS_VARS.map((key) =>
+    cssColorToThree(style.getPropertyValue(key)),
+  );
+  const blog = colors[4];
+  return [
+    { offset: 0, color: colors[0] },
+    { offset: 0.2, color: colors[1] },
+    { offset: 0.4, color: colors[2] },
+    { offset: 0.6, color: colors[3] },
+    { offset: 0.8, color: blog },
+    { offset: 1.0, color: blog.clone() },
+  ];
+}
+
+function refreshDefaultPalette(): void {
+  defaultPaletteCache = buildDefaultPaletteFromCss();
+}
+
+/** Dune daytime: gold → rust — stays visible over light sand */
+const DUNE_PALETTE: ColorStop[] = [
+  { offset: 0, color: new Color("#f0a040") },
+  { offset: 0.2, color: new Color("#e87030") },
+  { offset: 0.4, color: new Color("#d05020") },
+  { offset: 0.6, color: new Color("#b84220") },
+  { offset: 0.8, color: new Color("#8a3818") },
+  { offset: 1.0, color: new Color("#5c2810") },
+];
+
+/** Arcade: gold → emerald → amber → violet → azure (scroll progression) */
+const ARCADE_PALETTE: ColorStop[] = [
+  { offset: 0, color: new Color("#e8c056") },
+  { offset: 0.2, color: new Color("#34d399") },
+  { offset: 0.4, color: new Color("#fbbf24") },
+  { offset: 0.6, color: new Color("#c084fc") },
+  { offset: 0.8, color: new Color("#38bdf8") },
+  { offset: 1.0, color: new Color("#38bdf8") },
 ];
 
 const PARTICLE_SIZE = 0.04;
@@ -40,29 +97,47 @@ function getScrollProgress(): number {
   return docHeight > 0 ? Math.min(window.scrollY / docHeight, 1) : 0;
 }
 
+function activePalette(): ColorStop[] {
+  const theme = document.documentElement.getAttribute("data-theme");
+  if (theme === "dune") return DUNE_PALETTE;
+  if (theme === "arcade") return ARCADE_PALETTE;
+  return defaultPaletteCache;
+}
+
 function getColorForScroll(progress: number): Color {
-  for (let i = 0; i < COLOR_PALETTE.length - 1; i++) {
-    const curr = COLOR_PALETTE[i];
-    const next = COLOR_PALETTE[i + 1];
+  const palette = activePalette();
+  for (let i = 0; i < palette.length - 1; i++) {
+    const curr = palette[i];
+    const next = palette[i + 1];
     if (progress >= curr.offset && progress <= next.offset) {
       const t = (progress - curr.offset) / (next.offset - curr.offset);
       return curr.color.clone().lerp(next.color, t);
     }
   }
-  return COLOR_PALETTE[0].color.clone();
+  return palette[0].color.clone();
 }
 
-export function initParticleNetwork(canvas: HTMLCanvasElement): (() => void) | null {
+export function initParticleNetwork(
+  canvas: HTMLCanvasElement,
+): (() => void) | null {
   // Bail on reduced motion
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return null;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+    return null;
 
   const scene = new Scene();
-  const camera = new PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
+  const camera = new PerspectiveCamera(
+    60,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    100,
+  );
   camera.position.z = 5;
 
   const renderer = new WebGLRenderer({ canvas, alpha: true, antialias: false });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setSize(window.innerWidth, window.innerHeight);
+
+  refreshDefaultPalette();
 
   // Create particle positions
   const positions = new Float32Array(PARTICLE_COUNT * 3);
@@ -81,11 +156,11 @@ export function initParticleNetwork(canvas: HTMLCanvasElement): (() => void) | n
 
   // Points
   const pointGeo = new BufferGeometry();
-  pointGeo.setAttribute('position', new Float32BufferAttribute(positions, 3));
+  pointGeo.setAttribute("position", new Float32BufferAttribute(positions, 3));
 
   const pointMat = new PointsMaterial({
     size: PARTICLE_SIZE,
-    color: COLOR_PALETTE[0].color,
+    color: activePalette()[0].color,
     transparent: true,
     opacity: POINT_OPACITY,
   });
@@ -96,7 +171,7 @@ export function initParticleNetwork(canvas: HTMLCanvasElement): (() => void) | n
   // Lines
   const lineGeo = new BufferGeometry();
   const lineMat = new LineBasicMaterial({
-    color: COLOR_PALETTE[0].color,
+    color: activePalette()[0].color,
     transparent: true,
     opacity: LINE_OPACITY,
   });
@@ -112,7 +187,7 @@ export function initParticleNetwork(canvas: HTMLCanvasElement): (() => void) | n
     mouseY = -(e.clientY / window.innerHeight - 0.5) * 2;
   };
 
-  window.addEventListener('mousemove', onMouseMove, { passive: true });
+  window.addEventListener("mousemove", onMouseMove, { passive: true });
 
   // Resize
   const onResize = () => {
@@ -121,7 +196,15 @@ export function initParticleNetwork(canvas: HTMLCanvasElement): (() => void) | n
     renderer.setSize(window.innerWidth, window.innerHeight);
   };
 
-  window.addEventListener('resize', onResize, { passive: true });
+  window.addEventListener("resize", onResize, { passive: true });
+
+  const onThemeChange = (): void => {
+    refreshDefaultPalette();
+    const c = getColorForScroll(getScrollProgress());
+    pointMat.color.copy(c);
+    lineMat.color.copy(c);
+  };
+  window.addEventListener("theme-change", onThemeChange);
 
   // Animation loop
   let animId: number;
@@ -134,7 +217,7 @@ export function initParticleNetwork(canvas: HTMLCanvasElement): (() => void) | n
     if (time - lastTime < 33) return;
     lastTime = time;
 
-    const posAttr = pointGeo.getAttribute('position') as Float32BufferAttribute;
+    const posAttr = pointGeo.getAttribute("position") as Float32BufferAttribute;
     const posArray = posAttr.array as Float32Array;
 
     // Update positions
@@ -164,15 +247,19 @@ export function initParticleNetwork(canvas: HTMLCanvasElement): (() => void) | n
 
         if (dist < CONNECTION_DIST) {
           linePositions.push(
-            posArray[i * 3], posArray[i * 3 + 1], posArray[i * 3 + 2],
-            posArray[j * 3], posArray[j * 3 + 1], posArray[j * 3 + 2],
+            posArray[i * 3],
+            posArray[i * 3 + 1],
+            posArray[i * 3 + 2],
+            posArray[j * 3],
+            posArray[j * 3 + 1],
+            posArray[j * 3 + 2],
           );
         }
       }
     }
 
     lineGeo.setAttribute(
-      'position',
+      "position",
       new Float32BufferAttribute(linePositions, 3),
     );
 
@@ -194,8 +281,9 @@ export function initParticleNetwork(canvas: HTMLCanvasElement): (() => void) | n
   // Cleanup
   return () => {
     cancelAnimationFrame(animId);
-    window.removeEventListener('mousemove', onMouseMove);
-    window.removeEventListener('resize', onResize);
+    window.removeEventListener("mousemove", onMouseMove);
+    window.removeEventListener("resize", onResize);
+    window.removeEventListener("theme-change", onThemeChange);
     renderer.dispose();
     pointGeo.dispose();
     pointMat.dispose();

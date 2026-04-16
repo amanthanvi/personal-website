@@ -1,16 +1,17 @@
 /* --- HUD Overlays, Scanlines, Decorative Effects --- */
 
-/* Scanline overlay — intensity controlled by --scanline-opacity (themes override) */
+/* Scanline overlay — themes override --hud-scanline-stripe (full stripe color) */
 .hud-scanlines::after {
   content: "";
   position: fixed;
   inset: 0;
+  --hud-scanline-stripe: oklch(0.78 0.15 194 / 0.012);
   background: repeating-linear-gradient(
     0deg,
     transparent,
     transparent 2px,
-    oklch(0.78 0.15 194 / var(--scanline-opacity, 0.012)) 2px,
-    oklch(0.78 0.15 194 / var(--scanline-opacity, 0.012)) 4px
+    var(--hud-scanline-stripe) 2px,
+    var(--hud-scanline-stripe) 4px
   );
   pointer-events: none;
   z-index: 50;
@@ -137,7 +138,7 @@
 
 /* Glow text utility */
 .glow-text {
-  text-shadow: 0 0 10px var(--section-glow, oklch(0.6 0.2 194 / 0.3));
+  text-shadow: 0 0 10px var(--section-glow, var(--color-glow-hero));
 }
 
 /* Reveal on scroll — hidden by default, shown via JS */
@@ -190,14 +191,14 @@
   animation: typing 0.8s steps(20) both 0.3s;
 }
 
-/* Avatar scan/materialize entrance */
+/* Avatar scan/materialize entrance — circle clip matches rounded photo (inset() reads as a square frame) */
 .avatar-scan {
-  clip-path: inset(0 0 100% 0);
+  clip-path: circle(0% at 50% 50%);
   transition: clip-path 1s var(--ease-reveal);
 }
 
 .reveal.revealed .avatar-scan {
-  clip-path: inset(0 0 0 0);
+  clip-path: circle(50% at 50% 50%);
 }
 
 .avatar-scan::after {

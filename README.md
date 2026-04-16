@@ -14,6 +14,7 @@ A minimalist, single-file static website with inline critical CSS and tiny JS. N
 
 Option A: open [index.html](index.html) directly in a browser.
 Option B: simple server for correct MIME types:
+
 - Python: `python3 -m http.server 8080`
 - Node (optional): `npx serve .` (no dependency required for deployment)
 
@@ -40,3 +41,6 @@ Option B: simple server for correct MIME types:
 
 No trackers or cookies. External requests are limited to Google Fonts (Space Mono) with system-mono fallback.
 
+## Credits and attributions
+
+The live Astro-based site in this repo uses additional fonts (e.g. JetBrains Mono, Silkscreen for the Arcade theme), Three.js, and optional UI Easter eggs. **Third-party licenses, font attribution, and trademark disclaimers for game-culture homages** are documented in [`CREDITS.md`](CREDITS.md). Contributor guidelines remain in [`AGENTS.md`](AGENTS.md).

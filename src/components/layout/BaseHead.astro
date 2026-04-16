@@ -41,9 +41,9 @@ const fullImageURL = image.startsWith('http') ? image : `${siteURL}${image}`;
 <meta name="twitter:image" content={fullImageURL} />
 <meta name="twitter:image:alt" content="Aman Thanvi — Cybersecurity Specialist" />
 
-<!-- Theme Color -->
-<meta name="theme-color" media="(prefers-color-scheme: light)" content="#00d4ff" />
-<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#00d4ff" />
+<!-- Theme Color — aligned with default light/dark surfaces (global.css) -->
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f1f2f6" />
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#080a12" />
 
 <!-- Favicons -->
 <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
@@ -51,11 +51,11 @@ const fullImageURL = image.startsWith('http') ? image : `${siteURL}${image}`;
 <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
 <link rel="manifest" href="/site.webmanifest" />
 
-<!-- Fonts: JetBrains Mono Variable -->
+<!-- Fonts: JetBrains Mono (body), Sora (default headings), Marcellus / Silkscreen (themes) -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
-  href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+  href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Marcellus&family=Silkscreen:wght@400;700&family=Sora:wght@400;500;600;700&display=swap"
   rel="stylesheet"
 />
 
@@ -82,6 +82,6 @@ const fullImageURL = image.startsWith('http') ? image : `${siteURL}${image}`;
 (function(){
   var d=document.documentElement,k='theme',s;
   try{s=localStorage.getItem(k)}catch(e){}
-  d.setAttribute('data-theme',s&&['auto','dark','light'].includes(s)?s:'auto');
+  d.setAttribute('data-theme',s&&['auto','dark','light','dune','arcade'].includes(s)?s:'auto');
 })();
 </script>

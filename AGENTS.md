@@ -6,9 +6,9 @@
 - **Entrypoint**: `src/pages/index.astro` composes all sections into a single-page scrolling portfolio.
 - **Layouts**: `src/layouts/BaseLayout.astro` (main shell), `src/layouts/BlogPostLayout.astro` (article pages).
 - **Components**: `src/components/` — organized into `layout/`, `ui/`, `sections/`, `three/`, `boot/`.
-- **Styles**: `src/styles/global.css` (Tailwind v4 @theme tokens), `animations.css`, `hud.css`.
+- **Styles**: `src/styles/global.css` (Tailwind v4 @theme tokens), `animations.css`, `hud.css`, `arcade.css` (Arcade theme overrides).
 - **Content**: `src/content/` — Astro content collections for `projects/` (Markdown), `blog/` (MDX), plus `experience.json` and `skills.json`.
-- **Scripts**: `src/scripts/` — TypeScript modules for theme toggle, boot sequence, particle network, HUD nav, scroll reveal.
+- **Scripts**: `src/scripts/` — TypeScript modules for theme toggle, boot sequence, particle network, HUD nav, scroll reveal, `arcade-easter-eggs.ts` (keyboard Easter eggs when Arcade UI is present).
 - **Static assets**: `public/` — images, CNAME, robots.txt, site.webmanifest. Deployed as-is to `dist/`.
 - **CI/CD**: `.github/workflows/pages.yml` builds + deploys; `quality.yml` runs lint, spellcheck, typecheck.
 
@@ -47,4 +47,5 @@
 - **Section accents**: Each section sets `--section-accent` / `--section-glow` CSS vars; child components reference them generically.
 - **Three.js**: Dynamic-imported after DOMContentLoaded, gated on `!prefers-reduced-motion`. Particle colors interpolate based on scroll position.
 - **Boot sequence**: Plays once per session (sessionStorage gate), respects reduced-motion.
-- **Theme**: 3-way toggle (auto/dark/light) via `data-theme` on `<html>`. FOUC prevention inline script in `<head>`.
+- **Theme**: Multi-option `data-theme` on `<html>` (`auto`, `dark`, `light`, `dune`, `arcade`). FOUC prevention inline script in `<head>`.
+- **Credits / third-party**: See [`CREDITS.md`](CREDITS.md) for fonts, libraries, and game-homage disclaimers.
