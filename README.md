@@ -1,46 +1,41 @@
-# Aman Thanvi — Static Site
+# Aman Thanvi — Personal site
 
-A minimalist, single-file static website with inline critical CSS and tiny JS. No frameworks, no bundlers, no analytics. Deployed via GitHub Pages.
+Static portfolio built with [Astro](https://astro.build/) (v5), [Tailwind CSS](https://tailwindcss.com/) v4, and [Three.js](https://threejs.org/) for an optional background. Single scrolling homepage plus MDX blog posts, multiple themes (including Arcade), deployed to GitHub Pages.
 
-## Structure
+## Quick start
 
-- [index.html](index.html) — production page with semantic landmarks, Space Mono via Google Fonts, accessible theme toggle, SEO/OG/JSON-LD.
-- [404.html](404.html) — minimal not-found page sharing base styles and theme toggle.
-- [robots.txt](robots.txt), [sitemap.xml](sitemap.xml) — search engine hints.
-- [site.webmanifest](site.webmanifest) — PWA metadata with existing icons.
-- static/images/ — assets; canonical headshot at [static/images/profile.jpg](static/images/profile.jpg).
+```bash
+npm ci
+npm run dev
+```
 
-## Local preview
+Other scripts: `npm run build` (output in `dist/`), `npm run preview`, `npm run check`. See [`AGENTS.md`](AGENTS.md) for CI, spellcheck, and pre-commit expectations.
 
-Option A: open [index.html](index.html) directly in a browser.
-Option B: simple server for correct MIME types:
+## Repository layout
 
-- Python: `python3 -m http.server 8080`
-- Node (optional): `npx serve .` (no dependency required for deployment)
+| Path | Purpose |
+|------|---------|
+| [`src/pages/`](src/pages/) | Routes: [`index.astro`](src/pages/index.astro), [`blog/[...slug].astro`](src/pages/blog/[...slug].astro), [`404.astro`](src/pages/404.astro) |
+| [`src/components/`](src/components/) | Layout, sections, UI, Three.js |
+| [`src/content/`](src/content/) | Collections (`projects/`, `blog/`), [`experience.json`](src/content/experience.json), [`skills.json`](src/content/skills.json) |
+| [`src/styles/`](src/styles/) | Global Tailwind theme tokens and section styles |
+| [`public/`](public/) | Static assets copied to site root (`robots.txt`, `site.webmanifest`, `CNAME`, images under `public/images/`) |
 
-## Accessibility and performance
+## Editing content
 
-- WCAG 2.2 AA: skip link, focus-visible outlines, logical headings, ARIA button for theme toggle, prefers-reduced-motion.
-- Budgets: total page < 200 KB, CSS < 10 KB, JS < 2 KB. Fonts load with `display=swap`.
-- LCP target < 1.8 s (slow 4G). Headshot sized with width/height to avoid CLS.
+- **Projects and blog**: Markdown/MDX under [`src/content/projects/`](src/content/projects/) and [`src/content/blog/`](src/content/blog/).
+- **Experience and skills**: JSON in [`src/content/`](src/content/).
+- **Hero and section copy**: Astro components under [`src/components/sections/`](src/components/sections/) (not a single root HTML file).
+- **Profile photo**: place or replace [`public/images/profile.jpg`](public/images/profile.jpg) (referenced as `/images/profile.jpg` in the build).
 
-## Deployment (GitHub Pages via Actions)
+## Deployment
 
-- Workflow: [.github/workflows/pages.yml](.github/workflows/pages.yml) uploads the repo root as the Pages artifact and deploys.
-- Trigger: pushes to `main` or manual `workflow_dispatch`.
-- No build step required.
+Pushes to `main` (or manual [`workflow_dispatch`](https://docs.github.com/en/actions/using-workflows/manually-running-a-workflow)) run [`.github/workflows/pages.yml`](.github/workflows/pages.yml): `npm ci`, `npm run build`, then deploy the **`dist`** artifact to GitHub Pages.
 
-## Updating content
+## Accessibility, performance, and privacy
 
-- Edit [index.html](index.html) text in the hero/about.
-- Replace the headshot at [static/images/profile.jpg](static/images/profile.jpg) (keep similar dimensions). For lossless optimization:
-  - macOS: `sips -s format jpeg -s formatOptions best static/images/profile.jpg --out static/images/profile.jpg`
-  - Or use ImageOptim/oxipng/mozjpeg.
+Semantic HTML, keyboard navigation, theme and motion preferences are part of the design. Performance and manual test notes live in [`AGENTS.md`](AGENTS.md). There are no analytics trackers or cookies; the site loads webfonts from Google Fonts (JetBrains Mono, Sora, Marcellus, Silkscreen — see [`src/components/layout/BaseHead.astro`](src/components/layout/BaseHead.astro)).
 
-## Privacy
+## Credits and contributing
 
-No trackers or cookies. External requests are limited to Google Fonts (Space Mono) with system-mono fallback.
-
-## Credits and attributions
-
-The live Astro-based site in this repo uses additional fonts (e.g. JetBrains Mono, Silkscreen for the Arcade theme), Three.js, and optional UI Easter eggs. **Third-party licenses, font attribution, and trademark disclaimers for game-culture homages** are documented in [`CREDITS.md`](CREDITS.md). Contributor guidelines remain in [`AGENTS.md`](AGENTS.md).
+Third-party licenses, font attribution, and game-culture homage disclaimers are in [`CREDITS.md`](CREDITS.md). Contributor workflow and tooling are in [`AGENTS.md`](AGENTS.md).
