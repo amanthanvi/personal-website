@@ -10,8 +10,8 @@
     "check": "astro check"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.2.0",
-    "astro": "^5.7.0",
+    "@astrojs/mdx": "^5.0.4",
+    "astro": "^6.3.1",
     "three": "^0.172.0"
   },
   "devDependencies": {
