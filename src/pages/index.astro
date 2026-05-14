@@ -5,7 +5,6 @@ import ProjectsSection from '../components/sections/ProjectsSection.astro';
 import ExperienceSection from '../components/sections/ExperienceSection.astro';
 import SkillsSection from '../components/sections/SkillsSection.astro';
 import BlogSection from '../components/sections/BlogSection.astro';
-import CircuitTrace from '../components/ui/CircuitTrace.astro';
 
 const description = 'Cybersecurity Specialist with Master of Engineering in Cybersecurity. Over six years of progressive experience in offensive and defensive security within federal agencies, federally funded research centers, and the private sector.';
 ---
@@ -15,13 +14,9 @@ const description = 'Cybersecurity Specialist with Master of Engineering in Cybe
   description={description}
 >
   <HeroSection />
-  <CircuitTrace fromColor="hero" toColor="projects" />
   <ProjectsSection />
-  <CircuitTrace fromColor="projects" toColor="experience" />
   <ExperienceSection />
-  <CircuitTrace fromColor="experience" toColor="skills" />
   <SkillsSection />
-  <CircuitTrace fromColor="skills" toColor="blog" />
   <BlogSection />
 </BaseLayout>
 

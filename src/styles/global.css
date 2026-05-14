@@ -62,11 +62,11 @@
 :root {
   --_light-bg: oklch(0.945 0.012 265);
   --_light-surface: oklch(0.972 0.009 265);
-  --_light-text: oklch(0.148 0.022 265);
-  --_light-muted: oklch(0.385 0.032 265);
+  --_light-text: oklch(0.1 0.02 265);
+  --_light-muted: oklch(0.29 0.03 265);
   --_light-border: oklch(0.775 0.028 265);
-  --_light-accent-hero: oklch(0.48 0.17 194);
-  --_light-accent-projects: oklch(0.44 0.2 142);
+  --_light-accent-hero: oklch(0.39 0.16 194);
+  --_light-accent-projects: oklch(0.36 0.19 142);
   --_light-accent-experience: oklch(0.48 0.16 75);
   --_light-accent-skills: oklch(0.44 0.2 330);
   --_light-accent-blog: oklch(0.42 0.18 255);
@@ -77,16 +77,16 @@
   --_light-glow-blog: oklch(0.34 0.16 255 / 0.22);
   --_light-atmosphere-gradient: radial-gradient(
       ellipse 90% 45% at 50% 0%,
-      oklch(0.88 0.04 265 / 0.5) 0%,
+      oklch(0.9 0.035 265 / 0.28) 0%,
       transparent 55%
     ),
     radial-gradient(
       ellipse 100% 40% at 50% 100%,
-      oklch(0.82 0.03 265 / 0.25) 0%,
+      oklch(0.82 0.03 265 / 0.14) 0%,
       transparent 50%
     );
-  --_light-atmosphere-noise: 0.026;
-  --_light-hud-scanline: oklch(0.42 0.04 265 / 0.07);
+  --_light-atmosphere-noise: 0.014;
+  --_light-hud-scanline: oklch(0.42 0.04 265 / 0.025);
 }
 
 /* --- Auto + light OS --- */
@@ -322,12 +322,13 @@ html:not([data-theme="dune"]):not([data-theme="arcade"])::after {
   html {
     scroll-behavior: smooth;
     transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: clip;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading, var(--font-mono));
     font-weight: 600;
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
   }
 
   body {
@@ -337,7 +338,7 @@ html:not([data-theme="dune"]):not([data-theme="arcade"])::after {
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   ::selection {

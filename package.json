@@ -11,13 +11,12 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^4.2.0",
-    "astro": "^5.7.0",
-    "three": "^0.172.0"
+    "astro": "^5.7.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.6",
     "@tailwindcss/vite": "^4.1.0",
-    "@types/three": "^0.172.0",
+    "react-doctor": "^0.1.6",
     "tailwindcss": "^4.1.0",
     "typescript": "^5.7.0"
   }

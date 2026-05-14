@@ -2,9 +2,9 @@
 // Theme popover — direct selection from themes
 ---
 
-<div class="relative" id="theme-wrapper">
+<div class="theme-wrapper relative" data-theme-wrapper>
   <button
-    id="theme-toggle"
+    data-theme-toggle
     type="button"
     aria-label="Choose theme"
     aria-expanded="false"
@@ -37,15 +37,15 @@
       <circle cx="16" cy="14" r="1.25" fill="currentColor" stroke="none" />
       <circle cx="18.5" cy="16.5" r="1.25" fill="currentColor" stroke="none" />
     </svg>
-    <span id="theme-label">Auto</span>
-    <svg class="h-3 w-3 opacity-50 transition-transform" id="theme-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2">
+    <span data-theme-label>Auto</span>
+    <svg class="theme-chevron h-3 w-3 opacity-50 transition-transform" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2">
       <path d="M3 5l3 3 3-3" />
     </svg>
   </button>
 
   <!-- Popover panel -->
   <div
-    id="theme-popover"
+    data-theme-popover
     role="menu"
     aria-label="Select theme"
     class="absolute z-[45] hidden min-w-[140px] flex-col overflow-hidden rounded border border-border bg-surface/95 shadow-lg backdrop-blur-md"
@@ -96,29 +96,28 @@
 <style>
   /* Desktop: popover opens left of the nav (right-edge sidebar) */
   @media (min-width: 768px) {
-    #theme-popover {
+    [data-theme-popover] {
       right: 100%;
       bottom: 0;
       margin-right: 0.5rem;
     }
-    #theme-chevron {
+    .theme-chevron {
       transform: rotate(-90deg);
     }
-    #theme-toggle[aria-expanded="true"] ~ #theme-popover #theme-chevron,
-    #theme-wrapper:has([aria-expanded="true"]) #theme-chevron {
+    .theme-wrapper:has([aria-expanded="true"]) .theme-chevron {
       transform: rotate(90deg);
     }
   }
 
-  /* Mobile: popover opens above the bottom bar */
+  /* Mobile: popover opens from the compact top bar */
   @media (max-width: 767px) {
-    #theme-popover {
+    [data-theme-popover] {
       bottom: 100%;
       left: 50%;
       transform: translateX(-50%);
       margin-bottom: 0.5rem;
     }
-    #theme-chevron {
+    .theme-chevron {
       transform: rotate(180deg);
     }
   }
@@ -130,7 +129,7 @@
   }
 
   /* Popover entrance animation */
-  #theme-popover.open {
+  [data-theme-popover].open {
     display: flex;
     animation: popover-in 0.15s ease-out;
   }
@@ -164,85 +163,111 @@
   import { initThemeToggle, setTheme, STATES, type Theme } from '../../scripts/theme';
 
   function initPopover() {
-    const wrapper = document.getElementById('theme-wrapper');
-    const btn = document.getElementById('theme-toggle');
-    const popover = document.getElementById('theme-popover');
-    const label = document.getElementById('theme-label');
-    if (!wrapper || !btn || !popover || !label) return;
+    const wrappers = document.querySelectorAll<HTMLElement>('[data-theme-wrapper]');
+    if (wrappers.length === 0) return;
 
-    // Bind to non-null locals for closure safety (Astro checker doesn't propagate narrowing)
-    const $btn = btn;
-    const $popover = popover;
-    const $label = label;
+    const labels: Record<string, string> = {
+      dune: 'Dune',
+      arcade: 'Arcade',
+    };
 
-    function syncUI() {
+    function syncWrapper(wrapper: HTMLElement) {
       const theme = document.documentElement.getAttribute('data-theme') || 'auto';
+      const label = wrapper.querySelector<HTMLElement>('[data-theme-label]');
+      const popover = wrapper.querySelector<HTMLElement>('[data-theme-popover]');
 
-      document.querySelectorAll<SVGElement>('[data-theme-icon]').forEach((icon) => {
+      wrapper.querySelectorAll<SVGElement>('[data-theme-icon]').forEach((icon) => {
         icon.classList.toggle('hidden', icon.dataset.themeIcon !== theme);
       });
 
-      const labels: Record<string, string> = {
-        dune: 'Dune',
-        arcade: 'Arcade',
-      };
-      $label.textContent =
-        labels[theme] ?? theme.charAt(0).toUpperCase() + theme.slice(1);
+      if (label) {
+        label.textContent =
+          labels[theme] ?? theme.charAt(0).toUpperCase() + theme.slice(1);
+      }
 
-      $popover.querySelectorAll<HTMLElement>('[data-theme-option]').forEach((opt) => {
+      popover?.querySelectorAll<HTMLElement>('[data-theme-option]').forEach((opt) => {
         opt.setAttribute('aria-checked', String(opt.dataset.themeOption === theme));
       });
     }
 
-    function openPopover() {
-      $popover.classList.remove('hidden');
-      $popover.classList.add('open');
-      $btn.setAttribute('aria-expanded', 'true');
+    function closeWrapper(wrapper: HTMLElement) {
+      const btn = wrapper.querySelector<HTMLElement>('[data-theme-toggle]');
+      const popover = wrapper.querySelector<HTMLElement>('[data-theme-popover]');
+      popover?.classList.add('hidden');
+      popover?.classList.remove('open');
+      btn?.setAttribute('aria-expanded', 'false');
     }
 
-    function closePopover() {
-      $popover.classList.add('hidden');
-      $popover.classList.remove('open');
-      $btn.setAttribute('aria-expanded', 'false');
+    function openWrapper(wrapper: HTMLElement) {
+      const btn = wrapper.querySelector<HTMLElement>('[data-theme-toggle]');
+      const popover = wrapper.querySelector<HTMLElement>('[data-theme-popover]');
+      popover?.classList.remove('hidden');
+      popover?.classList.add('open');
+      btn?.setAttribute('aria-expanded', 'true');
     }
 
-    $btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isOpen = $btn.getAttribute('aria-expanded') === 'true';
-      if (isOpen) closePopover();
-      else openPopover();
-    });
-
-    $popover.querySelectorAll<HTMLElement>('[data-theme-option]').forEach((opt) => {
-      opt.addEventListener('click', () => {
-        const theme = opt.dataset.themeOption as Theme;
-        if (STATES.includes(theme)) {
-          setTheme(theme);
-          syncUI();
-        }
-        closePopover();
-      });
-    });
-
-    document.addEventListener('click', (e) => {
-      if ($btn.getAttribute('aria-expanded') !== 'true') return;
-      if (!wrapper.contains(e.target as Node)) closePopover();
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && $btn.getAttribute('aria-expanded') === 'true') {
-        closePopover();
-        $btn.focus();
+    wrappers.forEach((wrapper) => {
+      if (wrapper.dataset.themeBound === 'true') {
+        syncWrapper(wrapper);
+        return;
       }
+      wrapper.dataset.themeBound = 'true';
+
+      const btn = wrapper.querySelector<HTMLElement>('[data-theme-toggle]');
+      const popover = wrapper.querySelector<HTMLElement>('[data-theme-popover]');
+      if (!btn || !popover) return;
+
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = btn.getAttribute('aria-expanded') === 'true';
+        wrappers.forEach(closeWrapper);
+        if (!isOpen) openWrapper(wrapper);
+      });
+
+      popover.querySelectorAll<HTMLElement>('[data-theme-option]').forEach((opt) => {
+        opt.addEventListener('click', () => {
+          const theme = opt.dataset.themeOption as Theme;
+          if (STATES.includes(theme)) {
+            setTheme(theme);
+            wrappers.forEach(syncWrapper);
+          }
+          closeWrapper(wrapper);
+        });
+      });
+
+      syncWrapper(wrapper);
     });
 
-    const observer = new MutationObserver(syncUI);
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['data-theme'],
-    });
+    if (document.documentElement.dataset.themeGlobalBound !== 'true') {
+      document.documentElement.dataset.themeGlobalBound = 'true';
 
-    syncUI();
+      document.addEventListener('click', (e) => {
+        wrappers.forEach((wrapper) => {
+          const btn = wrapper.querySelector<HTMLElement>('[data-theme-toggle]');
+          if (btn?.getAttribute('aria-expanded') !== 'true') return;
+          if (!wrapper.contains(e.target as Node)) closeWrapper(wrapper);
+        });
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Escape') return;
+        wrappers.forEach((wrapper) => {
+          const btn = wrapper.querySelector<HTMLElement>('[data-theme-toggle]');
+          if (btn?.getAttribute('aria-expanded') === 'true') {
+            closeWrapper(wrapper);
+            btn.focus();
+          }
+        });
+      });
+
+      const observer = new MutationObserver(() => {
+        document.querySelectorAll<HTMLElement>('[data-theme-wrapper]').forEach(syncWrapper);
+      });
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-theme'],
+      });
+    }
   }
 
   // Guard against double-init (top-level + astro:page-load may both fire)

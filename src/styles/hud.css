@@ -5,7 +5,7 @@
   content: "";
   position: fixed;
   inset: 0;
-  --hud-scanline-stripe: oklch(0.78 0.15 194 / 0.012);
+  --hud-scanline-stripe: oklch(0.78 0.15 194 / 0.008);
   background: repeating-linear-gradient(
     0deg,
     transparent,
@@ -115,7 +115,6 @@
   border-radius: 50%;
   background: var(--section-accent, var(--color-accent-hero));
   box-shadow: 0 0 6px var(--section-accent, var(--color-accent-hero));
-  animation: pulse-glow 2s ease-in-out infinite;
 }
 
 /* Scrollbar styling */

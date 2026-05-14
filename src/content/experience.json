@@ -4,9 +4,14 @@
       "title": "IT Cybersecurity Specialist",
       "org": "Department of Justice — U.S. Trustee Program",
       "location": "Washington, D.C.",
-      "period": "Nov 2024 — Present",
-      "description": "Providing cybersecurity oversight across DOJ mission-critical systems. Implementing enterprise security protocols, incident response procedures, and DLP strategies aligned with NIST frameworks. Leading integration and QA for new deployments including cloud infrastructure and application environments.",
-      "tags": ["NIST", "Incident Response", "Cloud Security", "DLP"]
+      "period": "Nov 2024 - May 2026",
+      "description": "Provided cybersecurity oversight across DOJ mission-critical systems. Implemented enterprise security protocols, incident response procedures, and DLP strategies aligned with NIST frameworks. Led integration and quality assurance for cloud infrastructure and application deployments.",
+      "bullets": [
+        "Provided cybersecurity oversight across DOJ mission-critical systems.",
+        "Implemented enterprise security protocols, incident response procedures, and DLP strategies aligned with NIST frameworks.",
+        "Led integration and quality assurance for cloud infrastructure and application deployments."
+      ],
+      "tags": ["Security Engineering", "Software Security", "Incident Response", "DLP Strategy"]
     },
     {
       "title": "Summer Research Program Intern",
@@ -14,7 +19,7 @@
       "location": "Lexington, MA",
       "period": "Jun 2024 — Aug 2024",
       "description": "Designed software and hardware methodologies to evaluate cybersecurity resiliency of control systems and infrastructure interfaces. Developed protocol parsers for ICS and proprietary network protocols to improve monitoring and defense.",
-      "tags": ["ICS Security", "Protocol Analysis", "Research"]
+      "tags": ["Control Systems", "ICS Protocols", "Cyber Resiliency", "Research"]
     },
     {
       "title": "Cybersecurity Research Intern",
@@ -22,7 +27,7 @@
       "location": "College Park, MD",
       "period": "Sep 2023 — Dec 2023",
       "description": "Analyzed cybersecurity risks for NASA's Next Generation Network (NGN), focusing on integrating commercial cloud platforms. Reviewed and adapted methods to align with NIST 800-53/800-171 for NGN architecture.",
-      "tags": ["NIST 800-53", "Risk Analysis", "Space Communications"]
+      "tags": ["NASA NGN", "Risk Analysis", "Cloud Integration", "NIST 800-53/171"]
     },
     {
       "title": "Cybersecurity Intern",
@@ -30,7 +35,12 @@
       "location": "Arlington, VA",
       "period": "May 2023 — Aug 2023",
       "description": "Executed critical service updates with cybersecurity best practices. Integrated modern technologies to improve infrastructure agility. Leveraged Teleport, ThreatConnect, and OpenShift to fortify infrastructure security.",
-      "tags": ["Infrastructure Security", "ThreatConnect", "OpenShift"]
+      "bullets": [
+        "Coordinated essential service updates, patching, and emergency response work with the infrastructure team.",
+        "Researched and integrated technologies to modernize infrastructure while preserving reliability.",
+        "Used OpenShift, Teleport, and ThreatConnect to support secure development and infrastructure integrity."
+      ],
+      "tags": ["Service Patching", "Emergency Response", "OpenShift", "ThreatConnect"]
     },
     {
       "title": "Senior Cybersecurity Intern",
@@ -38,15 +48,25 @@
       "location": "Greenbelt, MD",
       "period": "Feb 2023 — May 2023",
       "description": "Developed and implemented security protocols for NASA's SCaN Cloud in alignment with federal policies and standards. Produced security artifacts and documentation to support independent assessments.",
-      "tags": ["Cloud Security", "Federal Compliance", "Documentation"]
+      "bullets": [
+        "Supported development and security compliance for NASA's SCaN Cloud infrastructure.",
+        "Prepared security artifacts, user documentation, and capability materials for assessment readiness.",
+        "Improved communication between technical teams and users through clearer security documentation."
+      ],
+      "tags": ["SCaN Cloud", "Federal Compliance", "Security Artifacts", "Assessment Readiness"]
     },
     {
-      "title": "Information Security Intern → Student Worker",
+      "title": "Information Security Intern",
       "org": "Nasdaq",
       "location": "Rockville, MD",
       "period": "Jun 2022 — Dec 2022",
       "description": "Conducted application security assessments using DAST/SAST tools (OWASP ZAP, Burp Suite, Checkmarx, Acunetix) mapped to MITRE ATT&CK. Led offensive assessments and penetration tests on communication platforms. Used Splunk and Zscaler in red-team exercises.",
-      "tags": ["AppSec", "Penetration Testing", "MITRE ATT&CK", "Red Team"]
+      "bullets": [
+        "Performed application security assessments on internal applications using DAST and SAST tooling.",
+        "Used tools including Burp Suite, Acunetix, OWASP ZAP, and Checkmarx to identify and validate findings.",
+        "Participated in red-team exercises using Splunk and Zscaler."
+      ],
+      "tags": ["DAST/SAST", "Burp Suite", "Acunetix", "Red Team"]
     },
     {
       "title": "Tech Fellow",
@@ -54,15 +74,38 @@
       "location": "College Park, MD",
       "period": "Jun 2021 — Dec 2021",
       "description": "Led and taught the Cybersecurity course at the University of Maryland. Conducted weekly sessions, organized learning material, and mentored students in defensive application security.",
-      "tags": ["Teaching", "Mentorship", "Cybersecurity Education"]
+      "bullets": [
+        "Led and taught the cybersecurity course for the Fall 2021 semester at the University of Maryland.",
+        "Taught security fundamentals, common application vulnerabilities, and defensive application development.",
+        "Ran weekly class sessions and office hours while coordinating student progress with CodePath staff."
+      ],
+      "tags": ["Course Instruction", "Office Hours", "AppSec Education", "Mentorship"]
     },
     {
-      "title": "Cryptography Intern → Security Intern",
+      "title": "Cryptography Intern",
       "org": "NASA Goddard Space Flight Center",
       "location": "Greenbelt, MD",
-      "period": "Jun 2020 — Aug 2021",
-      "description": "Implemented CCSDS SDLS-EP to secure spacecraft-ground communications via NOS3. Analyzed cryptographic mechanisms and mission requirements. Enhanced security compliance tooling and assessed NCCS infrastructures across multiple frameworks.",
-      "tags": ["Cryptography", "CCSDS", "Compliance", "Space Systems"]
+      "period": "Jun 2021 — Aug 2021",
+      "description": "Implemented CCSDS SDLS-EP to secure spacecraft-ground communications via NOS3. Analyzed cryptographic mechanisms and mission requirements for space-system communications.",
+      "bullets": [
+        "Delivered a software-based SDLS-EP implementation for secure spacecraft-ground communication in NOS3.",
+        "Studied mission architecture and cryptography standards before integrating a proprietary cryptography library.",
+        "Used Git to manage the project software development lifecycle and version control."
+      ],
+      "tags": ["C", "CCSDS SDLS-EP", "NOS3", "Cryptography"]
+    },
+    {
+      "title": "Security Intern",
+      "org": "NASA Goddard Space Flight Center",
+      "location": "Greenbelt, MD",
+      "period": "Jun 2020 — Aug 2020",
+      "description": "Developed advanced security capabilities for NCCS and assessed security compliance across infrastructure, operational areas, and service layers. Evaluated compliance metrics and alternative solutions for security monitoring.",
+      "bullets": [
+        "Developed enhanced security capabilities for the NASA Center for Climate Simulation.",
+        "Evaluated compliance technologies, metrics collection approaches, and alternative monitoring solutions.",
+        "Assessed security needs across NCCS infrastructure, operational areas, and service layers."
+      ],
+      "tags": ["NCCS", "Compliance Metrics", "Security Monitoring", "Infrastructure Assessment"]
     },
     {
       "title": "Networking / System Administration Intern",
@@ -70,7 +113,12 @@
       "location": "Greenbelt, MD",
       "period": "Jun 2019 — Aug 2019",
       "description": "Configured advanced network devices and managed diverse OS/hardware used in NASA infrastructure. Deployed a secure, service-rich private network infrastructure.",
-      "tags": ["Networking", "System Administration", "Infrastructure"]
+      "bullets": [
+        "Configured network devices including federally compliant switches and firewalls.",
+        "Worked with Linux, Windows, virtualization, containerization, and access-control technologies.",
+        "Deployed a secure private network infrastructure for intern knowledge sharing."
+      ],
+      "tags": ["Network Devices", "Linux/Windows", "Firewalls", "Virtualization"]
     }
   ],
   "education": [

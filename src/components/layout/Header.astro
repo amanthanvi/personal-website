@@ -2,17 +2,17 @@
 import ThemeToggle from '../ui/ThemeToggle.astro';
 
 const sections = [
-  { id: 'hero', label: 'Home', accent: 'var(--color-accent-hero)' },
-  { id: 'projects', label: 'Projects', accent: 'var(--color-accent-projects)' },
-  { id: 'experience', label: 'Exp', accent: 'var(--color-accent-experience)' },
-  { id: 'skills', label: 'Skills', accent: 'var(--color-accent-skills)' },
-  { id: 'blog', label: 'Blog', accent: 'var(--color-accent-blog)' },
+  { id: 'hero', label: 'Home', short: 'Home', accent: 'var(--color-accent-hero)' },
+  { id: 'projects', label: 'Projects', short: 'Work', accent: 'var(--color-accent-projects)' },
+  { id: 'experience', label: 'Experience', short: 'Exp', accent: 'var(--color-accent-experience)' },
+  { id: 'skills', label: 'Skills', short: 'Skills', accent: 'var(--color-accent-skills)' },
+  { id: 'blog', label: 'Blog', short: 'Blog', accent: 'var(--color-accent-blog)' },
 ];
 ---
 
 <!-- Desktop: fixed right edge, vertical dots -->
 <nav
-  id="hud-nav"
+  data-section-nav
   class="fixed right-5 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-center gap-5 md:flex"
   aria-label="Section navigation"
 >
@@ -35,24 +35,25 @@ const sections = [
   <ThemeToggle />
 </nav>
 
-<!-- Mobile: fixed bottom bar with safe-area -->
+<!-- Mobile: compact top bar -->
 <nav
-  class="fixed bottom-0 left-0 z-40 flex w-full items-center justify-around border-t border-border/50 bg-bg/90 px-2 py-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] backdrop-blur-md md:hidden"
+  data-section-nav
+  data-mobile-nav
+  class="fixed inset-x-2 top-2 z-40 grid grid-cols-5 items-center gap-0 rounded-lg border border-border/60 bg-bg/95 p-1 shadow-lg shadow-bg/10 md:hidden"
   aria-label="Section navigation"
 >
   {sections.map((s, i) => (
     <button
       data-section={s.id}
-      class="hud-nav-dot flex flex-col items-center gap-1 px-2 py-1"
+      class="hud-nav-dot flex min-w-0 flex-col items-center gap-1 rounded-md px-0.5 py-1.5 transition-colors hover:bg-surface/50"
       aria-current={i === 0 ? 'true' : 'false'}
       aria-label={`Navigate to ${s.label}`}
       style={`--dot-color: ${s.accent}`}
     >
       <span class="nav-dot block h-1.5 w-1.5 rounded-full border border-border/60 bg-transparent transition-all duration-300" />
-      <span class="text-[0.55rem] uppercase tracking-wider text-muted">{s.label}</span>
+      <span class="max-w-full truncate text-[0.5rem] uppercase tracking-wider text-muted">{s.short}</span>
     </button>
   ))}
-  <ThemeToggle />
 </nav>
 
 <style>
@@ -65,6 +66,11 @@ const sections = [
     background-color: var(--dot-color);
     box-shadow: 0 0 8px var(--dot-color);
   }
+
+  [aria-current="true"] span:last-child {
+    color: var(--color-text);
+  }
+
 </style>
 
 <script>

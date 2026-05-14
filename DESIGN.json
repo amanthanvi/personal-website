@@ -1,0 +1,259 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-13T21:40:15Z",
+  "title": "Design System: Aman Thanvi Personal Website",
+  "extensions": {
+    "colorMeta": {
+      "bg": {
+        "role": "neutral",
+        "displayName": "Night Console",
+        "canonical": "oklch(0.1 0.026 268)",
+        "tonalRamp": [
+          "oklch(0.12 0.026 268)",
+          "oklch(0.22 0.026 268)",
+          "oklch(0.34 0.026 268)",
+          "oklch(0.46 0.026 268)",
+          "oklch(0.58 0.026 268)",
+          "oklch(0.72 0.018 268)",
+          "oklch(0.84 0.012 268)",
+          "oklch(0.94 0.008 268)"
+        ]
+      },
+      "accent-hero": {
+        "role": "primary",
+        "displayName": "Ops Cyan",
+        "canonical": "oklch(0.76 0.14 194)",
+        "tonalRamp": [
+          "oklch(0.16 0.07 194)",
+          "oklch(0.28 0.11 194)",
+          "oklch(0.4 0.14 194)",
+          "oklch(0.52 0.15 194)",
+          "oklch(0.64 0.15 194)",
+          "oklch(0.76 0.14 194)",
+          "oklch(0.86 0.09 194)",
+          "oklch(0.94 0.04 194)"
+        ]
+      },
+      "accent-projects": {
+        "role": "secondary",
+        "displayName": "Evidence Green",
+        "canonical": "oklch(0.7 0.18 142)",
+        "tonalRamp": [
+          "oklch(0.15 0.08 142)",
+          "oklch(0.27 0.12 142)",
+          "oklch(0.39 0.16 142)",
+          "oklch(0.51 0.18 142)",
+          "oklch(0.62 0.18 142)",
+          "oklch(0.73 0.16 142)",
+          "oklch(0.84 0.1 142)",
+          "oklch(0.94 0.045 142)"
+        ]
+      },
+      "accent-experience": {
+        "role": "secondary",
+        "displayName": "Clearance Amber",
+        "canonical": "oklch(0.73 0.14 75)",
+        "tonalRamp": [
+          "oklch(0.15 0.07 75)",
+          "oklch(0.27 0.1 75)",
+          "oklch(0.39 0.13 75)",
+          "oklch(0.51 0.15 75)",
+          "oklch(0.63 0.15 75)",
+          "oklch(0.75 0.13 75)",
+          "oklch(0.86 0.08 75)",
+          "oklch(0.94 0.04 75)"
+        ]
+      },
+      "accent-skills": {
+        "role": "tertiary",
+        "displayName": "Credential Magenta",
+        "canonical": "oklch(0.68 0.19 330)",
+        "tonalRamp": [
+          "oklch(0.15 0.08 330)",
+          "oklch(0.27 0.13 330)",
+          "oklch(0.39 0.17 330)",
+          "oklch(0.51 0.2 330)",
+          "oklch(0.63 0.19 330)",
+          "oklch(0.75 0.15 330)",
+          "oklch(0.86 0.09 330)",
+          "oklch(0.94 0.04 330)"
+        ]
+      },
+      "accent-blog": {
+        "role": "tertiary",
+        "displayName": "Archive Blue",
+        "canonical": "oklch(0.62 0.17 255)",
+        "tonalRamp": [
+          "oklch(0.15 0.08 255)",
+          "oklch(0.27 0.12 255)",
+          "oklch(0.39 0.16 255)",
+          "oklch(0.51 0.18 255)",
+          "oklch(0.63 0.16 255)",
+          "oklch(0.75 0.12 255)",
+          "oklch(0.86 0.07 255)",
+          "oklch(0.94 0.035 255)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero name only."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section headings and primary scan anchors."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Technical prose, kept under 65ch where possible."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Status, section IDs, tags, and compact metadata."
+      }
+    },
+    "shadows": [
+      {
+        "name": "accent-hover-glow",
+        "value": "0 0 16px var(--section-glow)",
+        "purpose": "Interactive inspection state on project rows, cards, and buttons."
+      },
+      {
+        "name": "avatar-ambient-glow",
+        "value": "0 0 48px var(--color-glow-hero)",
+        "purpose": "Low-alpha identity emphasis behind the profile image."
+      },
+      {
+        "name": "nav-dot-glow",
+        "value": "0 0 8px var(--dot-color)",
+        "purpose": "Current-section indicator in fixed navigation."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-reveal",
+        "value": "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+        "purpose": "Scroll reveal, divider draw, avatar scan, and circuit draw."
+      },
+      {
+        "name": "state-transition",
+        "value": "0.3s ease",
+        "purpose": "Hover/focus color, border, and glow transitions."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Accent-led CTA for direct contact.",
+      "html": "<button class=\"ds-btn-primary\">Email me</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--color-accent-hero); border-radius: 8px; background: color-mix(in oklch, var(--color-accent-hero) 12%, transparent); color: var(--color-accent-hero); padding: 10px 20px; font: 600 14px var(--font-mono); transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease; } .ds-btn-primary:hover { background: var(--color-accent-hero); color: var(--color-bg); box-shadow: 0 0 28px var(--color-glow-hero); } .ds-btn-primary:focus-visible { outline: 2px solid var(--color-accent-hero); outline-offset: 3px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Quiet external-link action.",
+      "html": "<button class=\"ds-btn-secondary\">GitHub</button>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; gap: 8px; border: 1px solid color-mix(in oklch, var(--color-border) 60%, transparent); border-radius: 8px; background: transparent; color: var(--color-muted); padding: 10px 20px; font: 400 14px var(--font-mono); transition: border-color 0.3s ease, color 0.3s ease; } .ds-btn-secondary:hover { border-color: var(--color-accent-hero); color: var(--color-text); } .ds-btn-secondary:focus-visible { outline: 2px solid var(--color-accent-hero); outline-offset: 3px; }"
+    },
+    {
+      "name": "Evidence Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Compact proof label for technologies, credentials, and domains.",
+      "html": "<span class=\"ds-chip\">Incident Response</span>",
+      "css": ".ds-chip { display: inline-flex; align-items: center; border: 1px solid color-mix(in oklch, var(--section-accent) 24%, transparent); border-radius: 6px; background: color-mix(in oklch, var(--section-accent) 10%, transparent); color: var(--section-accent); padding: 2px 8px; font: 500 10px var(--font-mono); }"
+    },
+    {
+      "name": "HUD Frame",
+      "kind": "card",
+      "refersTo": "surface-card",
+      "description": "Evidence container with one-pixel border and subtle corner brackets.",
+      "html": "<article class=\"ds-hud-frame\"><h3>IT Cybersecurity Specialist</h3><p>Provided cybersecurity oversight across DOJ mission-critical systems.</p></article>",
+      "css": ".ds-hud-frame { position: relative; border: 1px solid var(--color-border); border-radius: 8px; background: color-mix(in oklch, var(--color-surface) 60%, transparent); color: var(--color-text); padding: 20px; transition: border-color 0.3s ease, box-shadow 0.3s ease; } .ds-hud-frame:hover { border-color: color-mix(in oklch, var(--section-accent) 45%, var(--color-border)); box-shadow: 0 0 20px var(--section-glow); } .ds-hud-frame h3 { margin: 0 0 8px; font: 600 16px var(--font-heading); } .ds-hud-frame p { margin: 0; color: var(--color-muted); font: 400 14px/1.6 var(--font-mono); }"
+    },
+    {
+      "name": "Section Navigation Dot",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Desktop current-section indicator.",
+      "html": "<button class=\"ds-nav-dot\" aria-current=\"true\"><span></span></button>",
+      "css": ".ds-nav-dot { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border: 0; background: transparent; padding: 0; } .ds-nav-dot span { display: block; width: 8px; height: 8px; border: 1px solid var(--color-border); border-radius: 999px; background: transparent; transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease; } .ds-nav-dot:hover span { transform: scale(1.5); border-color: var(--section-accent); } .ds-nav-dot[aria-current=\"true\"] span { border-color: var(--section-accent); background: var(--section-accent); box-shadow: 0 0 8px var(--section-accent); } .ds-nav-dot:focus-visible { outline: 2px solid var(--section-accent); outline-offset: 3px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Operations Room",
+    "overview": "The system should feel like a calm security operations room after the incident has been contained: precise instruments, readable evidence, and quiet confidence. The visual language uses HUD frames, terminal rhythms, circuit traces, and section accents, but every effect must serve credibility and scanning speed.\n\nThis is a brand portfolio, not a dashboard. The design communicates expertise through sequencing, hierarchy, concise prose, and controlled atmosphere. It explicitly rejects generic SaaS landing-page tropes, oversized metric blocks, hero proof-card clusters, decorative glass panels, flat identical card grids, fake terminal noise that hides content, and hacker-cliche neon overload.",
+    "keyCharacteristics": [
+      "Dark default with light, dune, and arcade alternates preserved.",
+      "Section-specific accents that behave like evidence labels, not decoration.",
+      "Monospace body copy as an existing identity choice, balanced by Sora headings.",
+      "Flat surfaces at rest, accent glow only for state and signal.",
+      "Uncluttered hero prose, with compact evidence patterns reserved for lower sections when they improve scanning."
+    ],
+    "rules": [
+      {
+        "name": "The Accent-as-Evidence Rule",
+        "body": "Section accents mark content type and state. Never spread all five accents into one local component.",
+        "section": "colors"
+      },
+      {
+        "name": "The Glow Budget Rule",
+        "body": "Glow appears on hover, focus, current navigation, and select ambient hero details. Static content should stay mostly flat.",
+        "section": "colors"
+      },
+      {
+        "name": "The No-Negative-Tracking Rule",
+        "body": "Letter spacing is never negative. Hierarchy comes from size, weight, color, and rhythm.",
+        "section": "typography"
+      },
+      {
+        "name": "The Prose-Wall Test",
+        "body": "Any paragraph over three factual clauses should become a list, proof grid, or tighter two-paragraph block.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-Until-Inspected Rule",
+        "body": "Surfaces are flat at rest. Elevation appears when a visitor hovers, focuses, or navigates.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do lead with verified signal: role, domains, credentials, and contact paths.",
+      "Do keep accent colors tied to sections and content types.",
+      "Do keep the hero uncluttered: image, role, concise prose, and contact links.",
+      "Do preserve light, dark, dune, arcade, and reduced-motion behavior when changing components.",
+      "Do use one-pixel borders, 8px maximum radius, and glow only as state."
+    ],
+    "donts": [
+      "Don't use generic SaaS landing-page tropes.",
+      "Don't use oversized metric blocks.",
+      "Don't add hero proof-card clusters.",
+      "Don't use decorative glass panels.",
+      "Don't use flat identical card grids as the default layout.",
+      "Don't use fake terminal noise that hides content.",
+      "Don't use hacker-cliche neon overload.",
+      "Don't use gradient text.",
+      "Don't use border-left or border-right greater than 1px as a colored accent.",
+      "Don't make the profile, projects, experience, and skills all compete with the same visual intensity."
+    ]
+  }
+}
