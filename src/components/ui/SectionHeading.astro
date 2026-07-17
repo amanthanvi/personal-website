@@ -2,23 +2,18 @@
 interface Props {
   id: string;
   label: string;
-  tag?: string;
+  subtitle?: string;
 }
 
-const { id, label, tag } = Astro.props;
+const { id, label, subtitle } = Astro.props;
 ---
 
-<div class="reveal mb-12 flex items-center gap-4">
-  <div class="flex items-center gap-3">
-    {tag && (
-      <span class="hud-status text-[0.6rem]">{tag}</span>
-    )}
-    <h2
-      id={id}
-      class="text-2xl font-bold text-text md:text-3xl"
-    >
-      <span class="section-prefix text-[var(--section-accent)] opacity-60" aria-hidden="true">//</span> {label}
-    </h2>
+<header class="reveal mb-12">
+  <div class="flex items-baseline gap-4">
+    <h2 id={id} class="text-3xl font-bold tracking-tight md:text-4xl">{label}</h2>
+    <span class="divider-line hidden h-px flex-1 self-center bg-border sm:block" aria-hidden="true"></span>
   </div>
-  <div class="divider-line h-px flex-1 bg-gradient-to-r from-[var(--section-accent)]/30 to-transparent" />
-</div>
+  {subtitle && (
+    <p class="mt-3 max-w-[52ch] text-sm text-muted md:text-base">{subtitle}</p>
+  )}
+</header>

@@ -24,8 +24,8 @@ Avoid generic SaaS landing-page tropes, oversized metric blocks, hero proof-card
 
 - Lead with verified signal: clear role, concise prose, credentials, and contact paths before decoration.
 - Make technical depth legible: projects and experience should scan as evidence, not as prose walls.
-- Use atmosphere with restraint: HUD, terminal, and theme details should sharpen the portfolio's voice without competing with reading.
-- Preserve multi-theme craft: every refinement should work across light, dark, dune, arcade, and reduced-motion modes.
+- Commit to one signal accent: a single brand color carries the page; hierarchy otherwise comes from type, space, and rhythm — not a per-section rainbow.
+- Every refinement must work across light, dark, and reduced-motion modes.
 - Favor confident asymmetry and rhythm over repeated card sameness.
 
 ## Accessibility & Inclusion

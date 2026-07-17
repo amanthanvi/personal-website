@@ -1,6 +1,6 @@
 # Aman Thanvi — Personal site
 
-Static portfolio built with [Astro](https://astro.build/) (v5), [Tailwind CSS](https://tailwindcss.com/) v4, and [Three.js](https://threejs.org/) for an optional background. Single scrolling homepage plus MDX blog posts, multiple themes (including Arcade), deployed to GitHub Pages.
+Static portfolio built with [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/) v4. Single scrolling homepage plus MDX blog posts, light and dark themes, deployed to GitHub Pages.
 
 ## Quick start
 
@@ -16,7 +16,7 @@ Other scripts: `npm run build` (output in `dist/`), `npm run preview`, `npm run 
 | Path | Purpose |
 |------|---------|
 | [`src/pages/`](src/pages/) | Routes: [`index.astro`](src/pages/index.astro), [`blog/[...slug].astro`](src/pages/blog/[...slug].astro), [`404.astro`](src/pages/404.astro) |
-| [`src/components/`](src/components/) | Layout, sections, UI, Three.js |
+| [`src/components/`](src/components/) | Layout, sections, and UI components |
 | [`src/content/`](src/content/) | Collections (`projects/`, `blog/`), [`experience.json`](src/content/experience.json), [`skills.json`](src/content/skills.json) |
 | [`src/styles/`](src/styles/) | Global Tailwind theme tokens and section styles |
 | [`public/`](public/) | Static assets copied to site root (`robots.txt`, `site.webmanifest`, `CNAME`, images under `public/images/`) |
@@ -34,7 +34,7 @@ Pushes to `main` (or manual [`workflow_dispatch`](https://docs.github.com/en/act
 
 ## Accessibility, performance, and privacy
 
-Semantic HTML, keyboard navigation, theme and motion preferences are part of the design. Performance and manual test notes live in [`AGENTS.md`](AGENTS.md). There are no analytics trackers or cookies; the site loads webfonts from Google Fonts (JetBrains Mono, Sora, Marcellus, Silkscreen — see [`src/components/layout/BaseHead.astro`](src/components/layout/BaseHead.astro)).
+Semantic HTML, keyboard navigation, theme and motion preferences are part of the design. Performance and manual test notes live in [`AGENTS.md`](AGENTS.md). There are no analytics trackers or cookies; the site loads webfonts from Google Fonts (Archivo, JetBrains Mono — see [`src/components/layout/BaseHead.astro`](src/components/layout/BaseHead.astro)).
 
 ## Credits and contributing
 

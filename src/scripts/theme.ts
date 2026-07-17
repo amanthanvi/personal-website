@@ -1,31 +1,34 @@
 const STORAGE_KEY = "theme";
-const STATES = ["auto", "dark", "light", "dune", "arcade"] as const;
+const STATES = ["light", "dark"] as const;
 type Theme = (typeof STATES)[number];
 
 export { STATES, type Theme };
 
-export function getStoredTheme(): Theme {
+export function systemTheme(): Theme {
+  return window.matchMedia("(prefers-color-scheme: light)").matches
+    ? "light"
+    : "dark";
+}
+
+export function getStoredTheme(): Theme | null {
   try {
     const val = localStorage.getItem(STORAGE_KEY);
-    if (val && STATES.includes(val as Theme)) return val as Theme;
+    if (val === "light" || val === "dark") return val;
   } catch {
     // localStorage unavailable
   }
-  return "auto";
+  return null;
 }
 
-const DARK_THEMES: ReadonlySet<string> = new Set(["dark", "arcade"]);
+export function getActiveTheme(): Theme {
+  const attr = document.documentElement.getAttribute("data-theme");
+  if (attr === "light" || attr === "dark") return attr;
+  return getStoredTheme() ?? systemTheme();
+}
 
 function applyTheme(theme: Theme): void {
   document.documentElement.setAttribute("data-theme", theme);
-
-  // Set color-scheme so browser chrome (scrollbars, inputs) matches the theme
-  const isDark =
-    DARK_THEMES.has(theme) ||
-    (theme === "auto" &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches);
-  document.documentElement.style.colorScheme = isDark ? "dark" : "light";
-
+  document.documentElement.style.colorScheme = theme;
   try {
     localStorage.setItem(STORAGE_KEY, theme);
   } catch {
@@ -38,20 +41,24 @@ export function setTheme(theme: Theme): void {
   applyTheme(theme);
 }
 
-export function initThemeToggle(): void {
-  const btn = document.getElementById("theme-toggle");
-  if (!btn) return;
+export function toggleTheme(): Theme {
+  const next: Theme = getActiveTheme() === "dark" ? "light" : "dark";
+  applyTheme(next);
+  return next;
+}
 
-  // Apply stored theme on init
-  const current = getStoredTheme();
-  applyTheme(current);
-
-  // Sync when system preference changes (for auto mode)
+/**
+ * Follow the OS preference live until the visitor makes an explicit choice.
+ * The pre-paint script in the head has already set the initial attribute.
+ */
+export function initTheme(): void {
   window
-    .matchMedia("(prefers-color-scheme: dark)")
-    .addEventListener("change", () => {
-      if (getStoredTheme() === "auto") {
-        applyTheme("auto");
-      }
+    .matchMedia("(prefers-color-scheme: light)")
+    .addEventListener("change", (e) => {
+      if (getStoredTheme() !== null) return;
+      const theme: Theme = e.matches ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", theme);
+      document.documentElement.style.colorScheme = theme;
+      window.dispatchEvent(new CustomEvent("theme-change", { detail: { theme } }));
     });
 }

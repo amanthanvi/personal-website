@@ -5,6 +5,7 @@ interface Props {
   image?: string;
   canonicalURL?: string;
   noindex?: boolean;
+  preloadImage?: string;
 }
 
 const {
@@ -13,6 +14,7 @@ const {
   image = '/images/og-default.png',
   canonicalURL = Astro.url.href,
   noindex = false,
+  preloadImage,
 } = Astro.props;
 
 const siteURL = 'https://amanthanvi.com';
@@ -41,9 +43,9 @@ const fullImageURL = image.startsWith('http') ? image : `${siteURL}${image}`;
 <meta name="twitter:image" content={fullImageURL} />
 <meta name="twitter:image:alt" content="Aman Thanvi — Cybersecurity Specialist" />
 
-<!-- Theme Color — aligned with default light/dark surfaces (global.css) -->
-<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f1f2f6" />
-<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#080a12" />
+<!-- Theme Color — aligned with light/dark page backgrounds (global.css) -->
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f2f3f5" />
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0c1015" />
 
 <!-- Favicons -->
 <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
@@ -51,16 +53,15 @@ const fullImageURL = image.startsWith('http') ? image : `${siteURL}${image}`;
 <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
 <link rel="manifest" href="/site.webmanifest" />
 
-<!-- Fonts: JetBrains Mono (body), Sora (default headings), Marcellus / Silkscreen (themes) -->
+<!-- Fonts: Archivo (display + UI), JetBrains Mono (labels / metadata / code) -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
-  href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Marcellus&family=Silkscreen:wght@400;700&family=Sora:wght@400;500;600;700&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Archivo:wght@400..900&family=JetBrains+Mono:wght@400..600&display=swap"
   rel="stylesheet"
 />
 
-<!-- Preload profile image -->
-<link rel="preload" as="image" href="/images/profile.jpg" />
+{preloadImage && <link rel="preload" as="image" href={preloadImage} />}
 
 <!-- JSON-LD Structured Data -->
 <script is:inline type="application/ld+json" set:html={JSON.stringify({
@@ -77,11 +78,15 @@ const fullImageURL = image.startsWith('http') ? image : `${siteURL}${image}`;
   ]
 })} />
 
-<!-- FOUC prevention: set data-theme before paint -->
+<!-- FOUC prevention: resolve light/dark and flag JS before paint -->
 <script is:inline>
 (function(){
-  var d=document.documentElement,k='theme',s;
-  try{s=localStorage.getItem(k)}catch(e){}
-  d.setAttribute('data-theme',s&&['auto','dark','light','dune','arcade'].includes(s)?s:'auto');
+  var d=document.documentElement,s;
+  try{s=localStorage.getItem('theme')}catch(e){}
+  var t=(s==='light'||s==='dark')?s
+    :(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');
+  d.setAttribute('data-theme',t);
+  d.style.colorScheme=t;
+  d.classList.add('js');
 })();
 </script>

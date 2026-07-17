@@ -1,15 +1,14 @@
 interface NavSection {
   id: string;
   label: string;
-  accent: string;
 }
 
 const SECTIONS: NavSection[] = [
-  { id: 'hero', label: 'Home', accent: 'var(--color-accent-hero)' },
-  { id: 'projects', label: 'Projects', accent: 'var(--color-accent-projects)' },
-  { id: 'experience', label: 'Experience', accent: 'var(--color-accent-experience)' },
-  { id: 'skills', label: 'Skills', accent: 'var(--color-accent-skills)' },
-  { id: 'blog', label: 'Blog', accent: 'var(--color-accent-blog)' },
+  { id: 'hero', label: 'Home' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'blog', label: 'Writing' },
 ];
 
 let cleanup: (() => void) | null = null;
@@ -38,11 +37,7 @@ export function initHudNav(): void {
 
     activeId = id;
     dots.forEach((dot) => {
-      const isActive = dot.dataset.section === id;
-      dot.setAttribute('aria-current', isActive ? 'true' : 'false');
-      if (isActive) {
-        dot.style.setProperty('--dot-color', section.accent);
-      }
+      dot.setAttribute('aria-current', dot.dataset.section === id ? 'true' : 'false');
     });
   }
 

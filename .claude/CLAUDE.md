@@ -1,6 +1,6 @@
 # personal-website
 
-Astro 5 static site with MDX content, Tailwind 4, and Three.js.
+Astro 7 static site with MDX content and Tailwind 4.
 
 ## Build & Test
 
@@ -13,9 +13,8 @@ npm run check        # Astro type check
 
 ## Stack
 
-- Framework: Astro 5 (static SSG + MDX)
+- Framework: Astro 7 (static SSG + MDX)
 - Styling: Tailwind CSS 4
-- 3D: Three.js
 - Content: MDX pages/posts
 - Package manager: npm
 
@@ -24,5 +23,4 @@ npm run check        # Astro type check
 - Blog posts as MDX in content directory
 - Astro components for layout, MDX for content
 - Tailwind for all styling; use CSS variables for theming
-- Three.js for interactive 3D elements
 - Static output; no server runtime

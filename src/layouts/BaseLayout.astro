@@ -3,7 +3,6 @@ import BaseHead from '../components/layout/BaseHead.astro';
 import SkipLink from '../components/layout/SkipLink.astro';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
-import DuneDunes from '../components/ui/DuneDunes.astro';
 import ScrollProgress from '../components/ui/ScrollProgress.astro';
 import '../styles/global.css';
 
@@ -18,12 +17,11 @@ const { title, description, image, noindex } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" data-theme="auto">
+<html lang="en" data-theme="dark">
   <head>
-    <BaseHead title={title} description={description} image={image} noindex={noindex} />
+    <BaseHead title={title} description={description} image={image} noindex={noindex} preloadImage="/images/profile.jpg" />
   </head>
-  <body class="hud-scanlines min-h-screen bg-bg text-text">
-    <DuneDunes />
+  <body class="min-h-screen bg-bg text-text">
     <SkipLink />
     <ScrollProgress />
     <Header />

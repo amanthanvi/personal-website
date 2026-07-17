@@ -2,18 +2,18 @@
 import ThemeToggle from '../ui/ThemeToggle.astro';
 
 const sections = [
-  { id: 'hero', label: 'Home', short: 'Home', accent: 'var(--color-accent-hero)' },
-  { id: 'projects', label: 'Projects', short: 'Work', accent: 'var(--color-accent-projects)' },
-  { id: 'experience', label: 'Experience', short: 'Exp', accent: 'var(--color-accent-experience)' },
-  { id: 'skills', label: 'Skills', short: 'Skills', accent: 'var(--color-accent-skills)' },
-  { id: 'blog', label: 'Blog', short: 'Blog', accent: 'var(--color-accent-blog)' },
+  { id: 'hero', label: 'Home', short: 'Home' },
+  { id: 'projects', label: 'Projects', short: 'Work' },
+  { id: 'experience', label: 'Experience', short: 'Exp' },
+  { id: 'skills', label: 'Skills', short: 'Skills' },
+  { id: 'blog', label: 'Writing', short: 'Writing' },
 ];
 ---
 
-<!-- Desktop: fixed right edge, vertical dots -->
+<!-- Desktop: fixed right-edge dot rail -->
 <nav
   data-section-nav
-  class="fixed right-5 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-center gap-5 md:flex"
+  class="fixed right-6 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-center gap-5 md:flex"
   aria-label="Section navigation"
 >
   {sections.map((s, i) => (
@@ -21,56 +21,61 @@ const sections = [
       data-section={s.id}
       class="hud-nav-dot group relative flex items-center"
       aria-current={i === 0 ? 'true' : 'false'}
-      aria-label={`Navigate to ${s.label}`}
-      style={`--dot-color: ${s.accent}`}
+      aria-label={`Go to ${s.label}`}
     >
-      <span class="pointer-events-none absolute right-8 whitespace-nowrap rounded-md border border-border bg-surface px-2.5 py-1 text-[0.65rem] uppercase tracking-wider text-muted opacity-0 shadow-lg transition-opacity group-hover:opacity-100">
+      <span class="pointer-events-none absolute right-7 whitespace-nowrap rounded-md border border-border bg-surface px-2.5 py-1 font-mono text-[0.65rem] uppercase tracking-wider text-muted opacity-0 transition-opacity group-hover:opacity-100">
         {s.label}
       </span>
-      <span class="nav-dot block h-2 w-2 rounded-full border border-border/60 bg-transparent transition-all duration-300 group-hover:scale-150 group-hover:border-[var(--dot-color)]" />
+      <span class="nav-dot block h-2.5 w-2.5 rounded-full border border-border transition-all duration-300 group-hover:scale-110 group-hover:border-accent"></span>
     </button>
   ))}
-
-  <div class="my-1 h-px w-4 bg-border/40" />
+  <div class="my-1 h-6 w-px bg-border"></div>
   <ThemeToggle />
 </nav>
 
-<!-- Mobile: compact top bar -->
+<!-- Mobile: top bar -->
 <nav
   data-section-nav
-  data-mobile-nav
-  class="fixed inset-x-2 top-2 z-40 grid grid-cols-5 items-center gap-0 rounded-lg border border-border/60 bg-bg/95 p-1 shadow-lg shadow-bg/10 md:hidden"
+  class="fixed inset-x-0 top-0 z-40 flex items-center gap-3 border-b border-border bg-bg/85 px-4 py-2.5 backdrop-blur-md md:hidden"
   aria-label="Section navigation"
 >
-  {sections.map((s, i) => (
-    <button
-      data-section={s.id}
-      class="hud-nav-dot flex min-w-0 flex-col items-center gap-1 rounded-md px-0.5 py-1.5 transition-colors hover:bg-surface/50"
-      aria-current={i === 0 ? 'true' : 'false'}
-      aria-label={`Navigate to ${s.label}`}
-      style={`--dot-color: ${s.accent}`}
-    >
-      <span class="nav-dot block h-1.5 w-1.5 rounded-full border border-border/60 bg-transparent transition-all duration-300" />
-      <span class="max-w-full truncate text-[0.5rem] uppercase tracking-wider text-muted">{s.short}</span>
-    </button>
-  ))}
+  <a
+    href="#hero"
+    class="shrink-0 font-mono text-sm font-bold tracking-tight text-text"
+    aria-label="Aman Thanvi — back to top"
+  >
+    AT<span class="text-accent">.</span>
+  </a>
+  <div class="flex flex-1 items-center gap-1 overflow-x-auto">
+    {sections.slice(1).map((s) => (
+      <button
+        data-section={s.id}
+        class="hud-nav-dot shrink-0 rounded-full px-2.5 py-1 font-mono text-[0.7rem] uppercase tracking-wider text-muted transition-colors"
+        aria-current="false"
+        aria-label={`Go to ${s.label}`}
+      >
+        {s.short}
+      </button>
+    ))}
+  </div>
+  <ThemeToggle />
 </nav>
 
 <style>
   .nav-dot {
-    transition: all 0.3s var(--ease-reveal);
+    background-color: transparent;
   }
 
-  [aria-current="true"] .nav-dot {
-    border-color: var(--dot-color);
-    background-color: var(--dot-color);
-    box-shadow: 0 0 8px var(--dot-color);
+  [data-section][aria-current="true"] .nav-dot {
+    border-color: var(--color-accent);
+    background-color: var(--color-accent);
+    box-shadow: 0 0 10px var(--color-glow);
   }
 
-  [aria-current="true"] span:last-child {
+  button.hud-nav-dot[aria-current="true"] {
     color: var(--color-text);
+    background-color: var(--color-surface);
   }
-
 </style>
 
 <script>

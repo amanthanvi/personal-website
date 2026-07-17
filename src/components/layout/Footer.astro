@@ -2,7 +2,7 @@
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="section-hero relative z-10 border-t border-border/40 py-12">
+<footer class="relative z-10 border-t border-border py-12">
   <div class="mx-auto max-w-5xl px-6">
     <!-- Top row: tagline + links -->
     <div class="flex flex-col items-center justify-between gap-8 md:flex-row">
@@ -14,25 +14,25 @@ const currentYear = new Date().getFullYear();
       <div class="flex flex-wrap items-center justify-center gap-4 text-sm">
         <a
           href="mailto:contact@amanthanvi.com"
-          class="text-muted transition-colors hover:text-accent-hero"
+          class="text-muted transition-colors hover:text-accent"
         >
           Email
         </a>
-        <span aria-hidden="true" class="text-border/40">|</span>
+        <span aria-hidden="true" class="text-border">/</span>
         <a
           href="https://linkedin.com/in/amanthanvi"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-muted transition-colors hover:text-accent-hero"
+          class="text-muted transition-colors hover:text-accent"
         >
           LinkedIn<span class="sr-only"> (opens in a new tab)</span>
         </a>
-        <span aria-hidden="true" class="text-border/40">|</span>
+        <span aria-hidden="true" class="text-border">/</span>
         <a
           href="https://github.com/amanthanvi"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-muted transition-colors hover:text-accent-hero"
+          class="text-muted transition-colors hover:text-accent"
         >
           GitHub<span class="sr-only"> (opens in a new tab)</span>
         </a>
@@ -40,7 +40,7 @@ const currentYear = new Date().getFullYear();
     </div>
 
     <!-- Bottom row: copyright + built-with -->
-    <div class="mt-8 flex flex-col items-center justify-between gap-2 border-t border-border/20 pt-6 text-[0.65rem] text-muted/40 md:flex-row">
+    <div class="mt-8 flex flex-col items-center justify-between gap-2 border-t border-border pt-6 font-mono text-[0.65rem] text-muted md:flex-row">
       <p>&copy; {currentYear} Aman Thanvi. All rights reserved.</p>
       <p>Built with Astro and Tailwind CSS</p>
     </div>
