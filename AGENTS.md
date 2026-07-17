@@ -49,3 +49,11 @@
 - **Boot sequence**: Plays once per session (sessionStorage gate), respects reduced-motion.
 - **Theme**: Multi-option `data-theme` on `<html>` (`auto`, `dark`, `light`, `dune`, `arcade`). FOUC prevention inline script in `<head>`.
 - **Credits / third-party**: See [`CREDITS.md`](CREDITS.md) for fonts, libraries, and game-homage disclaimers.
+
+## Cursor Cloud specific instructions
+
+- This is a fully static Astro site — there is no backend, database, or external service to start, and no environment variables/secrets are required to run or test it.
+- Dependencies are refreshed automatically on startup (`npm ci`); no manual install step is needed.
+- `npm run dev` serves on `http://localhost:4321/`. Routes to verify: `/`, `/blog/hello-world/`, `/404`.
+- The homepage plays a one-time boot animation (sessionStorage-gated) and a Three.js background; wait for it to finish before inspecting the hero. These are gated on `!prefers-reduced-motion`, so a spinning cube / boot screen is expected behavior, not a crash.
+- Quality checks are `npm run check` (Astro typecheck) and `npm run build`. There is no unit-test suite or ESLint config; verification is typecheck + build + manual browser checks.
