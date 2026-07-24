@@ -1,12 +1,8 @@
 ---
 import ThemeToggle from '../ui/ThemeToggle.astro';
+import { SECTIONS } from '../../scripts/sections';
 
-const sections = [
-  { id: 'hero', label: 'Home' },
-  { id: 'projects', label: 'Projects' },
-  { id: 'writing-research', label: 'Research' },
-  { id: 'blog', label: 'Writing' },
-];
+const sections = SECTIONS;
 ---
 
 <header class="sticky top-0 z-40 border-b border-border/60 bg-bg/90 backdrop-blur-md">

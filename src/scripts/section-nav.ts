@@ -1,14 +1,4 @@
-interface NavSection {
-  id: string;
-  label: string;
-}
-
-const SECTIONS: NavSection[] = [
-  { id: "hero", label: "Home" },
-  { id: "projects", label: "Projects" },
-  { id: "writing-research", label: "Research" },
-  { id: "blog", label: "Writing" },
-];
+import { SECTIONS } from "./sections";
 
 let cleanup: (() => void) | null = null;
 
