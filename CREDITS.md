@@ -7,6 +7,7 @@ This file documents open-source dependencies and fonts. **Nothing here is legal 
 | Project | Use | License (see package / upstream) |
 |--------|-----|----------------------------------|
 | [Astro](https://astro.build/) | Static site generator | MIT |
+| [@astrojs/mdx](https://docs.astro.build/en/guides/integrations-guide/mdx/) | MDX content (blog) | MIT |
 | [Tailwind CSS](https://tailwindcss.com/) | Styling | MIT |
 | [TypeScript](https://www.typescriptlang.org/) | Language | Apache-2.0 |
 

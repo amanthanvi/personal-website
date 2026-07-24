@@ -40,13 +40,13 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
     <div class="sticky top-0 z-40 border-b border-border/70 bg-bg/90 backdrop-blur-md">
       <div class="mx-auto flex max-w-3xl items-center justify-between gap-4 px-6 py-3">
         <a href="/#blog" class="text-sm font-medium text-muted no-underline transition-colors hover:text-text">
-          ← Home
+          ← Writing
         </a>
         <ThemeToggle />
       </div>
     </div>
 
-    <article id="content" class="section-blog mx-auto max-w-3xl px-6 py-14">
+    <article id="content" class="mx-auto max-w-3xl px-6 py-14">
       <header class="mb-10 border-b border-border/60 pb-8">
         <div class="flex flex-wrap items-center gap-3 text-sm text-muted">
           <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>

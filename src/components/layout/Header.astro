@@ -15,29 +15,31 @@ const sections = SECTIONS;
       Aman Thanvi
     </a>
 
-    <div class="hidden items-center gap-1 md:flex" role="list">
+    <div class="hidden items-center gap-1 md:flex">
       {sections.map((s, i) => (
-        <button
+        <a
+          href={`/#${s.id}`}
           data-section={s.id}
-          class="nav-link px-3 py-1.5 text-sm text-muted transition-colors hover:text-text"
+          class="nav-link px-3 py-1.5 text-sm text-muted no-underline transition-colors hover:text-text"
           aria-current={i === 0 ? 'true' : 'false'}
         >
           {s.label}
-        </button>
+        </a>
       ))}
     </div>
 
     <div class="flex items-center gap-2">
       <div class="flex items-center gap-0.5 md:hidden" data-mobile-nav>
         {sections.filter((s) => s.id !== 'hero').map((s) => (
-          <button
+          <a
+            href={`/#${s.id}`}
             data-section={s.id}
-            class="nav-link px-1.5 py-1 text-xs text-muted transition-colors hover:text-text"
+            class="nav-link px-1.5 py-1 text-xs text-muted no-underline transition-colors hover:text-text"
             aria-current="false"
             aria-label={s.label}
           >
             {s.label.slice(0, 4)}
-          </button>
+          </a>
         ))}
       </div>
       <ThemeToggle />

@@ -2,11 +2,11 @@
 name: Aman Thanvi Personal Website
 description: A cozy-minimal personal portfolio — calm, readable, and lightly warm.
 colors:
-  bg: "oklch(0.97 0.008 75)"
-  surface: "oklch(0.99 0.004 75)"
-  text: "oklch(0.28 0.02 55)"
-  muted: "oklch(0.48 0.018 55)"
-  border: "oklch(0.88 0.012 75)"
+  bg: "oklch(0.97 0.006 80)"
+  surface: "oklch(0.99 0.003 80)"
+  text: "oklch(0.28 0.015 55)"
+  muted: "oklch(0.48 0.014 55)"
+  border: "oklch(0.88 0.01 80)"
   accent: "oklch(0.45 0.1 45)"
   glow: "oklch(0.45 0.1 45 / 0.18)"
   bg-dark: "oklch(0.14 0.005 260)"

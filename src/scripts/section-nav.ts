@@ -65,10 +65,18 @@ export function initSectionNav(): void {
     if (link.dataset.navBound === "true") return;
     link.dataset.navBound = "true";
 
-    link.addEventListener("click", () => {
-      const target = document.getElementById(link.dataset.section || "");
-      if (target) setActive(target.id);
-      target?.scrollIntoView({ behavior: "smooth" });
+    link.addEventListener("click", (event) => {
+      const id = link.dataset.section || "";
+      const target = document.getElementById(id);
+      if (!target) return;
+
+      event.preventDefault();
+      setActive(id);
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
+      history.replaceState(null, "", `#${id}`);
     });
   });
 
