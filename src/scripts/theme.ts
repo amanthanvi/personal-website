@@ -1,30 +1,35 @@
 const STORAGE_KEY = "theme";
-const STATES = ["auto", "dark", "light", "dune", "arcade"] as const;
+const STATES = ["auto", "light", "dark"] as const;
 type Theme = (typeof STATES)[number];
+type ResolvedTheme = "light" | "dark";
 
-export { STATES, type Theme };
+export { STATES, type Theme, type ResolvedTheme };
 
 export function getStoredTheme(): Theme {
   try {
     const val = localStorage.getItem(STORAGE_KEY);
     if (val && STATES.includes(val as Theme)) return val as Theme;
+    if (val === "dune") return "light";
+    if (val === "arcade") return "dark";
   } catch {
     // localStorage unavailable
   }
   return "auto";
 }
 
-const DARK_THEMES: ReadonlySet<string> = new Set(["dark", "arcade"]);
+export function resolveTheme(theme: Theme = getStoredTheme()): ResolvedTheme {
+  if (theme === "dark") return "dark";
+  if (theme === "light") return "light";
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+}
 
 function applyTheme(theme: Theme): void {
+  const resolved = resolveTheme(theme);
   document.documentElement.setAttribute("data-theme", theme);
-
-  // Set color-scheme so browser chrome (scrollbars, inputs) matches the theme
-  const isDark =
-    DARK_THEMES.has(theme) ||
-    (theme === "auto" &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches);
-  document.documentElement.style.colorScheme = isDark ? "dark" : "light";
+  document.documentElement.setAttribute("data-resolved", resolved);
+  document.documentElement.style.colorScheme = resolved;
 
   try {
     localStorage.setItem(STORAGE_KEY, theme);
@@ -34,19 +39,33 @@ function applyTheme(theme: Theme): void {
   window.dispatchEvent(new CustomEvent("theme-change", { detail: { theme } }));
 }
 
+function withTransition(run: () => void): void {
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const doc = document as Document & {
+    startViewTransition?: (cb: () => void) => void;
+  };
+
+  if (!reduced && typeof doc.startViewTransition === "function") {
+    doc.startViewTransition(run);
+    return;
+  }
+  run();
+}
+
 export function setTheme(theme: Theme): void {
-  applyTheme(theme);
+  withTransition(() => applyTheme(theme));
+}
+
+/** Flip explicit light ↔ dark (resolves auto first). */
+export function toggleTheme(): ResolvedTheme {
+  const next: ResolvedTheme = resolveTheme() === "dark" ? "light" : "dark";
+  setTheme(next);
+  return next;
 }
 
 export function initThemeToggle(): void {
-  const btn = document.getElementById("theme-toggle");
-  if (!btn) return;
+  applyTheme(getStoredTheme());
 
-  // Apply stored theme on init
-  const current = getStoredTheme();
-  applyTheme(current);
-
-  // Sync when system preference changes (for auto mode)
   window
     .matchMedia("(prefers-color-scheme: dark)")
     .addEventListener("change", () => {

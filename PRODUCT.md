@@ -1,33 +1,57 @@
 # Product
 
-## Register
+<!-- impeccable:product-schema 1 -->
 
-brand
+## Platform
+
+web
 
 ## Users
 
-Security leaders, technical recruiters, collaborators, and hiring teams reviewing Aman Thanvi's credibility under time pressure. They need quick evidence of federal cybersecurity experience, hands-on engineering range, research maturity, and professional signal without digging through a resume first.
+Collaborators, peers, and general visitors who want a friendly, low-pressure sense of who Aman Thanvi is and what he works on. Hiring teams and security leaders may still visit, but they are not the primary audience this product optimizes for.
 
 ## Product Purpose
 
-The site is a single-page portfolio for Aman Thanvi: cybersecurity specialist, researcher, and builder. It should make the strongest facts scannable in the first viewport, then reward deeper review through projects, experience, certifications, writing, and technical texture.
+A single-page personal site for Aman Thanvi (computer science and cybersecurity). Success means a visitor can quickly understand the person and the work, then optionally go deeper into projects, research, and writing—without feeling overloaded or sold to.
 
-## Brand Personality
+## Positioning
 
-Precise, field-tested, and quietly distinctive. The tone should feel like a practiced security operator: calm under pressure, technically literate, and comfortable moving between policy, engineering, and research.
+Undecided as a sharp category claim. Confirmed stance: the site should feel chill and approachable, not overbearing or overly serious. Do not invent a forced differentiator beyond what the real résumé and projects already show.
 
-## Anti-references
+## Operating Context
 
-Avoid generic SaaS landing-page tropes, oversized metric blocks, hero proof-card clusters, decorative glass panels, flat identical card grids, fake terminal noise that hides content, and hacker-cliche neon overload. The interface should not look like a template portfolio, a gamified resume, or a security conference splash page.
+Visited on phone or laptop in ordinary browsing moments. Static Astro site at https://amanthanvi.com; contact via email, LinkedIn, and GitHub. No account, app workflow, or authenticated product surface.
 
-## Design Principles
+## Capabilities and Constraints
 
-- Lead with verified signal: clear role, concise prose, credentials, and contact paths before decoration.
-- Make technical depth legible: projects and experience should scan as evidence, not as prose walls.
-- Use atmosphere with restraint: HUD, terminal, and theme details should sharpen the portfolio's voice without competing with reading.
-- Preserve multi-theme craft: every refinement should work across light, dark, dune, arcade, and reduced-motion modes.
-- Favor confident asymmetry and rhythm over repeated card sameness.
+- Static marketing/portfolio site (Astro + Tailwind); no backend or database.
+- Themes: binary light and dark (plus system `auto` resolving to one of those). Dune/arcade and multi-theme HUD craft are retired.
+- Content collections for projects and blog; structured JSON for publications/research.
+- Open: how much writing will exist beyond the current hello-world post; do not fabricate posts or testimonials.
+
+## Brand Commitments
+
+- Name: Aman Thanvi; site: amanthanvi.com.
+- Voice: chill, inviting, and easygoing—not a stern “security operator” persona.
+- Binding redesign commitment: cozy-minimal—clean, inviting, comfortable; less is more; binary light/dark only.
+- Keep anti-patterns as product constraints (not a visual recipe): no generic SaaS landing tropes, neon hacker cliché, fake terminal noise that hides content, or gamified-resume theater.
+
+## Evidence on Hand
+
+- Profile photo: `public/images/profile.jpg`
+- Projects: `src/content/projects/` (e.g. synac, inplain-ai, betterman, malicious-url-detector, personal-website)
+- Publications: `src/content/publications.json`
+- Blog: `src/content/blog/hello-world.mdx` only so far—do not invent additional posts or quotes
+- Contact paths: `contact@amanthanvi.com`, LinkedIn `/in/amanthanvi`, GitHub `amanthanvi`
+
+## Product Principles
+
+- Lead with a clear, friendly introduction; decoration never outranks readability.
+- Prefer less density: short prose, scannable sections, no info overload.
+- Keep technical depth available below the fold without turning the page into a dashboard.
+- Preserve only real evidence already in the repo; never fabricate credentials, quotes, or case studies.
+- Every refinement must work in light, dark, and reduced-motion—no theme-count creep.
 
 ## Accessibility & Inclusion
 
-Maintain semantic HTML, keyboard navigation, visible focus states, reduced-motion support, readable contrast, and responsive layouts. Motion and atmospheric effects must remain optional or subdued for users who prefer reduced motion.
+Semantic HTML, keyboard navigation, visible focus, readable contrast, responsive layouts. Motion stays optional or subdued when `prefers-reduced-motion` is set.

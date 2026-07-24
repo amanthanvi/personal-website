@@ -2,80 +2,63 @@
 import ThemeToggle from '../ui/ThemeToggle.astro';
 
 const sections = [
-  { id: 'hero', label: 'Home', short: 'Home', accent: 'var(--color-accent-hero)' },
-  { id: 'projects', label: 'Projects', short: 'Work', accent: 'var(--color-accent-projects)' },
-  { id: 'experience', label: 'Experience', short: 'Exp', accent: 'var(--color-accent-experience)' },
-  { id: 'skills', label: 'Skills', short: 'Skills', accent: 'var(--color-accent-skills)' },
-  { id: 'blog', label: 'Blog', short: 'Blog', accent: 'var(--color-accent-blog)' },
+  { id: 'hero', label: 'Home' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'writing-research', label: 'Research' },
+  { id: 'blog', label: 'Writing' },
 ];
 ---
 
-<!-- Desktop: fixed right edge, vertical dots -->
-<nav
-  data-section-nav
-  class="fixed right-5 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-center gap-5 md:flex"
-  aria-label="Section navigation"
->
-  {sections.map((s, i) => (
-    <button
-      data-section={s.id}
-      class="hud-nav-dot group relative flex items-center"
-      aria-current={i === 0 ? 'true' : 'false'}
-      aria-label={`Navigate to ${s.label}`}
-      style={`--dot-color: ${s.accent}`}
-    >
-      <span class="pointer-events-none absolute right-8 whitespace-nowrap rounded-md border border-border bg-surface px-2.5 py-1 text-[0.65rem] uppercase tracking-wider text-muted opacity-0 shadow-lg transition-opacity group-hover:opacity-100">
-        {s.label}
-      </span>
-      <span class="nav-dot block h-2 w-2 rounded-full border border-border/60 bg-transparent transition-all duration-300 group-hover:scale-150 group-hover:border-[var(--dot-color)]" />
-    </button>
-  ))}
+<header class="sticky top-0 z-40 border-b border-border/60 bg-bg/90 backdrop-blur-md">
+  <nav
+    data-section-nav
+    class="mx-auto flex max-w-5xl items-center justify-between gap-3 px-5 py-2.5"
+    aria-label="Primary"
+  >
+    <a href="/#hero" class="shrink-0 font-heading text-base font-semibold tracking-tight text-text no-underline">
+      Aman Thanvi
+    </a>
 
-  <div class="my-1 h-px w-4 bg-border/40" />
-  <ThemeToggle />
-</nav>
+    <div class="hidden items-center gap-1 md:flex" role="list">
+      {sections.map((s, i) => (
+        <button
+          data-section={s.id}
+          class="nav-link px-3 py-1.5 text-sm text-muted transition-colors hover:text-text"
+          aria-current={i === 0 ? 'true' : 'false'}
+        >
+          {s.label}
+        </button>
+      ))}
+    </div>
 
-<!-- Mobile: compact top bar -->
-<nav
-  data-section-nav
-  data-mobile-nav
-  class="fixed inset-x-2 top-2 z-40 grid grid-cols-5 items-center gap-0 rounded-lg border border-border/60 bg-bg/95 p-1 shadow-lg shadow-bg/10 md:hidden"
-  aria-label="Section navigation"
->
-  {sections.map((s, i) => (
-    <button
-      data-section={s.id}
-      class="hud-nav-dot flex min-w-0 flex-col items-center gap-1 rounded-md px-0.5 py-1.5 transition-colors hover:bg-surface/50"
-      aria-current={i === 0 ? 'true' : 'false'}
-      aria-label={`Navigate to ${s.label}`}
-      style={`--dot-color: ${s.accent}`}
-    >
-      <span class="nav-dot block h-1.5 w-1.5 rounded-full border border-border/60 bg-transparent transition-all duration-300" />
-      <span class="max-w-full truncate text-[0.5rem] uppercase tracking-wider text-muted">{s.short}</span>
-    </button>
-  ))}
-</nav>
+    <div class="flex items-center gap-2">
+      <div class="flex items-center gap-0.5 md:hidden" data-mobile-nav>
+        {sections.filter((s) => s.id !== 'hero').map((s) => (
+          <button
+            data-section={s.id}
+            class="nav-link px-1.5 py-1 text-xs text-muted transition-colors hover:text-text"
+            aria-current="false"
+            aria-label={s.label}
+          >
+            {s.label.slice(0, 4)}
+          </button>
+        ))}
+      </div>
+      <ThemeToggle />
+    </div>
+  </nav>
+</header>
 
 <style>
-  .nav-dot {
-    transition: all 0.3s var(--ease-reveal);
-  }
-
-  [aria-current="true"] .nav-dot {
-    border-color: var(--dot-color);
-    background-color: var(--dot-color);
-    box-shadow: 0 0 8px var(--dot-color);
-  }
-
-  [aria-current="true"] span:last-child {
+  .nav-link[aria-current="true"] {
     color: var(--color-text);
+    font-weight: 600;
   }
-
 </style>
 
 <script>
-  import { initHudNav } from '../../scripts/hud-nav';
+  import { initSectionNav } from '../../scripts/section-nav';
 
-  document.addEventListener('astro:page-load', initHudNav);
-  initHudNav();
+  document.addEventListener('astro:page-load', initSectionNav);
+  initSectionNav();
 </script>

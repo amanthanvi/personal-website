@@ -26,48 +26,41 @@ const fullImageURL = image.startsWith('http') ? image : `${siteURL}${image}`;
 {noindex && <meta name="robots" content="noindex" />}
 <meta name="description" content={description} />
 
-<!-- Open Graph -->
 <meta property="og:type" content="website" />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:image" content={fullImageURL} />
-<meta property="og:image:alt" content="Aman Thanvi — Cybersecurity Specialist" />
+<meta property="og:image:alt" content="Aman Thanvi — computer science and cybersecurity" />
 
-<!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={fullImageURL} />
-<meta name="twitter:image:alt" content="Aman Thanvi — Cybersecurity Specialist" />
+<meta name="twitter:image:alt" content="Aman Thanvi — computer science and cybersecurity" />
 
-<!-- Theme Color — aligned with default light/dark surfaces (global.css) -->
-<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f1f2f6" />
-<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#080a12" />
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f5f3" />
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1a1b1f" />
 
-<!-- Favicons -->
 <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
 <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
 <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
 <link rel="manifest" href="/site.webmanifest" />
 
-<!-- Fonts: JetBrains Mono (body), Sora (default headings), Marcellus / Silkscreen (themes) -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
-  href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Marcellus&family=Silkscreen:wght@400;700&family=Sora:wght@400;500;600;700&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Figtree:ital,wght@0,400..700;1,400..700&display=swap"
   rel="stylesheet"
 />
 
-<!-- Preload profile image -->
 <link rel="preload" as="image" href="/images/profile.jpg" />
 
-<!-- JSON-LD Structured Data -->
 <script is:inline type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Aman Thanvi",
-  "jobTitle": "Cybersecurity Specialist",
+  "jobTitle": "Computer science and cybersecurity",
   "url": "https://amanthanvi.com",
   "email": "mailto:contact@amanthanvi.com",
   "image": `${siteURL}/images/profile.jpg`,
@@ -77,11 +70,17 @@ const fullImageURL = image.startsWith('http') ? image : `${siteURL}${image}`;
   ]
 })} />
 
-<!-- FOUC prevention: set data-theme before paint -->
+<!-- FOUC prevention: set data-theme + data-resolved before paint -->
 <script is:inline>
 (function(){
-  var d=document.documentElement,k='theme',s;
+  var d=document.documentElement,k='theme',s,r;
   try{s=localStorage.getItem(k)}catch(e){}
-  d.setAttribute('data-theme',s&&['auto','dark','light','dune','arcade'].includes(s)?s:'auto');
+  if(s==='dune')s='light';
+  if(s==='arcade')s='dark';
+  if(!s||['auto','dark','light'].indexOf(s)<0)s='auto';
+  r=s==='dark'||(s==='auto'&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+  d.setAttribute('data-theme',s);
+  d.setAttribute('data-resolved',r);
+  d.style.colorScheme=r;
 })();
 </script>
