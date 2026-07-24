@@ -2,27 +2,27 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroSection from '../components/sections/HeroSection.astro';
 import ProjectsSection from '../components/sections/ProjectsSection.astro';
-import ExperienceSection from '../components/sections/ExperienceSection.astro';
-import SkillsSection from '../components/sections/SkillsSection.astro';
+import PublicationsSection from '../components/sections/PublicationsSection.astro';
 import BlogSection from '../components/sections/BlogSection.astro';
 
-const description = 'Cybersecurity Specialist with Master of Engineering in Cybersecurity. Over six years of progressive experience in offensive and defensive security within federal agencies, federally funded research centers, and the private sector.';
+const description =
+  'Personal site for Aman Thanvi — computer science and cybersecurity. Projects, research, and writing.';
 ---
 
 <BaseLayout
-  title="Aman Thanvi — Cybersecurity Specialist"
+  title="Aman Thanvi"
   description={description}
 >
   <HeroSection />
   <ProjectsSection />
-  <ExperienceSection />
-  <SkillsSection />
+  <PublicationsSection />
   <BlogSection />
 </BaseLayout>
 
 <script>
   import { initScrollReveal } from '../scripts/scroll-reveal';
 
+  document.documentElement.classList.add('js');
   document.addEventListener('astro:page-load', initScrollReveal);
   initScrollReveal();
 </script>

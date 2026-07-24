@@ -16,7 +16,6 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
     "@tailwindcss/vite": "^4.3.0",
-    "react-doctor": "^0.1.6",
     "tailwindcss": "^4.3.0",
     "typescript": "^5.7.0"
   },

@@ -1,0 +1,36 @@
+/* Scroll reveal — visible by default; js gates a quick fade */
+html.js .reveal {
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 0.2s var(--ease-out),
+    transform 0.2s var(--ease-out);
+}
+
+html.js .reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+html.js .hero-enter > * {
+  opacity: 0;
+  transform: translateY(6px);
+  animation: hero-in 0.28s var(--ease-out) both;
+}
+
+html.js .hero-enter > *:nth-child(1) {
+  animation-delay: 0.02s;
+}
+html.js .hero-enter > *:nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .reveal,
+  html.js .hero-enter > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    animation: none;
+  }
+}

@@ -1,0 +1,47 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+import publications from '../../content/publications.json';
+
+interface PublicationEntry {
+  title: string;
+  venue: string;
+  period: string;
+  description: string;
+  tags: string[];
+}
+
+const entries = publications as PublicationEntry[];
+---
+
+<section
+  id="writing-research"
+  class="section-research py-4 md:py-5"
+  aria-labelledby="research-heading"
+>
+  <div class="mx-auto max-w-5xl px-6">
+    <SectionHeading id="research-heading" label="Publications & research" />
+
+    <div class="space-y-2">
+      {entries.map((pub, i) => (
+        <article
+          class="surface surface-hover reveal p-4 sm:p-5"
+          style={`transition-delay: ${Math.min(i * 40, 120)}ms`}
+        >
+          <div class="flex flex-wrap items-start justify-between gap-2">
+            <div class="min-w-0 flex-1">
+              <h3 class="font-heading text-base font-semibold text-text">{pub.title}</h3>
+              <p class="text-sm text-accent">{pub.venue}</p>
+            </div>
+            <span class="shrink-0 text-xs text-muted">{pub.period}</span>
+          </div>
+          <p class="mt-2 text-sm text-muted">{pub.description}</p>
+          <div class="mt-2 flex flex-wrap gap-1.5">
+            {pub.tags.map((tag: string) => (
+              <span class="bg-bg px-2 py-0.5 text-xs text-muted">{tag}</span>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
