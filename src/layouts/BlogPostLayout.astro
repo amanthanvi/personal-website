@@ -13,7 +13,12 @@ interface Props {
 const { title, description, pubDate, updatedDate, image } = Astro.props;
 
 const rawContent = await Astro.slots.render('default');
-const wordCount = rawContent.replace(/<[^>]*>/g, '').split(/\s+/).length;
+// Trim first: splitting untrimmed text yields empty leading/trailing entries.
+const wordCount = rawContent
+  .replace(/<[^>]*>/g, ' ')
+  .trim()
+  .split(/\s+/)
+  .filter(Boolean).length;
 const readingTime = Math.max(1, Math.ceil(wordCount / 200));
 ---
 

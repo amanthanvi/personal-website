@@ -1,16 +1,22 @@
 ---
+import { z } from 'astro/zod';
 import SectionHeading from '../ui/SectionHeading.astro';
 import publications from '../../content/publications.json';
 
-interface PublicationEntry {
-  title: string;
-  venue: string;
-  period: string;
-  description: string;
-  tags: string[];
-}
+/**
+ * `projects` and `blog` are schema-validated content collections; this JSON
+ * was the one content source cast with `as`, so a malformed edit rendered
+ * `undefined` instead of failing. Parse it so the build breaks loudly.
+ */
+const publicationSchema = z.object({
+  title: z.string(),
+  venue: z.string(),
+  period: z.string(),
+  description: z.string(),
+  tags: z.array(z.string()),
+});
 
-const entries = publications as PublicationEntry[];
+const entries = z.array(publicationSchema).parse(publications);
 ---
 
 <section id="research" class="mt-14" aria-labelledby="research-heading">
