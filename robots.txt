@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://amanthanvi.com/sitemap.xml
