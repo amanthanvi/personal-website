@@ -2,14 +2,16 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
+const webURL = () => z.url({ protocol: /^https?$/ });
+
 const projects = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
     tags: z.array(z.string()),
-    github: z.url().optional(),
-    url: z.url().optional(),
+    github: webURL().optional(),
+    url: webURL().optional(),
     order: z.number().default(0),
   }),
 });

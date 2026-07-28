@@ -17,7 +17,10 @@ const {
 
 // astro.config.mjs is the single source for the site URL.
 const siteURL = Astro.site?.href.replace(/\/$/, '') ?? '';
-const fullImageURL = image.startsWith('http') ? image : `${siteURL}${image}`;
+const isAbsoluteImageURL = /^https?:\/\//i.test(image);
+const fullImageURL = isAbsoluteImageURL
+  ? image
+  : `${siteURL}${image.startsWith('/') ? '' : '/'}${image}`;
 ---
 
 <meta charset="utf-8" />
