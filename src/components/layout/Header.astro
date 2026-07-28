@@ -1,62 +1,23 @@
 ---
 import ThemeToggle from '../ui/ThemeToggle.astro';
-import { SECTIONS } from '../../scripts/sections';
 
-const sections = SECTIONS;
+interface Props {
+  /** Post pages get a way back; the homepage does not need one. */
+  back?: boolean;
+}
+
+const { back = false } = Astro.props;
 ---
 
-<header class="sticky top-0 z-40 border-b border-border/60 bg-bg/90 backdrop-blur-md">
-  <nav
-    data-section-nav
-    class="mx-auto flex max-w-5xl items-center justify-between gap-3 px-5 py-2.5"
-    aria-label="Primary"
-  >
-    <a href="/#hero" class="shrink-0 font-heading text-base font-semibold tracking-tight text-text no-underline">
-      Aman Thanvi
-    </a>
-
-    <div class="hidden items-center gap-1 md:flex">
-      {sections.map((s, i) => (
-        <a
-          href={`/#${s.id}`}
-          data-section={s.id}
-          class="nav-link px-3 py-1.5 text-sm text-muted no-underline transition-colors hover:text-text"
-          aria-current={i === 0 ? 'true' : 'false'}
-        >
-          {s.label}
-        </a>
-      ))}
-    </div>
-
-    <div class="flex items-center gap-2">
-      <div class="flex items-center gap-0.5 md:hidden" data-mobile-nav>
-        {sections.filter((s) => s.id !== 'hero').map((s) => (
-          <a
-            href={`/#${s.id}`}
-            data-section={s.id}
-            class="nav-link px-1.5 py-1 text-xs text-muted no-underline transition-colors hover:text-text"
-            aria-current="false"
-            aria-label={s.label}
-          >
-            {s.label.slice(0, 4)}
-          </a>
-        ))}
-      </div>
-      <ThemeToggle />
-    </div>
-  </nav>
-</header>
-
-<style>
-  .nav-link[aria-current="true"] {
-    color: var(--color-text);
-    font-weight: 600;
+<header class="flex items-center justify-between gap-4 py-6">
+  {
+    back ? (
+      <a href="/" class="link text-sm">
+        <span aria-hidden="true">←</span> Aman Thanvi
+      </a>
+    ) : (
+      <span />
+    )
   }
-</style>
-
-<script>
-  import { initSectionNav } from '../../scripts/section-nav';
-
-  document.addEventListener('astro:page-load', initSectionNav);
-  initSectionNav();
-</script>
+  <ThemeToggle />
+</header>

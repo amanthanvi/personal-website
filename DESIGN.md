@@ -1,186 +1,234 @@
 ---
 name: Aman Thanvi Personal Website
-description: A cozy-minimal personal portfolio — calm, readable, and lightly warm.
+description: A quiet single-column personal site — neutral, precise, typographic.
 colors:
-  bg: "oklch(0.97 0.006 80)"
-  surface: "oklch(0.99 0.003 80)"
-  text: "oklch(0.28 0.015 55)"
-  muted: "oklch(0.48 0.014 55)"
-  border: "oklch(0.88 0.01 80)"
-  accent: "oklch(0.45 0.1 45)"
-  glow: "oklch(0.45 0.1 45 / 0.18)"
-  bg-dark: "oklch(0.14 0.005 260)"
-  surface-dark: "oklch(0.18 0.006 260)"
-  text-dark: "oklch(0.93 0.004 260)"
-  muted-dark: "oklch(0.68 0.01 260)"
-  border-dark: "oklch(0.28 0.008 260)"
-  accent-dark: "oklch(0.8 0.07 55)"
+  bg: "oklch(0.988 0 0)"
+  surface: "oklch(0.965 0.002 265)"
+  text: "oklch(0.205 0.003 265)"
+  muted: "oklch(0.44 0.007 265)"
+  faint: "oklch(0.55 0.008 265)"
+  border: "oklch(0.885 0.004 265)"
+  accent: "oklch(0.55 0.19 258)"
+  bg-dark: "oklch(0.145 0.004 265)"
+  surface-dark: "oklch(0.195 0.004 265)"
+  text-dark: "oklch(0.94 0.002 265)"
+  muted-dark: "oklch(0.73 0.008 265)"
+  faint-dark: "oklch(0.59 0.010 265)"
+  border-dark: "oklch(0.295 0.006 265)"
+  accent-dark: "oklch(0.72 0.15 255)"
 typography:
   display:
-    fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(2.5rem, 6vw, 3.75rem)"
-    fontWeight: 700
-    lineHeight: 1.08
-    letterSpacing: "-0.02em"
-  headline:
-    fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(1.5rem, 3vw, 1.875rem)"
-    fontWeight: 650
-    lineHeight: 1.2
-    letterSpacing: "-0.015em"
-  title:
-    fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "1.0625rem"
+    fontFamily: "Source Sans 3 Variable, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "1.75rem"
     fontWeight: 600
-    lineHeight: 1.35
-    letterSpacing: "0"
-  body:
-    fontFamily: "Figtree, ui-sans-serif, system-ui, sans-serif"
+    lineHeight: 1.15
+    letterSpacing: "-0.021em"
+  lede:
+    fontFamily: "Source Sans 3 Variable, ui-sans-serif, system-ui, sans-serif"
     fontSize: "1.0625rem"
     fontWeight: 400
-    lineHeight: 1.65
+    lineHeight: 1.6
     letterSpacing: "0"
-  label:
-    fontFamily: "Figtree, ui-sans-serif, system-ui, sans-serif"
+  headline:
+    fontFamily: "Source Sans 3 Variable, ui-sans-serif, system-ui, sans-serif"
     fontSize: "0.8125rem"
-    fontWeight: 500
+    fontWeight: 600
     lineHeight: 1.3
     letterSpacing: "0"
+  title:
+    fontFamily: "Source Sans 3 Variable, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "0.9375rem"
+    fontWeight: 600
+    lineHeight: 1.35
+    letterSpacing: "-0.012em"
+  body:
+    fontFamily: "Source Sans 3 Variable, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "15.5px"
+    fontWeight: 400
+    lineHeight: 1.62
+    letterSpacing: "0"
+  label:
+    fontFamily: "Source Sans 3 Variable, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "0.8125rem"
+    fontWeight: 400
+    lineHeight: 1.4
+    letterSpacing: "0"
+  prose-heading:
+    fontFamily: "Source Sans 3 Variable, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "1.1875rem"
+    fontWeight: 600
+    lineHeight: 1.3
+    letterSpacing: "-0.012em"
+  code:
+    fontFamily: "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+    fontSize: "0.875rem"
+    fontWeight: 400
+    lineHeight: 1.55
+    letterSpacing: "0"
 rounded:
-  sm: "0"
-  md: "0"
-  lg: "0"
+  sm: "2px"
+  md: "5px"
+  lg: "5px"
 spacing:
   xs: "4px"
-  sm: "8px"
+  sm: "6px"
   md: "16px"
   lg: "24px"
-  xl: "40px"
+  xl: "32px"
   section: "56px"
 components:
-  button-primary:
-    backgroundColor: "{colors.accent}"
-    textColor: "{colors.surface}"
-    rounded: "{rounded.md}"
-    padding: "12px 22px"
-  button-secondary:
+  link-inline:
+    textColor: "{colors.muted}"
+    rule: "1px currentColor, 2px on hover"
+  row:
+    borderTop: "1px {colors.border}"
+    padding: "16px 0"
+  theme-toggle:
     backgroundColor: "transparent"
+    borderColor: "{colors.border}"
     textColor: "{colors.muted}"
     rounded: "{rounded.md}"
-    padding: "12px 22px"
-  surface-card:
-    backgroundColor: "{colors.surface}"
-    textColor: "{colors.text}"
-    rounded: "{rounded.md}"
-    padding: "20px"
-  chip:
-    backgroundColor: "{colors.bg}"
-    textColor: "{colors.muted}"
-    rounded: "{rounded.sm}"
-    padding: "4px 10px"
+    size: "32px"
 ---
 
 # Design System: Aman Thanvi Personal Website
 
+Recorded from the built site, not written ahead of it. Ground truth is `src/styles/global.css`.
+
 ## 1. Overview
 
-**Creative North Star: "Cozy desk"**
+**Creative north star: "the canon, played straight."**
 
-The site should feel like sitting down at a quiet desk with good light: soft surfaces, warm readable type, and room to breathe. It is a personal introduction first—projects, research, and writing sit below without competing for attention.
+This is the personal-site convention executed at full craft rather than a borrowed visual world.
+There is no metaphor, no device, and nothing to decode. The entire expression is the type scale,
+the vertical rhythm, and the interaction states. The craft register is the designer-engineer
+lineage — tight scale, near-invisible but tuned motion, obsessive focus and hover detail.
 
-This replaces the former **Operations Room** identity (HUD frames, scanlines, multi-theme dune/arcade atmosphere, mono-as-costume, section-rainbow accents). Those are anti-references.
+This replaces the **cozy desk** identity (warm stone ground, Bricolage Grotesque display, clay
+ochre accent, sharp zero-radius bordered cards, chips) which in turn replaced **Operations Room**.
+Both are anti-references.
 
-**Key Characteristics:**
-- Binary themes only: `light`, `dark`, and `auto` (system).
-- Soft warm-stone neutrals; one quiet clay accent used sparingly (≤10% of the surface).
-- Warm display face + friendly sans body; monospace only for real code.
-- Simple top navigation; no HUD dots, SEC labels, glitch, or fake terminals.
-- Compact vertical rhythm; short copy; quick opacity/translate motion only (~150–280ms).
+**Key characteristics:**
+- One column, `--measure: 34rem`, shared by the homepage and blog prose.
+- One typeface, self-hosted. One chromatic value, reserved for focus and selection.
+- Hairline rules separate rows. Nothing fills, nothing floats, nothing has a shadow.
+- Binary `light` / `dark` plus `auto` (system).
 
 ## 2. Colors
 
-**Strategy: Restrained** — neutrals carry the page; one accent marks primary actions and focus.
+**Strategy: Restrained** — a true neutral ground carries the page; the single blue appears only
+on focus rings and text selection.
 
-### Neutrals (light default)
-- **Desk Paper** (`bg`): soft warm stone page ground — not cream brochure paper.
-- **Raised Sheet** (`surface`): slightly brighter panels and cards.
-- **Ink** (`text`): readable warm charcoal.
-- **Pencil** (`muted`): secondary prose and metadata.
-- **Hairline** (`border`): quiet edges.
+The ground is deliberately **neutral, not warm**. Cream, parchment, and beige grounds are an
+anti-reference here: paired with a display serif and a terracotta accent they form the single most
+common generated-interface look, and the whole point of this palette is to not be that.
 
-### Accent
-- **Clay** (`accent`): warm muted ochre-clay for CTAs, focus rings, and light emphasis. Do not invent a second brand accent per section.
+Dark mode is a near-neutral cool near-black (`#090a0c`), OLED-friendly, with lifted surfaces.
+No mocha, no warm brown.
 
-### Dark
-OLED-friendly soft black (editor-style, near-neutral cool) with slightly lifted surfaces. No warm mocha washes. Same roles as light; clay accent brightens a touch for contrast.
+### Named rules
 
-### Named Rules
+**The Ink-Link Rule.** Links are ink, not blue. Affordance comes from a 1px rule under the text
+that thickens to 2px on hover. The accent is never used to colour a link.
 
-**The One-Accent Rule.** Section wrappers may keep semantic class names for structure, but visual accent tokens all resolve to Clay.
+**The Contrast-Floor Rule.** Every text tone clears 4.5:1 against its ground in both themes,
+including metadata. Measured values: text 17.3 / 16.6, muted 7.5 / 8.3, faint 4.7 / 4.8,
+accent 4.8 / 8.0. `faint` is the floor of the ramp — do not lighten it.
 
-**The No-Glow-Costume Rule.** Soft shadow with offset and blur is fine for hover depth. Zero-offset colored halos and scanline overlays are not.
+**The Non-Text-Border Rule.** `border` sits at ~1.36:1 and is for separation only. It must never
+carry text or an icon that conveys meaning.
 
 ## 3. Typography
 
-**Display / Headings:** Bricolage Grotesque.
-**Body / UI:** Figtree.
-**Mono:** system monospace stack, only inside `code` / `pre`.
+**One family: Source Sans 3 Variable**, self-hosted via `@fontsource-variable/source-sans-3`.
+Only the `wght` (upright) axis ships; `<em>` renders as a synthesised oblique. Add
+`wght-italic.css` if real italics ever matter. Monospace is the system stack, inside `code` /
+`pre` only.
+
+Base is **15.5px / 1.62**. Prose runs one step larger at **1.0625rem / 1.72** on the same measure.
 
 ### Hierarchy
-- **Display**: hero name only.
-- **Headline**: section titles.
-- **Title**: project, role, and card titles.
-- **Body**: prose under ~65ch.
-- **Label**: metadata without forced uppercase tracking costumes.
+- **Display** `1.75rem` — the name, and post titles.
+- **Lede** `1.0625rem` — the tagline and blog prose.
+- **Headline** `0.8125rem` semibold muted — section labels (Projects, Research, Writing).
+- **Title** `0.9375rem` semibold — project, publication, and post row titles.
+- **Body** `15.5px` muted — row descriptions.
+- **Label** `0.8125rem` faint — tech stacks, venues, periods, dates, the external-link glyph.
+- **Prose heading** `1.1875rem` — `h2` inside blog prose (`h3` drops to `1rem`).
+- **Code** `0.875rem` mono — inline `code` and `pre`.
 
-### Named Rules
+### Named rules
 
-**The Readable-Body Rule.** Body copy is a proportional sans, never monospace dressed as “technical.”
+**The Quiet-Label Rule.** Section labels are plain sentence case at small size in `muted`.
+No uppercase, no letter-spacing, no eyebrow over every section.
 
-**The Quiet-Label Rule.** Avoid uppercase + wide tracking as default section chrome.
+**The Tabular-Meta Rule.** Dates and periods carry `font-variant-numeric: tabular-nums` so
+right-aligned metadata does not shimmy between rows.
 
 ## 4. Layout
 
-- Max content width ~64–72rem for the homepage; blog prose ~48rem.
-- Section padding ~3–3.5rem vertical; tighter groups, less empty scroll.
-- Hero: one composition — photo, name, short role line, one CTA group.
-- Desktop: sticky top bar with links + theme control. Mobile: compact top bar with the same links (or a short row) plus theme control.
+- One column at `--measure: 34rem` (~66ch at the lede size), plus `1.5rem` gutters.
+- Sections are `56px` apart. Headings take `6px` below them — **always more space above a
+  heading than below it.**
+- Rows are separated by a `1px` top border; the last row in a section closes with a bottom border.
+- No sticky header, no in-page nav, no scroll-spy, no progress bar. The page is short; scrolling
+  is the navigation.
+- Header is the theme control alone on the homepage, and a back-link plus the control on posts.
 
-## 5. Elevation & Depth
+## 5. Elevation & depth
 
-Tonal layering first. Surfaces stay flat. Hover may strengthen the border only — no lift, glow, or drop shadow.
+None. There are no shadows, no glass, no blur, and no elevation layers anywhere on the site.
+`surface` exists only as the fill behind `code` and `pre`.
 
 ## 6. Shapes
 
-- Sharp corners throughout (`border-radius: 0`). Hairline borders, flat surfaces, no soft card shadows.
-- Prefer plain rectangles; no pill chrome.
+`--radius: 5px`, applied to the portrait, the theme toggle, code blocks, and images. Focus rings
+use `2px`. This is a deliberate reversal of the previous system's `border-radius: 0` — with the
+cards and chips gone there are almost no boxes left, and the few that remain read better softened.
 
 ## 7. Components
 
-### Buttons
-- Primary: solid Clay fill, light text on dark fill (or dark text on light fill when needed for contrast).
-- Secondary: transparent with hairline border; muted text.
+### Inline link (`.link`)
+`muted` text with a 1px `currentColor` rule; on hover the rule goes to 2px and the text to `text`.
+Transitions `background-size`, so it never touches layout.
 
-### Cards
-- Light surface on bg, 1px border, padding 16–24px.
-- Used when grouping interactive or list content — not as decorative shells in the hero.
+### Row link (`.row-link` / `.row-title`)
+For rows where the title is the link. The rule wipes in from zero width under the title only —
+the whole row does not underline.
 
-### Navigation
-- Horizontal top nav; current section can use weight or underline, not glowing dots.
+### Row
+`border-top: 1px`, `16px` vertical padding, `last:border-b`. Title, then description, then a meta
+line. No container, no fill, no hover background.
 
 ### Theme toggle
-- Cycles or selects among Auto / Light / Dark only. Mounted on homepage (desktop + mobile) and blog layout.
+32px, transparent, hairline border, crossfading moon/sun on `[data-resolved]`. Binary light↔dark;
+`auto` is the initial state and the system-preference listener keeps it live until the first click.
 
-## 8. Do's and Don'ts
+## 8. Motion
+
+**One authored moment:** the light↔dark switch cross-fades the whole page through
+`document.startViewTransition` at `0.2s`. That is the only orchestrated motion on the site.
+
+Everything else is a state transition at `0.16–0.18s` on `--ease-out`
+(`cubic-bezier(0.22, 1, 0.36, 1)`): link rule thickness, link colour, toggle icon, border colour.
+Nothing animates on scroll and nothing animates on load — content is present at first paint.
+
+All of it collapses under `prefers-reduced-motion: reduce`, including the view transition.
+
+## 9. Do's and Don'ts
 
 ### Do
-- Lead with a friendly introduction and real contact paths.
-- Keep light, dark, and reduced-motion working.
-- Prefer deletion of chrome over adding atmosphere.
+- Delete chrome before adding any.
+- Keep every text tone above 4.5:1 in both themes.
+- Let type size, weight, and tone carry all hierarchy.
+- Keep content visible at first paint.
 
 ### Don't
-- Don't revive Operations Room / HUD / scanlines / glitch / fake terminal chrome.
-- Don't add dune, arcade, or other theme identities.
-- Don't use five section-rainbow accents.
-- Don't use monospace as a personality costume.
-- Don't ship generic SaaS metric strips, proof-card clusters, or neon hacker cliché.
+- Don't reintroduce cards, chips, status pills, or tag boxes.
+- Don't use a warm/cream ground, a display serif, or a terracotta accent.
+- Don't colour links with the accent.
+- Don't add a sticky nav, scroll-spy, scroll-progress bar, or reveal-on-scroll.
+- Don't add theme identities beyond light/dark/auto.
+- Don't revive Operations Room / HUD / scanlines / fake terminal chrome.
+- Don't use monospace as a personality costume — it is for code only.
+- Don't ship SaaS metric strips, proof-card clusters, or neon hacker cliché.

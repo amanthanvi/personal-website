@@ -5,9 +5,27 @@ interface Props {
 const { target = '#content' } = Astro.props;
 ---
 
-<a
-  href={target}
-  class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[1000] focus:rounded focus:bg-accent focus:px-3 focus:py-2 focus:text-sm focus:font-bold focus:text-surface"
->
-  Skip to content
-</a>
+<a class="skip-link" href={target}>Skip to content</a>
+
+<style>
+  /* Visually hidden until focused, then a real target in the top-left. */
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+  }
+
+  .skip-link:focus-visible {
+    position: fixed;
+    left: 1rem;
+    top: 1rem;
+    z-index: 100;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius);
+    background: var(--color-text);
+    color: var(--color-bg);
+    font-size: 0.875rem;
+    font-weight: 600;
+    outline-offset: 3px;
+  }
+</style>

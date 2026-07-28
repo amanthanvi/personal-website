@@ -2,37 +2,7 @@
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="relative z-10 border-t border-border/60 py-5">
-  <div class="mx-auto flex max-w-5xl flex-col gap-5 px-6 sm:flex-row sm:items-center sm:justify-between">
-    <div class="text-center sm:text-left">
-      <p class="font-heading text-sm font-semibold text-text">Aman Thanvi</p>
-      <p class="mt-0.5 text-sm text-muted">Computer science and cybersecurity</p>
-    </div>
-
-    <nav class="flex flex-wrap items-center justify-center gap-4 text-sm" aria-label="Footer">
-      <a href="mailto:contact@amanthanvi.com" class="btn text-muted hover:text-accent">
-        Email
-      </a>
-      <a
-        href="https://linkedin.com/in/amanthanvi"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="btn text-muted hover:text-accent"
-      >
-        LinkedIn<span class="sr-only"> (opens in a new tab)</span>
-      </a>
-      <a
-        href="https://github.com/amanthanvi"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="btn text-muted hover:text-accent"
-      >
-        GitHub<span class="sr-only"> (opens in a new tab)</span>
-      </a>
-    </nav>
-  </div>
-
-  <p class="mx-auto mt-5 max-w-5xl px-6 text-center text-xs text-muted sm:text-left">
-    &copy; {currentYear} Aman Thanvi
-  </p>
+<footer class="mt-20 flex items-baseline justify-between gap-4 border-t border-border py-6 text-[0.8125rem] text-faint">
+  <span>Aman Thanvi</span>
+  <span>&copy; {currentYear}</span>
 </footer>

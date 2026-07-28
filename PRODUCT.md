@@ -34,6 +34,8 @@ Visited on phone or laptop in ordinary browsing moments. Static Astro site at ht
 - Name: Aman Thanvi; site: amanthanvi.com.
 - Voice: chill, inviting, and easygoing—not a stern “security operator” persona.
 - Binding redesign commitment: cozy-minimal—clean, inviting, comfortable; less is more; binary light/dark only.
+- Standing visual preference: the category standard played straight, at designer-engineer craft
+  level—no borrowed visual world or metaphor. Expression lives in type scale, rhythm, and states.
 - Keep anti-patterns as product constraints (not a visual recipe): no generic SaaS landing tropes, neon hacker cliché, fake terminal noise that hides content, or gamified-resume theater.
 
 ## Evidence on Hand

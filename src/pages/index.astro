@@ -9,20 +9,9 @@ const description =
   'Personal site for Aman Thanvi — computer science and cybersecurity. Projects, research, and writing.';
 ---
 
-<BaseLayout
-  title="Aman Thanvi"
-  description={description}
->
+<BaseLayout title="Aman Thanvi" description={description}>
   <HeroSection />
   <ProjectsSection />
   <PublicationsSection />
   <BlogSection />
 </BaseLayout>
-
-<script>
-  import { initScrollReveal } from '../scripts/scroll-reveal';
-
-  document.documentElement.classList.add('js');
-  document.addEventListener('astro:page-load', initScrollReveal);
-  initScrollReveal();
-</script>

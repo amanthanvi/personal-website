@@ -24,7 +24,7 @@
 
 - Two-space indentation; Astro component naming in PascalCase.
 - Tailwind utility classes preferred; custom CSS in `src/styles/` for motion utilities.
-- One brand accent via `--color-accent` (section wrappers still expose `--section-accent` as an alias).
+- `--color-accent` is reserved for focus rings and text selection only; links are ink with a rule.
 - Semantic HTML (`section`, `main`, `nav`) with descriptive `aria-*` labels.
 - File names lowercase with hyphens; components in PascalCase.
 
@@ -63,10 +63,12 @@
 - Primary audience is collaborators, peers, and general visitors; tone should stay chill and approachable, not overbearing or overly serious.
 - Themes stay binary light/dark only (drop arcade, dune, multi-theme HUD). Dark mode should be OLED-friendly soft black, not mocha or warm brown.
 - Theme control should be a simple single light↔dark toggle with snappy animation — no dropdown.
-- Prefer sharp corners and plain low-noise UI over rounded card-heavy layouts; motion should be subtle, quick, and snappy when used.
-- Prefer compressed vertical spacing and less copy on the page; strip unnecessary hero subcaptions and résumé-dump verbosity.
+- Prefer plain low-noise UI over card-heavy layouts; `--radius` is 5px. Motion is subtle and quick.
+- Keep copy short, but not the spacing: sections sit 56px apart. (Compression is what made the
+  previous design read as clunky; see DESIGN.md §4.)
 - Homepage content: keep projects, publications/research, and blog/writing only — remove experience, education, honors/awards, skills, and certifications.
-- Hero role line: “computer science and cybersecurity” (not “security engineer”); omit long “I build and assess…” style taglines.
+- Hero tagline is user-authored: “Computer science and cybersecurity. Building things.
+  Overthinking. If not that, probably sleeping.” Do not rewrite it without being asked.
 - Bold redesigns are welcome when asked; leave work uncommitted unless commit/push/PR is explicitly requested.
 
 ## Learned Workspace Facts

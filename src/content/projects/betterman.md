@@ -1,8 +1,7 @@
 ---
 title: "BetterMan"
-description: "Fast, modern web interface for Linux man pages with multi-distribution support. Built with React, FastAPI, and PostgreSQL."
+description: "Fast, modern web interface for Linux man pages with multi-distribution support."
 tags: ["React", "FastAPI", "PostgreSQL", "Linux"]
-status: "active"
 github: "https://github.com/amanthanvi/BetterMan"
 url: "https://betterman.sh"
 order: 2

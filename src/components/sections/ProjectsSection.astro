@@ -5,67 +5,49 @@ import SectionHeading from '../ui/SectionHeading.astro';
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
 ---
 
-<section
-  id="projects"
-  class="section-projects py-4 md:py-5"
-  aria-labelledby="projects-heading"
->
-  <div class="mx-auto max-w-5xl px-6">
-    <SectionHeading id="projects-heading" label="Projects" />
+<section id="projects" class="mt-14" aria-labelledby="projects-heading">
+  <SectionHeading id="projects-heading" label="Projects" />
 
-    <div class="reveal space-y-2">
-      {projects.map((project) => (
-        <article class="surface surface-hover group p-4 sm:p-5">
-          <div class="grid gap-3 sm:grid-cols-[1fr_auto] sm:items-start">
-            <div class="min-w-0">
-              <div class="flex flex-wrap items-center gap-2">
-                <h3 class="font-heading text-base font-semibold text-text">
-                  {project.data.title}
-                </h3>
-                <span class="bg-bg px-2 py-0.5 text-xs text-muted">
-                  {project.data.status}
-                </span>
-              </div>
-              <p class="mt-2 max-w-[65ch] text-sm leading-relaxed text-muted">
-                {project.data.description}
-              </p>
-            </div>
+  {
+    projects.map((project) => {
+      // The title links to the live site when there is one, else to the source.
+      const primary = project.data.url ?? project.data.github;
+      const showSource = Boolean(project.data.github && project.data.url);
 
-            <div class="flex shrink-0 flex-wrap gap-2 sm:justify-end">
-              {project.data.url && (
-                <a
-                  href={project.data.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="btn bg-accent px-3 py-1.5 text-xs font-semibold text-surface hover:opacity-90"
-                  aria-label={`Visit ${project.data.title}`}
-                >
-                  Visit
-                </a>
-              )}
-              {project.data.github && (
-                <a
-                  href={project.data.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="btn border border-border px-3 py-1.5 text-xs text-muted hover:border-accent hover:text-text"
-                  aria-label={`View ${project.data.title} source on GitHub`}
-                >
-                  Source
-                </a>
-              )}
-            </div>
-          </div>
+      return (
+        <article class="border-t border-border py-4 last:border-b">
+          {primary ? (
+            <a
+              class="row-link inline-flex items-baseline gap-1.5"
+              href={primary}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <h3 class="row-title text-[0.9375rem]">{project.data.title}</h3>
+              <span class="text-[0.8125rem] text-faint" aria-hidden="true">↗</span>
+              <span class="sr-only">(opens in a new tab)</span>
+            </a>
+          ) : (
+            <h3 class="text-[0.9375rem]">{project.data.title}</h3>
+          )}
 
-          <div class="mt-3 flex flex-wrap gap-1.5">
-            {project.data.tags.map((tag: string) => (
-              <span class="bg-bg px-2 py-0.5 text-xs text-muted">
-                {tag}
-              </span>
-            ))}
+          <p class="mt-1 text-muted">{project.data.description}</p>
+
+          <div class="mt-2 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+            <p class="text-[0.8125rem] text-faint">{project.data.tags.join(' · ')}</p>
+            {showSource && (
+              <a
+                class="link text-[0.8125rem]"
+                href={project.data.github}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Source<span class="sr-only"> for {project.data.title} (opens in a new tab)</span>
+              </a>
+            )}
           </div>
         </article>
-      ))}
-    </div>
-  </div>
+      );
+    })
+  }
 </section>

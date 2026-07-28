@@ -9,6 +9,8 @@ export function getStoredTheme(): Theme {
   try {
     const val = localStorage.getItem(STORAGE_KEY);
     if (val && STATES.includes(val as Theme)) return val as Theme;
+    // Retired theme names. initThemeToggle() persists whatever this returns,
+    // so falling through to "auto" would overwrite the visitor's real choice.
     if (val === "dune") return "light";
     if (val === "arcade") return "dark";
   } catch {
