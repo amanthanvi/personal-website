@@ -1,0 +1,31 @@
+---
+interface Props {
+  target?: string;
+}
+const { target = '#content' } = Astro.props;
+---
+
+<a class="skip-link" href={target}>Skip to content</a>
+
+<style>
+  /* Visually hidden until focused, then a real target in the top-left. */
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+  }
+
+  .skip-link:focus-visible {
+    position: fixed;
+    left: 1rem;
+    top: 1rem;
+    z-index: 100;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius);
+    background: var(--color-text);
+    color: var(--color-bg);
+    font-size: 0.875rem;
+    font-weight: 600;
+    outline-offset: 3px;
+  }
+</style>

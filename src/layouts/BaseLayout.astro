@@ -1,5 +1,6 @@
 ---
 import BaseHead from '../components/layout/BaseHead.astro';
+import SkipLink from '../components/layout/SkipLink.astro';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 import '../styles/global.css';
@@ -24,6 +25,7 @@ const { title, description, image, noindex, back = false, centered = false } = A
     <BaseHead title={title} description={description} image={image} noindex={noindex} />
   </head>
   <body class="min-h-screen">
+    <SkipLink />
     <div
       class:list={['column mx-auto flex w-full flex-col px-6', centered && 'min-h-screen']}
     >

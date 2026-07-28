@@ -70,6 +70,10 @@ const fullImageURL = image.startsWith('http') ? image : `${siteURL}${image}`;
 (function(){
   var d=document.documentElement,k='theme',s,r;
   try{s=localStorage.getItem(k)}catch(e){}
+  /* retired theme names map to their binary equivalent, so a returning
+     visitor keeps the explicit choice they made instead of being reset */
+  if(s==='dune')s='light';
+  if(s==='arcade')s='dark';
   if(!s||['auto','dark','light'].indexOf(s)<0)s='auto';
   r=s==='dark'||(s==='auto'&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
   d.setAttribute('data-theme',s);
