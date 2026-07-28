@@ -12,7 +12,7 @@ const links = [
     alt="Aman Thanvi, smiling."
     width="160"
     height="160"
-    class="portrait mb-6 block aspect-square w-20 object-cover"
+    class="mb-6 block aspect-square w-20 rounded-[var(--radius)] object-cover"
     decoding="async"
     loading="eager"
   />
@@ -28,22 +28,19 @@ const links = [
 
   <p class="mt-6 flex flex-wrap gap-x-5 gap-y-2">
     {
-      links.map(({ label, href }) => (
-        <a
-          class="link"
-          href={href}
-          {...href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {}}
-        >
-          {label}
-          {href.startsWith('http') && <span class="sr-only"> (opens in a new tab)</span>}
-        </a>
-      ))
+      links.map(({ label, href }) => {
+        const isExternal = href.startsWith('http');
+        return (
+          <a
+            class="link"
+            href={href}
+            {...isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {}}
+          >
+            {label}
+            {isExternal && <span class="sr-only"> (opens in a new tab)</span>}
+          </a>
+        );
+      })
     }
   </p>
 </section>
-
-<style>
-  .portrait {
-    border-radius: var(--radius);
-  }
-</style>

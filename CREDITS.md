@@ -13,7 +13,7 @@ This file documents open-source dependencies and fonts. **Nothing here is legal 
 | [@astrojs/sitemap](https://docs.astro.build/en/guides/integrations-guide/sitemap/) | Sitemap generation | MIT |
 | [Fontsource](https://fontsource.org/) | Self-hosted font packaging | MIT |
 
-Exact versions are pinned in [`package.json`](package.json). Full license texts live in `node_modules/` after `npm install`.
+Version ranges are declared in [`package.json`](package.json); resolved versions are recorded in `package-lock.json`. Full license texts live in `node_modules/` after `npm install`.
 
 ## Fonts (self-hosted)
 

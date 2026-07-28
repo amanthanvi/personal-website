@@ -7,4 +7,4 @@ url: "https://amanthanvi.com"
 order: 5
 ---
 
-Single-page portfolio with section-based accent tokens, content collections, responsive navigation, multi-theme support, and reduced-motion behavior.
+Single page built on content collections, with a light/dark theme toggle, a self-hosted typeface, and no client-side framework.
