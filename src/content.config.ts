@@ -8,7 +8,6 @@ const projects = defineCollection({
     title: z.string(),
     description: z.string(),
     tags: z.array(z.string()),
-    status: z.enum(['active', 'archived', 'wip']).default('active'),
     github: z.url().optional(),
     url: z.url().optional(),
     order: z.number().default(0),

@@ -7,11 +7,6 @@ interface Props {
 const { id, label } = Astro.props;
 ---
 
-<div class="reveal mb-2.5">
-  <h2
-    id={id}
-    class="font-heading text-xl font-semibold tracking-tight text-text md:text-2xl"
-  >
-    {label}
-  </h2>
-</div>
+<h2 id={id} class="mb-1.5 text-[0.8125rem] font-semibold text-muted">
+  {label}
+</h2>

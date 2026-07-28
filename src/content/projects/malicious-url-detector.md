@@ -2,7 +2,6 @@
 title: "Malicious URL Detector"
 description: "Dual-engine URL threat detection tool combining VirusTotal API and HuggingFace ML models for AI-powered threat analysis."
 tags: ["Python", "ML", "VirusTotal", "Security"]
-status: "active"
 github: "https://github.com/amanthanvi/malicious-url-detector"
 order: 4
 ---

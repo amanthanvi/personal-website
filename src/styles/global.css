@@ -1,61 +1,80 @@
 @import "tailwindcss";
-@import "./animations.css";
-@import "./utilities.css";
+@import "@fontsource-variable/source-sans-3/wght.css";
+
+/*
+  THESIS: The personal-site canon played straight, with the whole expression in the
+    type scale, the rhythm, and the states — no borrowed world, no device.
+  OWN-WORLD: True neutral ground (never cream), near-black ink, one blue reserved for
+    focus and selection only. Source Sans 3 alone. Links are ink with a hairline rule
+    that thickens on hover. Hairlines separate; nothing fills, nothing floats.
+  STORY: A visitor reads a name, a four-beat tagline, then scans the work and leaves
+    with a way to make contact.
+  FIRST VIEWPORT: Portrait at 80px, name, tagline, contact row, and the first project
+    titles beginning under a hairline.
+  FORM: Category canon, executed at full fidelity. The standing exit, taken by the user.
+*/
 
 @theme {
-  --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif;
-  --font-heading: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Source Sans 3 Variable", ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-  --color-accent: oklch(0.45 0.1 45);
-  --color-bg: oklch(0.97 0.006 80);
-  --color-surface: oklch(0.99 0.003 80);
-  --color-text: oklch(0.28 0.015 55);
-  --color-muted: oklch(0.48 0.014 55);
-  --color-border: oklch(0.88 0.01 80);
+  /* light: a true neutral, so nothing reads as warm paper */
+  --color-bg: oklch(0.988 0 0);
+  --color-text: oklch(0.205 0.003 265);
+  --color-muted: oklch(0.44 0.007 265);
+  --color-faint: oklch(0.55 0.008 265);
+  --color-border: oklch(0.885 0.004 265);
+  --color-surface: oklch(0.965 0.002 265);
+  /* the only chromatic value on the page: focus and selection */
+  --color-accent: oklch(0.55 0.19 258);
 
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --radius: 0px;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --radius: 5px;
 }
 
-@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
-
 :root {
-  --_dark-bg: oklch(0.14 0.005 260);
-  --_dark-surface: oklch(0.18 0.006 260);
-  --_dark-text: oklch(0.93 0.004 260);
-  --_dark-muted: oklch(0.68 0.01 260);
-  --_dark-border: oklch(0.28 0.008 260);
-  --_dark-accent: oklch(0.8 0.07 55);
+  /* the content column, shared by the homepage and blog prose */
+  --measure: 34rem;
+
+  --_dark-bg: oklch(0.145 0.004 265);
+  --_dark-text: oklch(0.94 0.002 265);
+  --_dark-muted: oklch(0.73 0.008 265);
+  --_dark-faint: oklch(0.59 0.010 265);
+  --_dark-border: oklch(0.295 0.006 265);
+  --_dark-surface: oklch(0.195 0.004 265);
+  --_dark-accent: oklch(0.72 0.15 255);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:where([data-theme="auto"]) {
     --color-bg: var(--_dark-bg);
-    --color-surface: var(--_dark-surface);
     --color-text: var(--_dark-text);
     --color-muted: var(--_dark-muted);
+    --color-faint: var(--_dark-faint);
     --color-border: var(--_dark-border);
+    --color-surface: var(--_dark-surface);
     --color-accent: var(--_dark-accent);
   }
 }
 
 :root:where([data-theme="dark"]) {
   --color-bg: var(--_dark-bg);
-  --color-surface: var(--_dark-surface);
   --color-text: var(--_dark-text);
   --color-muted: var(--_dark-muted);
+  --color-faint: var(--_dark-faint);
   --color-border: var(--_dark-border);
+  --color-surface: var(--_dark-surface);
   --color-accent: var(--_dark-accent);
 }
 
 :root:where([data-theme="light"]) {
-  --color-bg: oklch(0.97 0.006 80);
-  --color-surface: oklch(0.99 0.003 80);
-  --color-text: oklch(0.28 0.015 55);
-  --color-muted: oklch(0.48 0.014 55);
-  --color-border: oklch(0.88 0.01 80);
-  --color-accent: oklch(0.45 0.1 45);
+  --color-bg: oklch(0.988 0 0);
+  --color-text: oklch(0.205 0.003 265);
+  --color-muted: oklch(0.44 0.007 265);
+  --color-faint: oklch(0.55 0.008 265);
+  --color-border: oklch(0.885 0.004 265);
+  --color-surface: oklch(0.965 0.002 265);
+  --color-accent: oklch(0.55 0.19 258);
 }
 
 html:where([data-theme="dark"]) {
@@ -77,52 +96,55 @@ html:where([data-theme="light"]) {
 
 @layer base {
   html {
-    scroll-behavior: smooth;
-    overflow-x: clip;
-  }
-
-  ::view-transition-old(root),
-  ::view-transition-new(root) {
-    animation-duration: 0.18s;
-    animation-timing-function: var(--ease-out);
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: var(--font-heading);
-    font-weight: 650;
-    letter-spacing: -0.015em;
-    text-wrap: balance;
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
     font-family: var(--font-sans);
+    font-size: 15.5px;
+    line-height: 1.62;
     background-color: var(--color-bg);
     color: var(--color-text);
-    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
-    overflow-x: clip;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-weight: 600;
+    letter-spacing: -0.012em;
+    text-wrap: balance;
+  }
+
+  /* dates and periods must not shift width between rows */
+  time,
+  .tnum {
+    font-variant-numeric: tabular-nums;
   }
 
   ::selection {
-    background: color-mix(in oklch, var(--color-accent) 28%, transparent);
+    background: color-mix(in oklch, var(--color-accent) 22%, transparent);
     color: var(--color-text);
   }
 
   a {
     color: inherit;
-    text-decoration-color: color-mix(in oklch, var(--color-accent) 55%, transparent);
-    text-underline-offset: 0.2em;
+    text-decoration: none;
   }
 
   a:focus-visible,
   button:focus-visible {
     outline: 2px solid var(--color-accent);
-    outline-offset: 2px;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* the one authored moment: light <-> dark cross-fades the whole page */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.2s;
+    animation-timing-function: var(--ease-out);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -132,7 +154,6 @@ html:where([data-theme="light"]) {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
     }
 
     ::view-transition-old(root),
@@ -142,27 +163,38 @@ html:where([data-theme="light"]) {
   }
 }
 
-/* Plain interactive surfaces — border only, no lift/shadow theater */
-.surface {
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
-}
-
-.surface-hover {
-  transition: border-color 0.15s var(--ease-out);
-}
-
-.surface-hover:hover {
-  border-color: color-mix(in oklch, var(--color-accent) 40%, var(--color-border));
-}
-
-.btn {
+/*
+  Links are ink, not blue. A hairline rule carries the affordance and thickens on
+  hover — animating background-size keeps it off the layout path.
+*/
+.link {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 1px;
+  padding-bottom: 1px;
+  color: var(--color-muted);
   transition:
-    opacity 0.12s var(--ease-out),
-    border-color 0.12s var(--ease-out),
-    color 0.12s var(--ease-out);
+    background-size 0.16s var(--ease-out),
+    color 0.16s var(--ease-out);
 }
 
-.btn:active {
-  opacity: 0.85;
+.link:hover {
+  background-size: 100% 2px;
+  color: var(--color-text);
+}
+
+/* A row that is itself a link: the rule wipes in under the title only. */
+.row-link .row-title {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0 1px;
+  padding-bottom: 1px;
+  transition: background-size 0.18s var(--ease-out);
+}
+
+.row-link:hover .row-title,
+.row-link:focus-visible .row-title {
+  background-size: 100% 1px;
 }

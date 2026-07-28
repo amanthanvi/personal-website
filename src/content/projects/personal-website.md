@@ -1,8 +1,7 @@
 ---
 title: "Personal Website"
-description: "Cybersecurity portfolio built with Astro and Tailwind CSS v4. Focused on fast static delivery, responsive navigation, and accessible theme controls."
+description: "This site. Static, no client framework, focused on fast delivery and accessible theme control."
 tags: ["Astro", "Tailwind CSS", "TypeScript", "Design Systems"]
-status: "active"
 github: "https://github.com/amanthanvi/personal-website"
 url: "https://amanthanvi.com"
 order: 5

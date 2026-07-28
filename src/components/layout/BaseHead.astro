@@ -15,7 +15,8 @@ const {
   noindex = false,
 } = Astro.props;
 
-const siteURL = 'https://amanthanvi.com';
+// astro.config.mjs is the single source for the site URL.
+const siteURL = Astro.site?.href.replace(/\/$/, '') ?? '';
 const fullImageURL = image.startsWith('http') ? image : `${siteURL}${image}`;
 ---
 
@@ -39,20 +40,14 @@ const fullImageURL = image.startsWith('http') ? image : `${siteURL}${image}`;
 <meta name="twitter:image" content={fullImageURL} />
 <meta name="twitter:image:alt" content="Aman Thanvi — computer science and cybersecurity" />
 
-<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f5f3" />
-<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1a1b1f" />
+<!-- sRGB equivalents of --color-bg light/dark in src/styles/global.css; update together -->
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#fbfbfb" />
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#090a0c" />
 
 <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
 <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
 <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
 <link rel="manifest" href="/site.webmanifest" />
-
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-  href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Figtree:ital,wght@0,400..700;1,400..700&display=swap"
-  rel="stylesheet"
-/>
 
 <link rel="preload" as="image" href="/images/profile.jpg" />
 
@@ -61,7 +56,7 @@ const fullImageURL = image.startsWith('http') ? image : `${siteURL}${image}`;
   "@type": "Person",
   "name": "Aman Thanvi",
   "jobTitle": "Computer science and cybersecurity",
-  "url": "https://amanthanvi.com",
+  "url": siteURL,
   "email": "mailto:contact@amanthanvi.com",
   "image": `${siteURL}/images/profile.jpg`,
   "sameAs": [
@@ -75,8 +70,6 @@ const fullImageURL = image.startsWith('http') ? image : `${siteURL}${image}`;
 (function(){
   var d=document.documentElement,k='theme',s,r;
   try{s=localStorage.getItem(k)}catch(e){}
-  if(s==='dune')s='light';
-  if(s==='arcade')s='dark';
   if(!s||['auto','dark','light'].indexOf(s)<0)s='auto';
   r=s==='dark'||(s==='auto'&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
   d.setAttribute('data-theme',s);

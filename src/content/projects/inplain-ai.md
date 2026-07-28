@@ -2,7 +2,6 @@
 title: "Inplain.AI"
 description: "AI-powered privacy policy monitoring tool that tracks changes and provides plain-language summaries using multiple LLMs."
 tags: ["Next.js", "Python", "Scrapy", "AI/ML"]
-status: "active"
 url: "https://inplain.ai"
 order: 3
 ---

@@ -9,8 +9,6 @@ export function getStoredTheme(): Theme {
   try {
     const val = localStorage.getItem(STORAGE_KEY);
     if (val && STATES.includes(val as Theme)) return val as Theme;
-    if (val === "dune") return "light";
-    if (val === "arcade") return "dark";
   } catch {
     // localStorage unavailable
   }

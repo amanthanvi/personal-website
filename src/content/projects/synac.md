@@ -1,8 +1,7 @@
 ---
 title: "SynAc"
-description: "Public cybersecurity glossary platform with strong provenance and attribution. Built with Next.js, TypeScript, PostgreSQL, and Prisma."
+description: "Public cybersecurity glossary platform with strong provenance and attribution."
 tags: ["Next.js", "TypeScript", "PostgreSQL", "Prisma"]
-status: "active"
 github: "https://github.com/amanthanvi/synac"
 url: "https://synac.app"
 order: 1
