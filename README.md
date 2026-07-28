@@ -34,7 +34,9 @@ Pushes to `main` (or manual [`workflow_dispatch`](https://docs.github.com/en/act
 
 ## Accessibility, performance, and privacy
 
-Semantic HTML, keyboard navigation, theme and motion preferences are part of the design. Performance and manual test notes live in [`AGENTS.md`](AGENTS.md). There are no analytics trackers or cookies; the site loads webfonts from Google Fonts (Bricolage Grotesque, Figtree — see [`src/components/layout/BaseHead.astro`](src/components/layout/BaseHead.astro)).
+Semantic HTML, keyboard navigation, theme and motion preferences are part of the design. Performance and manual test notes live in [`AGENTS.md`](AGENTS.md). There are no analytics trackers or cookies. Source Sans 3 is self-hosted through `@fontsource-variable/source-sans-3`, so page loads make no third-party font requests.
+
+The site intentionally does not declare a Content Security Policy. GitHub Pages cannot set CSP response headers, while a meta policy would require keeping a hash synchronized with the inline pre-paint theme script and could silently break theming when that script changes.
 
 ## Credits and contributing
 
