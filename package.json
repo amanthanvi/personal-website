@@ -23,6 +23,6 @@
   },
   "overrides": {
     "volar-service-yaml": "0.0.71",
-    "fast-uri": "^3.1.4"
+    "fast-uri": "^3.1.5"
   }
 }
