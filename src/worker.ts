@@ -122,6 +122,10 @@ export function markdownAssetPath(pathname: string): string {
   return `/agent-markdown${pathname}.md`;
 }
 
+export function markdownStatus(pathname: string, assetStatus: number): number {
+  return pathname === "/404" || pathname === "/404.html" ? 404 : assetStatus;
+}
+
 export default {
   async fetch(request: Request): Promise<Response> {
     if (
@@ -132,6 +136,7 @@ export default {
     }
 
     const url = new URL(request.url);
+    const requestedPath = url.pathname;
     url.pathname = markdownAssetPath(url.pathname);
     const markdownRequest = new Request(url, {
       headers: request.headers,
@@ -143,8 +148,11 @@ export default {
       return new Response(
         request.method === "HEAD" ? null : markdownResponse.body,
         {
-          status: markdownResponse.status,
-          statusText: markdownResponse.statusText,
+          status: markdownStatus(requestedPath, markdownResponse.status),
+          statusText:
+            requestedPath === "/404" || requestedPath === "/404.html"
+              ? "Not Found"
+              : markdownResponse.statusText,
           headers: markdownHeaders(markdownResponse),
         },
       );
