@@ -1,0 +1,13 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "amanthanvi-markdown-negotiation",
+  "main": "src/worker.ts",
+  "compatibility_date": "2026-08-21",
+  "workers_dev": false,
+  "routes": [
+    {
+      "pattern": "amanthanvi.com/*",
+      "zone_name": "amanthanvi.com"
+    }
+  ]
+}
