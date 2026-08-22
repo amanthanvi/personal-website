@@ -99,6 +99,28 @@ function appendVary(headers: Headers, value: string): void {
   }
 }
 
+async function fetchOrigin(request: Request): Promise<Response> {
+  const response = await fetch(request);
+  const contentType = response.headers
+    .get("content-type")
+    ?.split(";", 1)[0]
+    .trim()
+    .toLowerCase();
+
+  if (contentType !== "text/html") {
+    return response;
+  }
+
+  const headers = new Headers(response.headers);
+  appendVary(headers, "Accept");
+
+  return new Response(request.method === "HEAD" ? null : response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
+
 function markdownHeaders(markdownResponse: Response): Headers {
   const headers = new Headers(markdownResponse.headers);
   headers.set("content-type", "text/markdown; charset=utf-8");
@@ -132,7 +154,9 @@ export default {
       (request.method !== "GET" && request.method !== "HEAD") ||
       !prefersMarkdown(request.headers.get("accept"))
     ) {
-      return fetch(request);
+      return request.method === "GET" || request.method === "HEAD"
+        ? fetchOrigin(request)
+        : fetch(request);
     }
 
     const url = new URL(request.url);
@@ -160,6 +184,6 @@ export default {
 
     // Preserve normal origin redirects, 404s, and non-HTML assets when no
     // generated Markdown representation exists for the requested path.
-    return fetch(request);
+    return fetchOrigin(request);
   },
 };
