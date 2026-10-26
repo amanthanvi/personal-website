@@ -23,7 +23,7 @@
     "@tailwindcss/vite": "^4.3.0",
     "node-html-markdown": "^2.0.0",
     "tailwindcss": "^4.3.0",
-    "typescript": "^5.7.0",
+    "typescript": "^7.0.2",
     "wrangler": "4.152.0"
   },
   "overrides": {
