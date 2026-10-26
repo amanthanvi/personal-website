@@ -22,8 +22,7 @@ jobs:
         if: steps.check_files.outputs.has_files == 'true'
         with:
           globs: |
-            README.md
-        continue-on-error: true
+            *.md
 
   lint-yaml:
     runs-on: ubuntu-latest
@@ -32,7 +31,6 @@ jobs:
       - uses: ibiqlik/action-yamllint@v3
         with:
           file_or_dir: .github/workflows/
-        continue-on-error: true
 
   spellcheck:
     runs-on: ubuntu-latest
@@ -42,8 +40,7 @@ jobs:
         with:
           check_filenames: true
           ignore_words_list: adn,aman,thanvi,doj,ustp,cisa,nasa,umd,sdls,cfs,nos3,ccds,ngn,scan,ltsc,eoust,govt,config,astro,oklch
-          skip: ./.git,./node_modules,./dist,./.astro
-        continue-on-error: true
+          skip: ./.git,./node_modules,./dist,./.astro,./package-lock.json
 
   typecheck:
     runs-on: ubuntu-latest

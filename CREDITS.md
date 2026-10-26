@@ -5,13 +5,15 @@ This file documents open-source dependencies and fonts. **Nothing here is legal 
 ## Open-source software
 
 | Project | Use | License (see package / upstream) |
-|--------|-----|----------------------------------|
+| --- | --- | --- |
 | [Astro](https://astro.build/) | Static site generator | MIT |
 | [@astrojs/mdx](https://docs.astro.build/en/guides/integrations-guide/mdx/) | MDX content (blog) | MIT |
 | [Tailwind CSS](https://tailwindcss.com/) | Styling | MIT |
 | [TypeScript](https://www.typescriptlang.org/) | Language | Apache-2.0 |
 | [@astrojs/sitemap](https://docs.astro.build/en/guides/integrations-guide/sitemap/) | Sitemap generation | MIT |
 | [Fontsource](https://fontsource.org/) | Self-hosted font packaging | MIT |
+| [node-html-markdown](https://github.com/crosstype/node-html-markdown) | Build-time HTML → Markdown for agent pages | MIT |
+| [Wrangler](https://developers.cloudflare.com/workers/wrangler/) | Develop and deploy the Cloudflare Worker | MIT OR Apache-2.0 |
 
 Version ranges are declared in [`package.json`](package.json); resolved versions are recorded in `package-lock.json`. Full license texts live in `node_modules/` after `npm install`.
 
@@ -20,7 +22,7 @@ Version ranges are declared in [`package.json`](package.json); resolved versions
 Served from this origin via `@fontsource-variable/source-sans-3`; no third-party font requests.
 
 | Font | Role | Source |
-|------|------|--------|
+| --- | --- | --- |
 | [Source Sans 3](https://github.com/adobe-fonts/source-sans) | Everything | Open Font License 1.1 |
 
 ## Repository documentation

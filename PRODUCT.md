@@ -20,7 +20,7 @@ Undecided as a sharp category claim. Confirmed stance: the site should feel chil
 
 ## Operating Context
 
-Visited on phone or laptop in ordinary browsing moments. Static Astro site at https://amanthanvi.com; contact via email, LinkedIn, and GitHub. No account, app workflow, or authenticated product surface.
+Visited on phone or laptop in ordinary browsing moments. Static Astro site at <https://amanthanvi.com>; contact via email, LinkedIn, and GitHub. No account, app workflow, or authenticated product surface.
 
 ## Capabilities and Constraints
 
@@ -40,10 +40,10 @@ Visited on phone or laptop in ordinary browsing moments. Static Astro site at ht
 
 ## Evidence on Hand
 
-- Profile photo: `public/images/profile.jpg`
+- Profile photo: `public/images/profile.jpg` (full photo, used by JSON-LD); hero crop at `src/assets/portrait.jpg`
 - Projects: `src/content/projects/` (e.g. synac, inplain-ai, betterman, malicious-url-detector, personal-website)
 - Publications: `src/content/publications.json`
-- Blog: `src/content/blog/hello-world.mdx` only so far—do not invent additional posts or quotes
+- Blog: `src/content/blog/hello-world.mdx` only, and it is a draft (the Writing section is hidden until a real post is published)—do not invent posts or quotes
 - Contact paths: `contact@amanthanvi.com`, LinkedIn `/in/amanthanvi`, GitHub `amanthanvi`
 
 ## Product Principles
