@@ -4,5 +4,5 @@ description: "This site: one static page, with a Markdown copy of every page ser
 tags: ["Astro", "Tailwind CSS", "TypeScript", "Cloudflare Workers"]
 github: "https://github.com/amanthanvi/personal-website"
 url: "https://amanthanvi.com"
-order: 6
+order: 8
 ---
