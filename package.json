@@ -8,7 +8,9 @@
     "build": "astro build && node scripts/generate-markdown.mjs",
     "preview": "astro preview",
     "check": "astro check",
-    "test:worker": "node --test src/worker.test.mjs"
+    "test:worker": "node --test src/worker.test.mjs",
+    "worker:dev": "wrangler dev",
+    "worker:deploy": "wrangler deploy"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.2",
@@ -21,11 +23,15 @@
     "@tailwindcss/vite": "^4.3.0",
     "node-html-markdown": "^2.0.0",
     "tailwindcss": "^4.3.0",
-    "typescript": "^5.7.0"
+    "typescript": "^5.7.0",
+    "wrangler": "4.152.0"
   },
   "overrides": {
     "volar-service-yaml": "0.0.71",
     "fast-uri": "^3.1.5",
-    "nanoid": "3.3.18"
+    "nanoid": "^3.3.18",
+    "miniflare": {
+      "undici": "7.30.1"
+    }
   }
 }

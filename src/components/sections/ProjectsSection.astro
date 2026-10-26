@@ -15,34 +15,22 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
       const showSource = Boolean(project.data.github && project.data.url);
 
       return (
-        <article class="border-t border-border py-4 last:border-b">
+        <article class="row border-t border-border py-4 last:border-b">
           {primary ? (
-            <a
-              class="row-link inline-flex items-baseline gap-1.5"
-              href={primary}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <h3 class="row-title text-[0.9375rem]">{project.data.title}</h3>
-              <span class="text-[0.8125rem] text-faint" aria-hidden="true">↗</span>
-              <span class="sr-only">(opens in a new tab)</span>
+            <a class="row-link" href={primary}>
+              <h3 class="row-title inline text-title">{project.data.title}</h3>
             </a>
           ) : (
-            <h3 class="text-[0.9375rem]">{project.data.title}</h3>
+            <h3 class="text-title">{project.data.title}</h3>
           )}
 
-          <p class="mt-1 text-muted">{project.data.description}</p>
+          <p class="mt-1 text-row text-muted">{project.data.description}</p>
 
           <div class="mt-2 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-            <p class="text-[0.8125rem] text-faint">{project.data.tags.join(' · ')}</p>
+            <p class="text-label text-faint">{project.data.tags.join(' · ')}</p>
             {showSource && (
-              <a
-                class="link text-[0.8125rem]"
-                href={project.data.github}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Source<span class="sr-only"> for {project.data.title} (opens in a new tab)</span>
+              <a class="link hit row-extra text-label" href={project.data.github}>
+                Source<span class="sr-only"> for {project.data.title}</span>
               </a>
             )}
           </div>

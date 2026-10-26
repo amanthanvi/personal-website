@@ -2,22 +2,35 @@
   {
     "title": "SocialCipher: A Multimodal Framework for Proactive Threat Detection with SentIntel",
     "venue": "IEEE CAI 2025",
-    "period": "Jun 2024 — May 2025",
-    "description": "Co-authored paper on proactive cyber threat detection using sentiment analysis and LLMs. Research conducted at MIT Lincoln Laboratory.",
-    "tags": ["IEEE", "AI/ML", "Threat Intelligence"]
+    "period": "Jun 2024 – May 2025",
+    "description": "Co-authored paper on spotting cyber threats early by combining sentiment analysis with large language models. Research conducted at MIT Lincoln Laboratory.",
+    "tags": [
+      "IEEE",
+      "AI/ML",
+      "Threat Intelligence"
+    ],
+    "url": "https://doi.org/10.1109/CAI64502.2025.00158"
   },
   {
     "title": "Geneva — Protocol Obfuscation Research",
     "venue": "Breakerspace, University of Maryland",
-    "period": "Aug 2023 — Present",
-    "description": "Researching Text-to-Speech quirks for practical applications in circumventing censorship detection. Establishing baselines for detectability vs throughput.",
-    "tags": ["Censorship", "TTS", "Research"]
+    "period": "Aug 2023 – 2024",
+    "description": "Studied how quirks in text-to-speech could help get past censorship detection, and measured the trade-off between staying undetected and throughput.",
+    "tags": [
+      "Censorship",
+      "TTS",
+      "Research"
+    ]
   },
   {
     "title": "Cyber Threat Intelligence Research",
     "venue": "NSA / University of Maryland",
-    "period": "Aug 2023 — Dec 2023",
-    "description": "Threat intelligence on APTs 40 and 41, with threat profiles and a briefing for NSA leadership.",
-    "tags": ["APT Analysis", "Threat Intelligence", "NSA"]
+    "period": "Aug 2023 – Dec 2023",
+    "description": "Threat intelligence on the threat groups APT40 and APT41, including threat profiles and a briefing for NSA leadership.",
+    "tags": [
+      "APT Analysis",
+      "Threat Intelligence",
+      "NSA"
+    ]
   }
 ]

@@ -3,11 +3,31 @@
   "short_name": "A. Thanvi",
   "start_url": "/",
   "scope": "/",
-  "display": "standalone",
-  "background_color": "#090a0c",
-  "theme_color": "#090a0c",
+  "display": "browser",
+  "background_color": "#fbfbfb",
+  "theme_color": "#fbfbfb",
   "icons": [
-    { "src": "/images/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "/images/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png" }
+    {
+      "src": "/images/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/maskable-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/images/maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ]
 }

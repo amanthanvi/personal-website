@@ -1,8 +1,24 @@
 ---
+import { contactLinks } from '../../lib/site';
+
+interface Props {
+  /** The centred 404 drops the top margin so its column stays optically centred. */
+  flush?: boolean;
+}
+
+const { flush = false } = Astro.props;
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="mt-20 flex items-baseline justify-between gap-4 border-t border-border py-6 text-[0.8125rem] text-faint">
-  <span>Aman Thanvi</span>
-  <span>&copy; {currentYear}</span>
+<!-- every page ends with a way to get in touch, not just the top of the homepage -->
+<footer
+  class:list={[
+    'flex flex-wrap items-baseline justify-between gap-x-5 gap-y-2 border-t border-border py-6 text-label text-faint',
+    !flush && 'mt-14',
+  ]}
+>
+  <p class="flex flex-wrap gap-x-5 gap-y-2">
+    {contactLinks.map(({ label, href }) => <a class="link hit" href={href}>{label}</a>)}
+  </p>
+  <span>&copy; {currentYear} Aman Thanvi</span>
 </footer>

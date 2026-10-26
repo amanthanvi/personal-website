@@ -1,19 +1,20 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { CONTACT_EMAIL } from '../lib/site';
 ---
 
 <BaseLayout
   title="Page not found — Aman Thanvi"
-  description="The page you're looking for doesn't exist."
+  description="The page you’re looking for doesn’t exist."
   noindex={true}
   centered={true}
 >
   <div>
-    <h1 class="text-[1.75rem] leading-[1.15] tracking-[-0.021em]">Page not found</h1>
-    <p class="mt-2 text-muted">That page doesn't exist, or it moved.</p>
+    <h1 class="text-display">Page not found</h1>
+    <p class="mt-2 text-muted">That page doesn’t exist, or it moved.</p>
     <p class="mt-6 flex flex-wrap gap-x-5 gap-y-2">
-      <a class="link" href="/">Go home</a>
-      <a class="link" href="mailto:contact@amanthanvi.com">Email</a>
+      <a class="link hit" href="/">Go home</a>
+      <a class="link hit" href={`mailto:${CONTACT_EMAIL}`}>Tell me what broke</a>
     </p>
   </div>
 </BaseLayout>

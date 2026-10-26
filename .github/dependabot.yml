@@ -4,3 +4,14 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+  # npm was missing, so security fixes arrived only as one-off PRs; group them weekly.
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      astro:
+        patterns: ["astro", "@astrojs/*"]
+      build-tooling:
+        patterns: ["*"]
+        exclude-patterns: ["astro", "@astrojs/*"]

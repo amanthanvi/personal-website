@@ -8,29 +8,28 @@ const posts = (await getCollection('blog'))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
-<section id="writing" class="mt-14" aria-labelledby="writing-heading">
-  <SectionHeading id="writing-heading" label="Writing" />
+{/* No published posts means no Writing section: an empty or placeholder list reads as abandoned. */}
+{
+  posts.length > 0 && (
+    <section id="writing" class="mt-14" aria-labelledby="writing-heading">
+      <SectionHeading id="writing-heading" label="Writing" />
 
-  {
-    posts.length > 0 ? (
-      posts.map((post) => (
-        <article class="border-t border-border py-4 last:border-b">
-          <a class="row-link block" href={postPath(post)}>
-            <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-0.5">
-              <h3 class="row-title text-[0.9375rem]">{post.data.title}</h3>
-              <time
-                class="shrink-0 text-[0.8125rem] text-faint"
-                datetime={post.data.pubDate.toISOString()}
-              >
-                {formatDate(post.data.pubDate)}
-              </time>
-            </div>
-            <p class="mt-1 text-muted">{post.data.description}</p>
-          </a>
+      {posts.map((post) => (
+        <article class="row border-t border-border py-4 last:border-b">
+          <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-0.5">
+            <a class="row-link" href={postPath(post)}>
+              <h3 class="row-title inline text-title">{post.data.title}</h3>
+            </a>
+            <time
+              class="shrink-0 text-label text-faint"
+              datetime={post.data.pubDate.toISOString()}
+            >
+              {formatDate(post.data.pubDate)}
+            </time>
+          </div>
+          <p class="mt-1 text-row text-muted">{post.data.description}</p>
         </article>
-      ))
-    ) : (
-      <p class="border-t border-border py-4 text-muted">Nothing published yet.</p>
-    )
-  }
-</section>
+      ))}
+    </section>
+  )
+}

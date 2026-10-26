@@ -1,83 +1,137 @@
 ---
+import { CONTACT_EMAIL, profileURLs } from '../../lib/site';
+
+export interface Article {
+  publishedTime: Date;
+  modifiedTime?: Date;
+}
+
 interface Props {
   title: string;
   description: string;
   image?: string;
+  imageAlt?: string;
   canonicalURL?: string;
   noindex?: boolean;
+  article?: Article;
+  person?: boolean;
 }
+
+// The default share card is 1200×630 — the size summary_large_image expects.
+const DEFAULT_IMAGE = {
+  src: '/images/og-card.png',
+  alt: 'Aman Thanvi — computer science and cybersecurity',
+  width: 1200,
+  height: 630,
+  type: 'image/png',
+};
 
 const {
   title,
   description,
-  image = '/images/og-default.png',
+  image,
+  imageAlt,
   canonicalURL = Astro.url.href,
   noindex = false,
+  article,
+  person = false,
 } = Astro.props;
 
 // astro.config.mjs is the single source for the site URL.
 const siteURL = Astro.site?.href.replace(/\/$/, '') ?? '';
-const isAbsoluteImageURL = /^https?:\/\//i.test(image);
-const fullImageURL = isAbsoluteImageURL
-  ? image
-  : `${siteURL}${image.startsWith('/') ? '' : '/'}${image}`;
+const absolute = (path: string) =>
+  /^https?:\/\//i.test(path) ? path : `${siteURL}${path.startsWith('/') ? '' : '/'}${path}`;
+
+const imageURL = absolute(image ?? DEFAULT_IMAGE.src);
+const alt = imageAlt ?? (image ? title : DEFAULT_IMAGE.alt);
+
+const personLD = {
+  '@type': 'Person',
+  name: 'Aman Thanvi',
+  url: `${siteURL}/`,
+  email: `mailto:${CONTACT_EMAIL}`,
+  image: `${siteURL}/images/profile.jpg`,
+  knowsAbout: ['Computer science', 'Cybersecurity'],
+  sameAs: profileURLs,
+};
+
+const jsonLD = article
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: title.replace(/ — Aman Thanvi$/, ''),
+      description,
+      image: imageURL,
+      url: canonicalURL,
+      mainEntityOfPage: canonicalURL,
+      datePublished: article.publishedTime.toISOString(),
+      ...(article.modifiedTime && { dateModified: article.modifiedTime.toISOString() }),
+      author: { '@type': 'Person', name: 'Aman Thanvi', url: `${siteURL}/` },
+    }
+  : person
+    ? { '@context': 'https://schema.org', ...personLD }
+    : null;
 ---
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>{title}</title>
-<link rel="canonical" href={canonicalURL} />
-{noindex && <meta name="robots" content="noindex" />}
+{/* a noindex page should not name itself canonical */}
+{noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonicalURL} />}
 <meta name="description" content={description} />
 
-<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Aman Thanvi" />
+<meta property="og:type" content={article ? 'article' : 'website'} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:url" content={canonicalURL} />
-<meta property="og:image" content={fullImageURL} />
-<meta property="og:image:alt" content="Aman Thanvi — computer science and cybersecurity" />
+{!noindex && <meta property="og:url" content={canonicalURL} />}
+<meta property="og:image" content={imageURL} />
+<meta property="og:image:alt" content={alt} />
+{
+  !image && (
+    <>
+      <meta property="og:image:type" content={DEFAULT_IMAGE.type} />
+      <meta property="og:image:width" content={String(DEFAULT_IMAGE.width)} />
+      <meta property="og:image:height" content={String(DEFAULT_IMAGE.height)} />
+    </>
+  )
+}
+{
+  article && (
+    <>
+      <meta property="article:published_time" content={article.publishedTime.toISOString()} />
+      {article.modifiedTime && (
+        <meta property="article:modified_time" content={article.modifiedTime.toISOString()} />
+      )}
+      <meta property="article:author" content={`${siteURL}/`} />
+    </>
+  )
+}
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
-<meta name="twitter:image" content={fullImageURL} />
-<meta name="twitter:image:alt" content="Aman Thanvi — computer science and cybersecurity" />
+<meta name="twitter:image" content={imageURL} />
+<meta name="twitter:image:alt" content={alt} />
 
 <!-- sRGB equivalents of --color-bg light/dark in src/styles/global.css; update together -->
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fbfbfb" />
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#090a0c" />
 
+<link rel="icon" href="/favicon.ico" sizes="32x32" />
 <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
 <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
 <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
 <link rel="manifest" href="/site.webmanifest" />
 
-<link rel="preload" as="image" href="/images/profile.jpg" />
-
-<script is:inline type="application/ld+json" set:html={JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Aman Thanvi",
-  "jobTitle": "Computer science and cybersecurity",
-  "url": siteURL,
-  "email": "mailto:contact@amanthanvi.com",
-  "image": `${siteURL}/images/profile.jpg`,
-  "sameAs": [
-    "https://linkedin.com/in/amanthanvi",
-    "https://github.com/amanthanvi"
-  ]
-})} />
+{jsonLD && <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLD)} />}
 
 <!-- FOUC prevention: set data-theme + data-resolved before paint -->
 <script is:inline>
 (function(){
-  var d=document.documentElement,k='theme',s,r;
-  try{s=localStorage.getItem(k)}catch(e){}
-  /* retired theme names map to their binary equivalent, so a returning
-     visitor keeps the explicit choice they made instead of being reset */
-  if(s==='dune')s='light';
-  if(s==='arcade')s='dark';
-  if(!s||['auto','dark','light'].indexOf(s)<0)s='auto';
+  var d=document.documentElement,s,r;
+  try{s=localStorage.getItem('theme')}catch(e){}
+  if(s!=='dark'&&s!=='light')s='auto';
   r=s==='dark'||(s==='auto'&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
   d.setAttribute('data-theme',s);
   d.setAttribute('data-resolved',r);
