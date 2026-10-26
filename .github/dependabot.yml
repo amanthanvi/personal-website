@@ -15,3 +15,8 @@ updates:
       build-tooling:
         patterns: ["*"]
         exclude-patterns: ["astro", "@astrojs/*"]
+    ignore:
+      # @astrojs/check 0.9.x peers on TypeScript ^5 || ^6, so 7.x breaks `npm ci`.
+      # Drop this once a release accepts TypeScript 7.
+      - dependency-name: "typescript"
+        versions: [">=7"]
