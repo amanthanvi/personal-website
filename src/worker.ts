@@ -99,21 +99,110 @@ function appendVary(headers: Headers, value: string): void {
   }
 }
 
-async function fetchOrigin(request: Request): Promise<Response> {
-  const response = await fetch(request);
-  const contentType = response.headers
-    .get("content-type")
-    ?.split(";", 1)[0]
-    .trim()
-    .toLowerCase();
+function isHtml(response: Response): boolean {
+  return response.headers.get("content-type")?.split(";", 1)[0].trim().toLowerCase() === "text/html";
+}
 
-  if (contentType !== "text/html") {
-    return response;
+function isPagePath(pathname: string): boolean {
+  return !pathname.split("/").pop()?.includes(".") || pathname.endsWith(".html");
+}
+
+function canonicalUrl(request: Request, assetPath: string): string {
+  const url = new URL(request.url);
+  url.pathname = assetPath.slice("/agent-markdown".length)
+    .replace(/\/index\.md$/, "/")
+    .replace(/\.md$/, ".html");
+  url.search = "";
+  url.hash = "";
+  return url.href;
+}
+
+function markdownResponse(request: Request, asset: Response, assetPath: string, status: number): Response {
+  const headers = new Headers(asset.headers);
+  headers.set("content-type", "text/markdown; charset=utf-8");
+  headers.set("link", `<${canonicalUrl(request, assetPath)}>; rel="canonical"`);
+  headers.set("x-robots-tag", "noindex");
+  appendVary(headers, "Accept");
+  return new Response(request.method === "HEAD" || status === 304 ? null : asset.body, {
+    status,
+    headers,
+  });
+}
+
+const CONDITIONAL_HEADERS = ["if-none-match", "if-modified-since", "if-match", "if-unmodified-since", "if-range"];
+
+/**
+ * `conditional: false` is for error representations: 404.md existing does not make the
+ * requested URL exist, so a missing page must never revalidate to 304.
+ */
+async function fetchMarkdown(
+  request: Request,
+  pathname: string,
+  { conditional = true }: { conditional?: boolean } = {},
+): Promise<Response> {
+  const url = new URL(request.url);
+  url.pathname = pathname;
+  const headers = new Headers(request.headers);
+  if (!conditional) {
+    for (const name of CONDITIONAL_HEADERS) headers.delete(name);
+  }
+  return fetch(new Request(url, { headers, method: request.method }));
+}
+
+function isNotFoundPath(pathname: string): boolean {
+  return pathname === "/404" || pathname === "/404/" || pathname === "/404.html";
+}
+
+export function markdownAssetPath(pathname: string): string {
+  if (pathname === "/" || pathname === "/index.html") {
+    return "/agent-markdown/index.md";
+  }
+  if (isNotFoundPath(pathname)) {
+    return "/agent-markdown/404.md";
+  }
+  if (pathname.endsWith(".html")) {
+    return `/agent-markdown${pathname.slice(0, -5)}.md`;
+  }
+  return `/agent-markdown${pathname.replace(/\/$/, "")}/index.md`;
+}
+
+export function markdownStatus(pathname: string, assetStatus: number): number {
+  if (isNotFoundPath(pathname)) return 404;
+  return assetStatus;
+}
+
+async function negotiate(request: Request): Promise<Response> {
+  const url = new URL(request.url);
+  const negotiable = (request.method === "GET" || request.method === "HEAD") &&
+    !url.pathname.startsWith("/agent-markdown/") && isPagePath(url.pathname);
+  const wantsMarkdown = negotiable && prefersMarkdown(request.headers.get("accept"));
+  const assetPath = markdownAssetPath(url.pathname);
+
+  if (wantsMarkdown) {
+    const asset = await fetchMarkdown(request, assetPath, { conditional: !isNotFoundPath(url.pathname) });
+    if (asset.ok || asset.status === 304) {
+      return markdownResponse(request, asset, assetPath, markdownStatus(url.pathname, asset.status));
+    }
+  }
+
+  const response = await fetch(request);
+  if (wantsMarkdown && response.status === 404 && isHtml(response)) {
+    const notFoundPath = "/agent-markdown/404.md";
+    const asset = await fetchMarkdown(request, notFoundPath, { conditional: false });
+    if (asset.ok) {
+      return markdownResponse(request, asset, notFoundPath, 404);
+    }
   }
 
   const headers = new Headers(response.headers);
-  appendVary(headers, "Accept");
-
+  if ((request.method === "GET" || request.method === "HEAD") && isHtml(response)) {
+    appendVary(headers, "Accept");
+    // Every built page has a Markdown twin and every 404 has 404.md, so advertise the
+    // negotiated URL without probing upstream: a probe would cost every visitor a round trip.
+    if (negotiable && !wantsMarkdown && (response.ok || response.status === 404 || response.status === 304)) {
+      headers.append("link", `<${url.href}>; rel="alternate"; type="text/markdown"`);
+    }
+  }
   return new Response(request.method === "HEAD" ? null : response.body, {
     status: response.status,
     statusText: response.statusText,
@@ -121,69 +210,29 @@ async function fetchOrigin(request: Request): Promise<Response> {
   });
 }
 
-function markdownHeaders(markdownResponse: Response): Headers {
-  const headers = new Headers(markdownResponse.headers);
-  headers.set("content-type", "text/markdown; charset=utf-8");
-  appendVary(headers, "Accept");
-  return headers;
-}
-
-export function markdownAssetPath(pathname: string): string {
-  if (pathname === "/" || pathname === "/index.html") {
-    return "/agent-markdown/index.md";
-  }
-
-  if (pathname.endsWith("/")) {
-    return `/agent-markdown${pathname}index.md`;
-  }
-
-  if (pathname.endsWith(".html")) {
-    return `/agent-markdown${pathname.slice(0, -5)}.md`;
-  }
-
-  return `/agent-markdown${pathname}.md`;
-}
-
-export function markdownStatus(pathname: string, assetStatus: number): number {
-  return pathname === "/404" || pathname === "/404.html" ? 404 : assetStatus;
-}
-
 export default {
   async fetch(request: Request): Promise<Response> {
-    if (
-      (request.method !== "GET" && request.method !== "HEAD") ||
-      !prefersMarkdown(request.headers.get("accept"))
-    ) {
-      return request.method === "GET" || request.method === "HEAD"
-        ? fetchOrigin(request)
-        : fetch(request);
+    const response = await negotiate(request);
+    const headers = new Headers(response.headers);
+    headers.set("x-content-type-options", "nosniff");
+    headers.set("referrer-policy", "strict-origin-when-cross-origin");
+    headers.set("x-frame-options", "DENY");
+    headers.set("permissions-policy", "camera=(), microphone=(), geolocation=()");
+    headers.set("strict-transport-security", "max-age=31536000");
+    const pathname = new URL(request.url).pathname;
+    if (pathname.startsWith("/_astro/") && (response.ok || response.status === 304)) {
+      headers.set("cache-control", "public, max-age=31536000, immutable");
     }
-
-    const url = new URL(request.url);
-    const requestedPath = url.pathname;
-    url.pathname = markdownAssetPath(url.pathname);
-    const markdownRequest = new Request(url, {
-      headers: request.headers,
-      method: request.method,
+    if (pathname.startsWith("/agent-markdown/")) {
+      headers.set("x-robots-tag", "noindex");
+      if (pathname.endsWith(".md")) {
+        headers.set("link", `<${canonicalUrl(request, pathname)}>; rel="canonical"`);
+      }
+    }
+    return new Response(request.method === "HEAD" ? null : response.body, {
+      status: response.status,
+      statusText: response.statusText,
+      headers,
     });
-    const markdownResponse = await fetch(markdownRequest);
-
-    if (markdownResponse.ok) {
-      return new Response(
-        request.method === "HEAD" ? null : markdownResponse.body,
-        {
-          status: markdownStatus(requestedPath, markdownResponse.status),
-          statusText:
-            requestedPath === "/404" || requestedPath === "/404.html"
-              ? "Not Found"
-              : markdownResponse.statusText,
-          headers: markdownHeaders(markdownResponse),
-        },
-      );
-    }
-
-    // Preserve normal origin redirects, 404s, and non-HTML assets when no
-    // generated Markdown representation exists for the requested path.
-    return fetchOrigin(request);
   },
 };
