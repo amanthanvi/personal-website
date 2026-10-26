@@ -30,6 +30,23 @@
 
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --radius: 5px;
+
+  /* the type scale, named so components stop repeating raw sizes */
+  /* always a step above --text-display, so the homepage never matches a post title */
+  --text-masthead: clamp(2rem, 1.6rem + 1vw, 2.25rem);
+  --text-masthead--line-height: 1.1;
+  --text-masthead--letter-spacing: -0.024em;
+  --text-display: 1.75rem;
+  --text-display--line-height: 1.15;
+  --text-display--letter-spacing: -0.021em;
+  --text-lede: 1.0625rem;
+  --text-lede--line-height: 1.6;
+  --text-title: 1rem;
+  --text-title--line-height: 1.35;
+  --text-row: 0.9375rem;
+  --text-row--line-height: 1.6;
+  --text-label: 0.8125rem;
+  --text-label--line-height: 1.4;
 }
 
 :root {
@@ -67,15 +84,7 @@
   --color-accent: var(--_dark-accent);
 }
 
-:root:where([data-theme="light"]) {
-  --color-bg: oklch(0.988 0 0);
-  --color-text: oklch(0.205 0.003 265);
-  --color-muted: oklch(0.44 0.007 265);
-  --color-faint: oklch(0.55 0.008 265);
-  --color-border: oklch(0.885 0.004 265);
-  --color-surface: oklch(0.965 0.002 265);
-  --color-accent: oklch(0.55 0.19 258);
-}
+/* [data-theme="light"] needs no block: the @theme values above are the light theme. */
 
 html:where([data-theme="dark"]) {
   color-scheme: dark;
@@ -115,6 +124,11 @@ html:where([data-theme="light"]) {
     font-weight: 600;
     letter-spacing: -0.012em;
     text-wrap: balance;
+  }
+
+  /* no lone word on the last line of a short paragraph */
+  p {
+    text-wrap: pretty;
   }
 
   /* dates and periods must not shift width between rows */
@@ -184,19 +198,66 @@ html:where([data-theme="light"]) {
   color: var(--color-text);
 }
 
-/* A row that is itself a link: the rule wipes in under the title only. */
+.link:active,
+.row-link:active .row-title {
+  opacity: 0.7;
+}
+
+/*
+  A row whose title is a link. The title keeps a resting hairline so touch visitors
+  can see it is a link, and thickens on hover like every other link. The link's
+  ::after stretches over the whole row, so the row is the tap target; any second
+  link in the row sits above it with .row-extra.
+*/
+.row {
+  position: relative;
+}
+
 .row-link .row-title {
   background-image: linear-gradient(currentColor, currentColor);
   background-repeat: no-repeat;
   background-position: 0 100%;
-  background-size: 0 1px;
+  background-size: 100% 1px;
   padding-bottom: 1px;
-  transition: background-size 0.18s var(--ease-out);
+  transition: background-size 0.16s var(--ease-out);
+}
+
+.row-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
 }
 
 .row-link:hover .row-title,
 .row-link:focus-visible .row-title {
-  background-size: 100% 1px;
+  background-size: 100% 2px;
+}
+
+/* the focus ring belongs on the title, not on the invisible row-sized overlay */
+.row-link:focus-visible {
+  outline: none;
+}
+
+.row-link:focus-visible .row-title {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.row-extra {
+  position: relative;
+  z-index: 1;
+}
+
+/* invisible padding that grows small links to a comfortable tap target */
+.hit {
+  position: relative;
+}
+
+.hit::before {
+  content: "";
+  position: absolute;
+  inset: -0.625rem -0.375rem;
 }
 
 /* ---- blog prose: one step larger than the index, same measure ---- */

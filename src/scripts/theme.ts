@@ -1,18 +1,11 @@
 const STORAGE_KEY = "theme";
-const STATES = ["auto", "light", "dark"] as const;
-type Theme = (typeof STATES)[number];
+type Theme = "auto" | "light" | "dark";
 type ResolvedTheme = "light" | "dark";
-
-export { STATES, type Theme, type ResolvedTheme };
 
 export function getStoredTheme(): Theme {
   try {
     const val = localStorage.getItem(STORAGE_KEY);
-    if (val && STATES.includes(val as Theme)) return val as Theme;
-    // Retired theme names. initThemeToggle() persists whatever this returns,
-    // so falling through to "auto" would overwrite the visitor's real choice.
-    if (val === "dune") return "light";
-    if (val === "arcade") return "dark";
+    if (val === "light" || val === "dark") return val;
   } catch {
     // localStorage unavailable
   }
@@ -32,13 +25,15 @@ function applyTheme(theme: Theme): void {
   document.documentElement.setAttribute("data-theme", theme);
   document.documentElement.setAttribute("data-resolved", resolved);
   document.documentElement.style.colorScheme = resolved;
+}
 
+/** Only an explicit choice is stored; a visitor who never clicks stays on `auto`. */
+function persistTheme(theme: Theme): void {
   try {
     localStorage.setItem(STORAGE_KEY, theme);
   } catch {
     // localStorage unavailable
   }
-  window.dispatchEvent(new CustomEvent("theme-change", { detail: { theme } }));
 }
 
 function withTransition(run: () => void): void {
@@ -54,14 +49,11 @@ function withTransition(run: () => void): void {
   run();
 }
 
-export function setTheme(theme: Theme): void {
-  withTransition(() => applyTheme(theme));
-}
-
 /** Flip explicit light ↔ dark (resolves auto first). */
 export function toggleTheme(): ResolvedTheme {
   const next: ResolvedTheme = resolveTheme() === "dark" ? "light" : "dark";
-  setTheme(next);
+  persistTheme(next);
+  withTransition(() => applyTheme(next));
   return next;
 }
 

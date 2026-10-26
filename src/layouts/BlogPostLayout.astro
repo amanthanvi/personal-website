@@ -22,11 +22,17 @@ const wordCount = rawContent
 const readingTime = Math.max(1, Math.ceil(wordCount / 200));
 ---
 
-<BaseLayout title={`${title} — Aman Thanvi`} description={description} image={image} back={true}>
+<BaseLayout
+  title={`${title} — Aman Thanvi`}
+  description={description}
+  image={image}
+  article={{ publishedTime: pubDate, modifiedTime: updatedDate }}
+  back={true}
+>
   <article>
     <header class="mb-8">
-      <h1 class="text-[1.75rem] leading-[1.15] tracking-[-0.021em]">{title}</h1>
-      <p class="mt-2 flex flex-wrap items-baseline gap-x-2 text-[0.8125rem] text-faint">
+      <h1 class="text-display">{title}</h1>
+      <p class="mt-2 flex flex-wrap items-baseline gap-x-2 text-label text-faint">
         <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
         {
           updatedDate && (
@@ -36,8 +42,15 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
             </>
           )
         }
-        <span aria-hidden="true">·</span>
-        <span>{readingTime} min read</span>
+        {/* a reading time on a one-minute post is noise */}
+        {
+          readingTime > 1 && (
+            <>
+              <span aria-hidden="true">·</span>
+              <span>{readingTime} min read</span>
+            </>
+          )
+        }
       </p>
     </header>
 

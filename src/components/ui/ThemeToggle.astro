@@ -17,6 +17,7 @@
 
 <style>
   .theme-toggle {
+    position: relative;
     border-radius: var(--radius);
     transition:
       color 0.16s var(--ease-out),
@@ -26,6 +27,18 @@
   .theme-toggle:hover {
     color: var(--color-text);
     border-color: var(--color-faint);
+  }
+
+  /* 32px to the eye, 44px to the thumb */
+  .theme-toggle::before {
+    content: "";
+    position: absolute;
+    inset: -6px;
+  }
+
+  .theme-toggle:active {
+    color: var(--color-text);
+    border-color: var(--color-text);
   }
 
   .theme-toggle__icon {
@@ -72,10 +85,11 @@
 <script>
   import { initThemeToggle, toggleTheme, resolveTheme } from '../../scripts/theme';
 
+  // The label names the action. No aria-pressed: "Switch to light mode, pressed"
+  // would describe the opposite of the current state.
   function syncButton(btn: HTMLButtonElement): void {
     const dark = resolveTheme() === 'dark';
     btn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
-    btn.setAttribute('aria-pressed', String(dark));
   }
 
   function syncAll(): void {

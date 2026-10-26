@@ -1,10 +1,8 @@
 ---
 title: "Personal Website"
-description: "This site. Static, no client framework, focused on fast delivery and accessible theme control."
-tags: ["Astro", "Tailwind CSS", "TypeScript", "Design Systems"]
+description: "This site: one static page, with a Markdown copy of every page served to AI agents."
+tags: ["Astro", "Tailwind CSS", "TypeScript", "Cloudflare Workers"]
 github: "https://github.com/amanthanvi/personal-website"
 url: "https://amanthanvi.com"
-order: 5
+order: 6
 ---
-
-Single page built on content collections, with a light/dark theme toggle, a self-hosted typeface, and no client-side framework.

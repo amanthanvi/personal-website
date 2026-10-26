@@ -1,46 +1,32 @@
 ---
-const links = [
-  { label: 'Email', href: 'mailto:contact@amanthanvi.com' },
-  { label: 'GitHub', href: 'https://github.com/amanthanvi' },
-  { label: 'LinkedIn', href: 'https://linkedin.com/in/amanthanvi' },
-];
+import { Image } from 'astro:assets';
+import portrait from '../../assets/portrait.jpg';
+import { contactLinks } from '../../lib/site';
 ---
 
 <section id="hero" aria-labelledby="hero-heading">
-  <img
-    src="/images/profile.jpg"
+  <Image
+    src={portrait}
     alt="Aman Thanvi, smiling."
-    width="160"
-    height="160"
-    class="mb-6 block aspect-square w-20 rounded-[var(--radius)] object-cover"
-    decoding="async"
+    width={80}
+    height={80}
+    densities={[1, 2]}
+    format="webp"
+    quality={80}
     loading="eager"
+    fetchpriority="high"
+    class="mb-6 block aspect-square w-20 rounded-[var(--radius)] object-cover"
   />
 
-  <h1 id="hero-heading" class="text-[1.75rem] leading-[1.15] tracking-[-0.021em]">
-    Aman Thanvi
-  </h1>
+  <!-- the homepage name runs a step above post titles so the front page reads as the front page -->
+  <h1 id="hero-heading" class="text-masthead">Aman Thanvi</h1>
 
-  <p class="mt-2 text-[1.0625rem] leading-[1.6]">
+  <p class="mt-2 text-lede">
     Computer science and cybersecurity. Building things. Overthinking. If not that,
     probably sleeping.
   </p>
 
   <p class="mt-6 flex flex-wrap gap-x-5 gap-y-2">
-    {
-      links.map(({ label, href }) => {
-        const isExternal = href.startsWith('http');
-        return (
-          <a
-            class="link"
-            href={href}
-            {...isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {}}
-          >
-            {label}
-            {isExternal && <span class="sr-only"> (opens in a new tab)</span>}
-          </a>
-        );
-      })
-    }
+    {contactLinks.map(({ label, href }) => <a class="link hit" href={href}>{label}</a>)}
   </p>
 </section>
