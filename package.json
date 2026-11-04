@@ -24,7 +24,7 @@
     "node-html-markdown": "^2.0.0",
     "tailwindcss": "^4.3.0",
     "typescript": "^6.0.3",
-    "wrangler": "4.152.0"
+    "wrangler": "4.156.0"
   },
   "overrides": {
     "volar-service-yaml": "0.0.71",
